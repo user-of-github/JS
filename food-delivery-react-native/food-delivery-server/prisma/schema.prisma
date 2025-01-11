@@ -8,17 +8,67 @@ datasource db {
 }
 
 model User {
-  id String @id @default(cuid())
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now()) @map("created_at") // to make column name created_at inside real DB
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  email String @unique
+  email    String @unique
   password String
 
-  name String
-  avatarPath String @default("/uploads/default-avatar.png") @map("avatar_path")
-  phone String @default("")
+  name       String
+  avatarPath String  @default("/uploads/default-avatar.png") @map("avatar_path")
+  phone      String  @default("")
+  Order      Order[]
 
+  favourites Product[]
 
   @@map("user")
+}
+
+model Product {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") // to make column name created_at inside real DB
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  name String @unique
+  slug String @unique
+
+  description String
+  price       Float
+  image       String
+  
+  category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  String?
+
+  user        User?     @relation(fields: [userId], references: [id])
+  userId      String?
+
+  @@map("product")
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") // to make column name created_at inside real DB
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  name  String @unique
+  slug  String @unique
+  image String
+
+  products Product[]
+
+  @@map("category")
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") // to make column name created_at inside real DB
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  reference String @unique
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  @@map("order")
 }
