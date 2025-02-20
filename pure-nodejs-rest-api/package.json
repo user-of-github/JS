@@ -1,0 +1,21 @@
+{
+  "name": "pure-nodejs-rest-api",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "node --experimental-strip-types --env-file=.env --watch ./src/index.ts",
+    "start": "node --experimental-strip-types --env-file=.env ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
+}
