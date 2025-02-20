@@ -1,27 +1,69 @@
 import http from 'node:http';
-import { PORT } from './constants.ts';
-import { ItemController } from './controllers/itemController.ts';
+import { PORT, RequestMethods, Routes, StatusCodes } from './constants.ts';
+import { PostController } from './controllers/PostController.ts';
+import { trimLastSymbol } from './utils/utils.ts';
 
 
 const server = http.createServer(async (req, res) => {
-    if (!req.url) {
-        return;
-    }
-
-    const url = new URL(req.url, `http://${req.headers.host}`);
-    const { pathname } = url;
-    const { method } = req;
-
-
-    switch (pathname) {
-        case  '/items': {
-            switch (method) {
-                case 'GET':
-                    await ItemController.getItems(res);
-                    break;
-            }
-            break;
+    try {
+        if (!req.url) {
+            return;
         }
+
+        const url = new URL(req.url, `http://${req.headers.host}`);
+        const pathname = trimLastSymbol(url.pathname, '/');
+        const {method} = req;
+
+        const throwNotFound = () => {
+            res.statusCode = StatusCodes.NotFound;
+            res.end('Route or method not found');
+        };
+
+        switch (true) {
+            case  pathname === `/${Routes.Posts}`: {
+                switch (method) {
+                    case RequestMethods.GET:
+                        await PostController.getAll(res);
+                        break;
+                    case RequestMethods.POST:
+                        await PostController.create(req, res);
+                        break;
+                    default:
+                        throwNotFound();
+                        break;
+                }
+                break;
+            }
+
+            case pathname.startsWith(`/${Routes.Posts}/`): {
+                const id = pathname.split('/')[2];
+
+                switch (method) {
+                    case RequestMethods.GET:
+                        await PostController.getById(id, res);
+                        break;
+                    case RequestMethods.DELETE:
+                        await PostController.remove(id, res);
+                        break;
+                    case RequestMethods.PUT:
+                        await PostController.update(id, req, res);
+                        break;
+                    default:
+                        throwNotFound();
+                        break;
+                }
+
+                break;
+            }
+
+            default: {
+                throwNotFound();
+                break;
+            }
+        }
+    } catch {
+        res.statusCode = StatusCodes.ServerError;
+        res.end('Unexpected error occurred');
     }
 });
 
