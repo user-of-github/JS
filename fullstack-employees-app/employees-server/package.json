@@ -12,11 +12,13 @@
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",
+    "bcrypt": "^5.1.1",
     "express": "^4.21.2",
     "express-validator": "^7.2.1"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^4.0.1",
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.4",
     "@typescript-eslint/parser": "^8.24.1",
