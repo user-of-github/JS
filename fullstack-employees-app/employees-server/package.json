@@ -1,21 +1,25 @@
 {
   "name": "employees-server",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
+  "author": "https://github.com/user-of-github",
   "scripts": {
-    "start": "npx tsx --env-file=.env ./app.ts"
+    "dev": "npx tsx watch --env-file=.env ./src/app.ts",
+    "start": "npx tsx --env-file=.env ./src/app.ts",
+    "prettify": "npx eslint . --fix"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "^4.21.2",
-    "morgan": "~1.9.1"
+    "express": "^4.21.2"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^4.0.1",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.4",
-    "ts-node": "^10.9.2",
+    "@typescript-eslint/parser": "^8.24.1",
+    "eslint": "^9.20.1",
+    "globals": "^16.0.0",
     "tsx": "^4.19.3",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.1"
   }
 }
