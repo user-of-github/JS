@@ -10,8 +10,8 @@ export const AuthGuard = async (req: Request, res: Response, next: NextFunction)
     const bearerAndToken = req.headers.authorization?.split(' ') || [];
 
     if (bearerAndToken.length !== 2 || bearerAndToken.at(0) !== bearerWord) {
-        res.status(StatusCode.Unauthorized).json({});
-        return;
+      res.status(StatusCode.Unauthorized).json({});
+      return;
     }
 
     const token = bearerAndToken.at(1) || '';
