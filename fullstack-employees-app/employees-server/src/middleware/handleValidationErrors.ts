@@ -8,7 +8,7 @@ const validationErrors = (request: Request, response: Response, next: any): void
 
   if (!errors.isEmpty()) {
     return void response.status(StatusCode.BadRequest).json({
-      error: errors.array().map(err => err.msg).join('. ')
+      error: errors.array({ onlyFirstError: true }).map(err => err.msg)[0]
     });
   }
 

@@ -1,9 +1,10 @@
 import type { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 import { LoginRequestDto, RegisterRequestDto } from '../routes/types';
 import { AppPrismaClient } from '../prisma';
 import { compareHash, hash } from '../utils';
 import { StatusCode } from '../constants/server';
-import { LoginResponse, RegisterResponse } from './types';
+import { LoginResponse, RegisteredUser, RegisterResponse } from './types';
 
 
 export class UserController {
@@ -17,12 +18,12 @@ export class UserController {
     const isPasswordCorrect = user && (await compareHash(password, user.password));
 
     if (!isPasswordCorrect || !user) {
-      res.status(StatusCode.Unauthorized).send({error: 'Unauthorized due to incorrect email or password'});
+      res.status(StatusCode.Unauthorized).json({error: 'Unauthorized due to incorrect email or password'});
       return;
     }
 
     const {password: _, ...restUserInfo} = user;
-    res.status(StatusCode.Ok).send(restUserInfo);
+    res.status(StatusCode.Ok).json(restUserInfo);
   }
 
   public static async register(req: Request<{}, {}, RegisterRequestDto>, res: Response<RegisterResponse>): Promise<void> {
@@ -32,7 +33,7 @@ export class UserController {
     });
 
     if (registeredUser) {
-      res.status(StatusCode.BadRequest).send({ error: `User with email ${email} already exists` });
+      res.status(StatusCode.BadRequest).json({ error: `User with email ${email} already exists` });
       return;
     }
 
@@ -43,6 +44,17 @@ export class UserController {
       }
     });
 
+    const secret = process.env.JWT_SECRET;
+    if (!secret || !createdUser) {
+      res.status(StatusCode.InternalServerError).json({error: 'Unable to authorize created user. Try again later'});
+      return;
+    }
+
+    const response: RegisteredUser = {
+      name, email, id: createdUser.id, token: jwt.sign({id: createdUser.id}, secret, { expiresIn: '10d'})
+    };
+
+    res.status(StatusCode.Created).json(response);
   }
 
   public static async current(req: Request, res: Response) {
