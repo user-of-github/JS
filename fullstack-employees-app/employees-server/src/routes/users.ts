@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import { UserController } from '../controllers/UserController';
+import { UserValidator } from '../validators/UserValidator';
+import validationErrors from '../validators/handleValidationErrors';
 
 const UserRouter = Router();
 
-UserRouter.post('/login', UserController.login);
+UserRouter.post('/login', UserValidator.loginDto, validationErrors, UserController.login);
 
 UserRouter.post('/register', UserController.register);
 
