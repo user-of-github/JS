@@ -1,9 +1,9 @@
 import type { Request, Response } from 'express';
-import { CreateEmployeeDto, EmployeeResponse, GetEmployeeResponse, GetEmployeesResponse } from './types';
+import { CreateEmployeeDto, EmployeeResponse, GetEmployeesResponse, UpdateEmployeeDto } from './types';
 import { AppPrismaClient } from '../prisma';
 import { StatusCode } from '../constants/server';
 import { BaseController } from './BaseController';
-import { User } from '@prisma/client';
+import { Employee, User } from '@prisma/client';
 
 
 export class EmployeesController extends BaseController {
@@ -16,10 +16,10 @@ export class EmployeesController extends BaseController {
     }
   }
 
-  public static async getById(id: string, req: Request, res: Response<GetEmployeeResponse>) {
+  public static async getById(req: Request, res: Response<EmployeeResponse>) {
     try {
       const employee = await AppPrismaClient.employee.findUnique({
-        where: {id}
+        where: { id: req.params.id }
       });
 
       if (!employee) {
@@ -37,37 +37,37 @@ export class EmployeesController extends BaseController {
     const data = req.body;
 
     try {
-      const employee = await AppPrismaClient.user.update({
-        where: {
-          id: (req as unknown as { user: User }).user.id
-        }, data: {
-          createdEmployee: {
-            create: data
-          }
+      const employee = await AppPrismaClient.employee.create({
+        data: {
+          ...data,
+          userId: (req as unknown as { user: User }).user.id
         }
       });
 
-
       res.status(StatusCode.Created).json({employee} as EmployeeResponse); /* @TODO: ATTENTION: */
 
-    } catch {
+    } catch (error) {
       EmployeesController.sendInternalServerError(res, 'Unable to add a new employee. Try again later');
     }
   }
 
-  public static async deleteById(req: Request, res: Response) {
+  public static async deleteById(req: Request<any, {}, UpdateEmployeeDto>, res: Response) {
     try {
-
+      await AppPrismaClient.employee.delete({ where: { id: req.params.id } });
+      res.status(StatusCode.NoContent).json({});
     } catch {
-      EmployeesController.sendInternalServerError(res, 'Unable to get all employees. Try again later');
+      EmployeesController.sendInternalServerError(res, 'Unable to delete employee. Try again later');
     }
   }
 
-  public static async updateById(req: Request, res: Response<GetEmployeeResponse>) {
-    try {
+  public static async updateById(req: Request, res: Response<EmployeeResponse>) {
+    const data = req.body;
 
+    try {
+      const updated = await AppPrismaClient.employee.update({where: { id: req.params.id }, data: data});
+      res.status(StatusCode.NoContent).json({ employee: updated });
     } catch {
-      EmployeesController.sendInternalServerError(res, 'Unable to get all employees. Try again later');
+      EmployeesController.sendInternalServerError(res, 'Unable to edit an employee. Try again later');
     }
   }
 }

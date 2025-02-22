@@ -11,7 +11,7 @@ EmployeeRouter.post('/', AuthGuard, EmployeeValidator.createDto, validationError
 
 EmployeeRouter.get('/:id', AuthGuard, EmployeesController.getById);
 EmployeeRouter.delete('/:id', AuthGuard, EmployeesController.deleteById);
-EmployeeRouter.put('/:id', AuthGuard, EmployeesController.updateById);
+EmployeeRouter.put('/:id', AuthGuard, EmployeeValidator.createDto, validationErrors, EmployeesController.updateById);
 
 export { EmployeeRouter };
 

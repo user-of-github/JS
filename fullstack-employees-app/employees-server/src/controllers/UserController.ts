@@ -8,7 +8,7 @@ import { LoginDto, LoginResponse, RegisteredUser, RegisterDto, RegisterResponse 
 import { BaseController } from './BaseController';
 
 
-export class UserController extends BaseController{
+export class UserController extends BaseController {
   public static async login(req: Request<{}, {}, LoginDto>, res: Response<LoginResponse>): Promise<void> {
     const {email, password} = req.body;
 

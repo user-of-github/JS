@@ -28,3 +28,4 @@ export type EmployeeResponse = ErrorResponse | {
 };
 
 export type CreateEmployeeDto = Pick<Employee, 'lastName' | 'firstName' | 'age' | 'address'>;
+export type UpdateEmployeeDto = CreateEmployeeDto;
