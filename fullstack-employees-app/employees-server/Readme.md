@@ -2,13 +2,13 @@
 ___   
 
 ### Technologies:  
-- _[Node.js](https://nodejs.org/en)_
-- _[TypeScript](https://www.typescriptlang.org/)_
 - _[Express](https://expressjs.com/)_
+- _[TypeScript](https://www.typescriptlang.org/)_
 - _[Prisma ORM](https://www.prisma.io/)_ 
 - _[Express Validator](https://express-validator.github.io/)_  
 - _[JWT](https://jwt.io/)_
 - _[ESLint](https://eslint.org/) with [ESLint Stylistic](https://eslint.style/)_   
+- _[TSX](https://tsx.is/)_
 ___   
 
 ### Routes  
