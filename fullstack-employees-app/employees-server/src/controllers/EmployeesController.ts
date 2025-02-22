@@ -48,7 +48,7 @@ export class EmployeesController extends BaseController {
     }
   }
 
-  public static async updateById() {
+  public static async updateById(req: Request, res: Response<GetEmployeeResponse>) {
     try {
 
     } catch {

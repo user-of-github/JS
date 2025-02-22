@@ -32,7 +32,9 @@ export class UserController extends BaseController{
       }
 
       const {password: _, ...restUserInfo} = user;
-      res.status(StatusCode.Ok).json({ ...restUserInfo, token: jwt.sign({id: restUserInfo.id}, secret, { expiresIn: '10d'})} );
+      res
+        .status(StatusCode.Ok)
+        .json({ ...restUserInfo, token: jwt.sign({id: restUserInfo.id}, secret, { expiresIn: '10d'})} );
     } catch {
       UserController.sendInternalServerError(res, 'Unable to login. Try again later');
     }
