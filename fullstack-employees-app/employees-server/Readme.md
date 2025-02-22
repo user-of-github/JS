@@ -16,7 +16,13 @@ ___
   - `/users`
     - `POST /login`
     - `POST /register`  
-    - `GET /current`  
+    - `GET /current` 
+  - `/employees`
+    - `GET /`
+    - `POST /`
+    - `GET /:id`
+    - `PUT /:id`
+    - `DELETE /:id`
 ___  
 
 ### To run  

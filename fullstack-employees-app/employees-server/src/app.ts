@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import { DEFAULT_PORT } from './constants/server';
 import { CURRENT_API_VERSION, URL_PREFIX } from './constants/routes';
 import { UserRouter } from './routes/users';
+import { EmployeeRouter } from './routes/employees';
 
 
 const app: Express = express();
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use(`/${URL_PREFIX}/${CURRENT_API_VERSION}/users`, UserRouter);
+app.use(`/${URL_PREFIX}/${CURRENT_API_VERSION}/employees`, EmployeeRouter);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
