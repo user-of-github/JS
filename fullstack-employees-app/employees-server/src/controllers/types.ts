@@ -1,8 +1,11 @@
-import { ErrorResponse } from '../types/AppResponse';
 import { Employee, User } from '@prisma/client';
+import { ErrorResponse } from '../types/AppResponse';
 
 
 /* UserController */
+export type LoginDto = Pick<User, 'email' | 'password'>;
+
+export type RegisterDto = Pick<User, 'email' | 'password' | 'name'>;
 
 type TokenResponse = {
   token: string;
@@ -20,6 +23,8 @@ export type GetEmployeesResponse = ErrorResponse | {
   employees: readonly Employee[];
 };
 
-export type GetEmployeeResponse = ErrorResponse | {
+export type EmployeeResponse = ErrorResponse | {
   employee: Employee;
 };
+
+export type CreateEmployeeDto = Pick<Employee, 'lastName' | 'firstName' | 'age' | 'address'>;

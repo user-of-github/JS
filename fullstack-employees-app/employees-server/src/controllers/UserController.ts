@@ -1,16 +1,15 @@
 import type { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { LoginRequestDto, RegisterRequestDto } from '../routes/types';
+import { User } from '@prisma/client';
 import { AppPrismaClient } from '../prisma';
 import { compareHash, hash } from '../utils';
 import { StatusCode } from '../constants/server';
-import { LoginResponse, RegisteredUser, RegisterResponse } from './types';
-import { User } from '@prisma/client';
+import { LoginDto, LoginResponse, RegisteredUser, RegisterDto, RegisterResponse } from './types';
 import { BaseController } from './BaseController';
 
 
 export class UserController extends BaseController{
-  public static async login(req: Request<{}, {}, LoginRequestDto>, res: Response<LoginResponse>): Promise<void> {
+  public static async login(req: Request<{}, {}, LoginDto>, res: Response<LoginResponse>): Promise<void> {
     const {email, password} = req.body;
 
     try {
@@ -40,7 +39,7 @@ export class UserController extends BaseController{
     }
   }
 
-  public static async register(req: Request<{}, {}, RegisterRequestDto>, res: Response<RegisterResponse>): Promise<void> {
+  public static async register(req: Request<{}, {}, RegisterDto>, res: Response<RegisterResponse>): Promise<void> {
     const {email, password, name} = req.body;
 
     try {
