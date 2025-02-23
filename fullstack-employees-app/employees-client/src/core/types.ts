@@ -6,8 +6,22 @@
  * */
 
 export interface User {
-  id: string
-  email: string
-  password: string
-  name: string
+  id: string;
+  email: string;
+  password: string;
+  name: string;
 }
+
+export interface Employee {
+  id: string;
+  firstName: string;
+  lastName: string;
+  age: number;
+  address: string;
+  userId: string;
+}
+
+
+/* End of copied types */
+
+export type UserWithToken = Omit<User, 'password'> & { token: string; }

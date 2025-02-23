@@ -9,9 +9,11 @@ const baseQuery = fetchBaseQuery({
 
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
 
-export const AppApi = createApi({
+const AppApi = createApi({
   reducerPath: 'appApi',
   baseQuery: baseQueryWithRetry,
   refetchOnMountOrArgChange: true,
   endpoints: () => ({})
-})
+});
+
+export { AppApi };
