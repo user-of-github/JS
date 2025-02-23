@@ -1,8 +1,31 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { AppRoutes } from './routes';
+import { LoginPage } from './pages/login';
+import { RegisterPage } from './pages/register';
+import { AppLayout } from './components/Layout';
+import { AppThemeProvider } from './theme';
 
 
 export const App: React.FC = () => {
   return (
-    <h1>Hello world</h1>
+    <BrowserRouter>
+      <AppThemeProvider>
+        <AppLayout>
+          <Routes>
+            <Route path={AppRoutes.login.path} element={<LoginPage/>}/>
+            <Route path={AppRoutes.register.path} element={<RegisterPage/>}/>
+
+            <Route path={AppRoutes.employees.path}>
+              <Route index element={<h1>Employees List</h1>}/>
+              <Route path={AppRoutes.employees.add.path} element={<h1>Add employee</h1>}/>
+              <Route path={AppRoutes.employees.edit.path} element={<h1>Edit employee</h1>}/>
+            </Route>
+
+            <Route path="*" element={<h1>Not found</h1>}></Route>
+          </Routes>
+        </AppLayout>
+      </AppThemeProvider>
+    </BrowserRouter>
   );
 };
