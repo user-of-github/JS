@@ -1,5 +1,5 @@
 import { User, UserWithToken } from '../types';
-import { AppApi } from './api';
+import { AppApi } from './index';
 
 export type UserData = Omit<User, 'id'>;
 type LoginResponseData = Omit<UserWithToken, 'password'>;

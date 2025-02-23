@@ -6,26 +6,30 @@ import { LoginPage } from './pages/Login';
 import { RegisterPage } from './pages/register';
 import { AppLayout } from './components/Layout';
 import { themeConfig } from './theme';
+import { Provider } from 'react-redux';
+import { AppStore } from './core/store';
 
 
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <ConfigProvider theme={themeConfig}>
-        <AppLayout>
-          <Routes>
-            <Route path={AppRoutes.login.path} element={<LoginPage/>}/>
-            <Route path={AppRoutes.register.path} element={<RegisterPage/>}/>
+        <Provider store={AppStore}>
+          <AppLayout>
+            <Routes>
+              <Route path={AppRoutes.login.path} element={<LoginPage/>}/>
+              <Route path={AppRoutes.register.path} element={<RegisterPage/>}/>
 
-            <Route path={AppRoutes.employees.path}>
-              <Route index element={<h1>Employees List</h1>}/>
-              <Route path={AppRoutes.employees.add.path} element={<h1>Add employee</h1>}/>
-              <Route path={AppRoutes.employees.edit.path} element={<h1>Edit employee</h1>}/>
-            </Route>
+              <Route path={AppRoutes.employees.path}>
+                <Route index element={<h1>Employees List</h1>}/>
+                <Route path={AppRoutes.employees.add.path} element={<h1>Add employee</h1>}/>
+                <Route path={AppRoutes.employees.edit.path} element={<h1>Edit employee</h1>}/>
+              </Route>
 
-            <Route path="*" element={<h1>Not found</h1>}></Route>
-          </Routes>
-        </AppLayout>
+              <Route path="*" element={<h1>Not found</h1>}></Route>
+            </Routes>
+          </AppLayout>
+        </Provider>
       </ConfigProvider>
     </BrowserRouter>
   );

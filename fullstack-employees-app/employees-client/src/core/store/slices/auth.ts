@@ -1,6 +1,7 @@
 import { UserWithToken } from '../../types';
 import { createSlice } from '@reduxjs/toolkit';
-import { AuthApi } from '../../services/auth';
+import { AuthApi } from '../../api/auth';
+import { RootState } from '../index';
 
 interface InitialState {
   user: UserWithToken | null;
@@ -39,3 +40,6 @@ const authSlice = createSlice({
 
 export const { logout } = authSlice.actions;
 export default authSlice.reducer;
+
+export const selectIsAuthenticated = (state: RootState) => state.authReducer.isAuthenticated;
+export const selectUser = (state: RootState) => state.authReducer.user;
