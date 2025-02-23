@@ -24,4 +24,4 @@ export interface Employee {
 
 /* End of copied types */
 
-export type UserWithToken = Omit<User, 'password'> & { token: string; }
+export type UserWithToken = Omit<User, 'password'> & { token: string; };

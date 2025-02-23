@@ -1,4 +1,4 @@
-import { User, UserWithToken } from '../../types';
+import { UserWithToken } from '../../types';
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthApi } from '../../services/auth';
 
@@ -33,7 +33,7 @@ const authSlice = createSlice({
       .addMatcher(AuthApi.endpoints.currentUser.matchFulfilled, (state, action) => {
         state.user = action.payload;
         state.isAuthenticated = true;
-      })
+      });
   }
 });
 

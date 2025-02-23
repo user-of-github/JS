@@ -5,12 +5,12 @@ import { AppHeader } from '../Header';
 
 
 export const AppLayout: React.FC<React.PropsWithChildren> = ({children}) => {
-    return (
-      <main className={styles.container}>
-          <AppHeader/>
-          <AntLayout.Content className={styles.fullHeight}>
-              {children}
-          </AntLayout.Content>
-      </main>
-    );
+  return (
+    <main className={styles.container}>
+      <AppHeader/>
+      <AntLayout.Content className={styles.fullHeight}>
+        {children}
+      </AntLayout.Content>
+    </main>
+  );
 };

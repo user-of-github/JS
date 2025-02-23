@@ -29,7 +29,7 @@ export const AuthApi = AppApi.injectEndpoints({
           method: 'GET'
         })
       })
-    }
+    };
   }
 });
 

@@ -31,5 +31,5 @@ export const AppHeader: React.FC = ()=> {
         </Flex>
       </Flex>
     </header>
-  )
+  );
 };
