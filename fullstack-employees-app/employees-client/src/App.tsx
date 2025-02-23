@@ -1,16 +1,17 @@
 import React from 'react';
+import { ConfigProvider } from 'antd';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { AppRoutes } from './routes';
-import { LoginPage } from './pages/login';
+import { LoginPage } from './pages/Login';
 import { RegisterPage } from './pages/register';
 import { AppLayout } from './components/Layout';
-import { AppThemeProvider } from './theme';
+import { themeConfig } from './theme';
 
 
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <AppThemeProvider>
+      <ConfigProvider theme={themeConfig}>
         <AppLayout>
           <Routes>
             <Route path={AppRoutes.login.path} element={<LoginPage/>}/>
@@ -25,7 +26,7 @@ export const App: React.FC = () => {
             <Route path="*" element={<h1>Not found</h1>}></Route>
           </Routes>
         </AppLayout>
-      </AppThemeProvider>
+      </ConfigProvider>
     </BrowserRouter>
   );
 };
