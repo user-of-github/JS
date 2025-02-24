@@ -1,0 +1,1 @@
+export const jwtTokenLSKey = 'app-employees-2025-auth-token';

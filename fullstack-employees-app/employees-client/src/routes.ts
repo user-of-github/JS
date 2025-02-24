@@ -1,11 +1,13 @@
 export const AppRoutes = Object.freeze({
-  home: '/',
+  home: {
+    path: 'employees'
+  },
 
   employees: {
-    path: '/employees/',
+    path: 'employees',
 
     list: {
-      path: '/',
+      path: '',
     },
     info: {
       path: ':id',

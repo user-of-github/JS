@@ -1,6 +1,6 @@
 import React from 'react';
 import { ConfigProvider } from 'antd';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { AppRoutes } from './routes';
 import { LoginPage } from './pages/Login';
 import { RegisterPage } from './pages/register';
@@ -17,6 +17,7 @@ export const App: React.FC = () => {
         <Provider store={AppStore}>
           <AppLayout>
             <Routes>
+              <Route path="/" element={<Navigate to={AppRoutes.home.path}/> } />
               <Route path={AppRoutes.login.path} element={<LoginPage/>}/>
               <Route path={AppRoutes.register.path} element={<RegisterPage/>}/>
 

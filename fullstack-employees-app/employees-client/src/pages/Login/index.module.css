@@ -5,3 +5,7 @@
 .formItem {
     row-gap: 5px;
 }
+
+.spinner {
+    color: white;
+}
