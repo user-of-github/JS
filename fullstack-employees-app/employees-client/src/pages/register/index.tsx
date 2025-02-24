@@ -1,16 +1,44 @@
-import React from 'react';
-import { Button, Card, Form, Input, Layout, Row, Space, Typography } from 'antd';
+import React, { useState } from 'react';
+import { Button, Card, Form, Input, Layout, notification, Row, Space, Spin, Typography } from 'antd';
 import { FormTitle } from '../Login/components/FormTitle/FormTitle';
 import styles from '../Login/index.module.css';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AppRoutes } from '../../routes';
+import { UserData, useRegisterMutation } from '../../app/api/auth';
+import { getErrorMessage } from '../../utils/getErrorMessage';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export const RegisterPage: React.FC = () => {
+  const [notificationApi, NotificationContextHolder] = notification.useNotification({
+    placement: 'top',
+    showProgress: true
+  });
+  const [registerUserMutation] = useRegisterMutation();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const register = async (user: UserData) => {
+    try {
+      setIsLoading(true);
+      await registerUserMutation(user).unwrap();
+      navigate(`/${AppRoutes.home.path}`, { state: { registrationCompleted: true }});
+    } catch (error) {
+      const isError = getErrorMessage(error);
+      if (isError) {
+        notificationApi.open({message: isError, type: 'error'});
+      } else {
+        notificationApi.open({message: 'Error. Try again later', type: 'error'});
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Layout>
       <Row align="middle" justify="center">
-        <Card title={FormTitle} className={styles.card}>
-          <Form labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
+        <Card title={<FormTitle title="Sign up to «Employees»"/>} className={styles.card}>
+          <Form labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} onFinish={register}>
             <Form.Item
               className={styles.formItem}
               label="Name"
@@ -28,7 +56,7 @@ export const RegisterPage: React.FC = () => {
               name="email"
               required
               shouldUpdate
-              rules={[{ required: true, message: 'Please enter your email' }]}
+              rules={[{ required: true, type: 'email', message: 'Please enter your email' }]}
             >
               <Input type="email" placeholder="john@doe.com" />
             </Form.Item>
@@ -65,7 +93,19 @@ export const RegisterPage: React.FC = () => {
             </Form.Item>
 
             <Form.Item style={{ marginTop: 20}}>
-              <Button type="primary" htmlType="submit">Sign up</Button>
+              <Button
+                type="primary"
+                htmlType="submit"
+                icon={isLoading && (
+                  <Spin
+                    className={styles.spinner}
+                    indicator={<LoadingOutlined spin />}
+                    size="small"
+                  />
+                )}
+              >
+                Sign up
+              </Button>
             </Form.Item>
           </Form>
 
@@ -78,6 +118,8 @@ export const RegisterPage: React.FC = () => {
           </Space>
         </Card>
       </Row>
+
+      { NotificationContextHolder }
     </Layout>
   );
 };

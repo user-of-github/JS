@@ -39,7 +39,7 @@ export const LoginPage: React.FC = () => {
   return (
     <Layout>
       <Row align="middle" justify="center">
-        <Card title={FormTitle} className={styles.card}>
+        <Card title={<FormTitle title="Sign in to «Employees»"/>} className={styles.card}>
           <Form labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} onFinish={login} autoComplete="on">
             <Form.Item
               className={styles.formItem}
@@ -47,9 +47,9 @@ export const LoginPage: React.FC = () => {
               label="Email"
               required
               shouldUpdate
-              rules={[{ required: true, message: 'Please enter your email' }]}
+              rules={[{ required: true, type: 'email', message: 'Please enter your email' }]}
             >
-              <Input type="email" placeholder="Email" />
+              <Input type="email" placeholder="mail@example.com" />
             </Form.Item>
 
             <Form.Item
@@ -72,8 +72,7 @@ export const LoginPage: React.FC = () => {
                     indicator={<LoadingOutlined spin />}
                     size="small"
                   />
-                )
-              }
+                )}
               >
                 Sign in
               </Button>

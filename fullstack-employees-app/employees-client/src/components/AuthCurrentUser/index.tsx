@@ -10,13 +10,13 @@ export const AuthCurrentUser: React.FC<React.PropsWithChildren> = ({ children })
     return (
       <main
         style={{
-        width: '100%',
-        margin: 'auto',
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}
+          width: '100%',
+          margin: 'auto',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
       >
         <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />
       </main>

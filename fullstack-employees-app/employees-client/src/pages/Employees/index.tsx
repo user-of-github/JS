@@ -2,11 +2,12 @@ import React from 'react';
 import { Button, Flex, Layout, Row, Table } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { ColumnsType } from 'antd/lib/table';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useGetAllEmployeesQuery } from '../../app/api/employees';
 import { Employee } from '../../app/types';
 import { AppRoutes } from '../../routes';
 import styles from './index.module.css';
+import { NotificationAfterNavigate } from '../../components/ShowNotificationAfterNavigate';
 
 
 const columns: ColumnsType<Employee> = [{
@@ -21,12 +22,13 @@ export const EmployeesPage: React.FC = () => {
   const {data, isLoading} = useGetAllEmployeesQuery();
   const navigate = useNavigate();
 
-  console.log(data)
   return (
     <Layout>
       <Flex vertical gap={30}>
         <Row>
-          <Button type="primary" icon={<PlusCircleOutlined/>}>Add employee</Button>
+          <Link to={{pathname: AppRoutes.employees.add.path }}>
+            <Button type="primary" icon={<PlusCircleOutlined/>}>Add employee</Button>
+          </Link>
         </Row>
 
         <Table
@@ -38,11 +40,13 @@ export const EmployeesPage: React.FC = () => {
           rowClassName={styles.tableRow}
           onRow={(record) => ({
             onClick: () => {
-              navigate(AppRoutes.employees.info.link(record.id))
+              navigate(AppRoutes.employees.info.link(record.id));
             }
           })}
         />
       </Flex>
+
+      <NotificationAfterNavigate/>
     </Layout>
   );
 };

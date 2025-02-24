@@ -19,7 +19,7 @@ const employeesSlice = createSlice({
     builder
       .addMatcher(EmployeesApi.endpoints.getAllEmployees.matchFulfilled, (state, action) => {
         state.employees = action.payload.employees;
-      })
+      });
   }
 });
 

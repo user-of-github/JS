@@ -26,9 +26,9 @@ export const EmployeesApi = AppApi.injectEndpoints({
         })
       }),
 
-      addEmployee: builder.mutation<Employee, Omit<Employee, 'id'>>({
+      addEmployee: builder.mutation<Employee, Omit<Employee, 'id' | 'userId'>>({
         query: data => ({
-          url: `/employees`,
+          url: '/employees',
           method: 'POST',
           body: data
         })

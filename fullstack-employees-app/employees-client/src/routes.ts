@@ -34,3 +34,14 @@ export const AppRoutes = Object.freeze({
     path: 'register'
   }
 } as const);
+
+export const NavigationStateKeys = Object.freeze({
+  employeeCreated: {
+    type: 'success',
+    message: 'Added a new employee'
+  },
+  registrationCompleted: {
+    type: 'success',
+    message: 'Registration Completed'
+  },
+} as const);

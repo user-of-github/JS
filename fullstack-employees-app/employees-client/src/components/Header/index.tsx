@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Flex, Typography } from 'antd';
+import { Button, Divider, Flex, Typography } from 'antd';
 import { LoginOutlined, LogoutOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
@@ -25,10 +25,12 @@ export const AppHeader: React.FC = ()=> {
   return (
     <header className={styles.header}>
       <Flex justify="space-between">
-        <Flex align="center" gap={10} justify="center">
-          <Logotype/>
-          <Typography.Title level={2}>Employees</Typography.Title>
-        </Flex>
+        <Link to={{pathname: `/${AppRoutes.home.path}`}}>
+          <Flex align="center" gap={10} justify="center">
+            <Logotype/>
+            <Typography.Title level={2}>Employees</Typography.Title>
+          </Flex>
+        </Link>
 
         {
           !user ? (
@@ -42,7 +44,14 @@ export const AppHeader: React.FC = ()=> {
               </Link>
             </Flex>
           ) : (
-            <Button onClick={logoutFromApp} type="link" icon={<LogoutOutlined />}>Sign out</Button>
+            <Flex gap={15} align="center">
+              <Flex gap={4} align="center">
+                <UserOutlined />
+                <Typography.Text type="secondary">{user.name}</Typography.Text>
+              </Flex>
+              <Divider type="vertical" style={{ borderWidth: '2px'}} />
+              <Button onClick={logoutFromApp} type="link" icon={<LogoutOutlined />}>Sign out</Button>
+            </Flex>
           )
         }
       </Flex>

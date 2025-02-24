@@ -4,11 +4,11 @@ import { Logotype } from '../../../../components/Header';
 import styles from './FormTitle.module.css';
 
 
-export const FormTitle: React.ReactNode = (
+export const FormTitle: React.FC<{title: React.ReactNode}> = ({ title }) => (
   <Flex vertical gap={4} align="center" className={styles.container}>
     <Logotype/>
     <Typography.Title level={4} className={styles.title}>
-      Sign in to Employees
+      {title}
     </Typography.Title>
   </Flex>
 );
