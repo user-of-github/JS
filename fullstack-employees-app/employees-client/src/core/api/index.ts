@@ -13,7 +13,7 @@ const baseQuery = fetchBaseQuery({
   }
 });
 
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
+const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 });
 
 const AppApi = createApi({
   reducerPath: 'appApi',

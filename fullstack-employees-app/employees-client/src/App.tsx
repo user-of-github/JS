@@ -8,6 +8,7 @@ import { AppLayout } from './components/Layout';
 import { themeConfig } from './theme';
 import { Provider } from 'react-redux';
 import { AppStore } from './core/store';
+import { AuthCurrentUser } from './components/AuthCurrentUser';
 
 
 export const App: React.FC = () => {
@@ -15,6 +16,7 @@ export const App: React.FC = () => {
     <BrowserRouter>
       <ConfigProvider theme={themeConfig}>
         <Provider store={AppStore}>
+          <AuthCurrentUser>
           <AppLayout>
             <Routes>
               <Route path="/" element={<Navigate to={AppRoutes.home.path}/> } />
@@ -30,6 +32,7 @@ export const App: React.FC = () => {
               <Route path="*" element={<h1>Not found</h1>}></Route>
             </Routes>
           </AppLayout>
+          </AuthCurrentUser>
         </Provider>
       </ConfigProvider>
     </BrowserRouter>

@@ -7,7 +7,7 @@ export const AppRoutes = Object.freeze({
     path: 'employees',
 
     list: {
-      path: '',
+      path: '/',
     },
     info: {
       path: ':id',
