@@ -31,7 +31,7 @@ export const LoginPage: React.FC = () => {
         notificationApi.open({message: 'Error. Try again later', type: 'error'});
       }
     } finally {
-       setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -66,7 +66,14 @@ export const LoginPage: React.FC = () => {
               <Button
                 type="primary"
                 htmlType="submit"
-                icon={isLoading && <Spin className={styles.spinner} indicator={<LoadingOutlined spin />} size="small" />}
+                icon={isLoading && (
+                  <Spin
+                    className={styles.spinner}
+                    indicator={<LoadingOutlined spin />}
+                    size="small"
+                  />
+                )
+              }
               >
                 Sign in
               </Button>

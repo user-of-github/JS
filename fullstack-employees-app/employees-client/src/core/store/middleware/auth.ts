@@ -14,4 +14,4 @@ authSaveTokenMiddleware.startListening({
       localStorage.setItem(jwtTokenLSKey, action.payload.token);
     }
   }
-})
+});

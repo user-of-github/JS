@@ -8,7 +8,16 @@ export const AuthCurrentUser: React.FC<React.PropsWithChildren> = ({ children })
 
   if (isLoading) {
     return (
-      <main style={{ width: '100%', margin: 'auto', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <main
+        style={{
+        width: '100%',
+        margin: 'auto',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+      >
         <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />
       </main>
     );
