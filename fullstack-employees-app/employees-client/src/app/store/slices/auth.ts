@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { AuthApi } from '../../api/auth';
 import { RootState } from '../index';
 
-interface InitialState {
+interface AuthSliceState {
   user: UserWithToken | null;
   isAuthenticated: boolean;
 }
 
-const initialState: InitialState = {
+const initialState: AuthSliceState = {
   user: null,
   isAuthenticated: false
 } as const;
@@ -38,7 +38,7 @@ const authSlice = createSlice({
   }
 });
 
-export const { logout } = authSlice.actions;
+
 export default authSlice.reducer;
 
 export const selectIsAuthenticated = (state: RootState) => state.authReducer.isAuthenticated;

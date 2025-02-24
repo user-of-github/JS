@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCurrentUserQuery } from '../../core/api/auth';
+import { useCurrentUserQuery } from '../../app/api/auth';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 

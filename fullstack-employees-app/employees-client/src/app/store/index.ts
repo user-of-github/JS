@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/auth';
+import employeeReducer from './slices/employees';
 import { AppApi } from '../api';
 import { authSaveTokenMiddleware } from './middleware/auth';
 
 export const AppStore = configureStore({
   reducer: {
     [AppApi.reducerPath]: AppApi.reducer,
-    authReducer
+    authReducer,
+    employeeReducer
   },
 
   middleware: (getDefaultMiddleware) =>

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router';
 import { LoadingOutlined } from '@ant-design/icons';
 import { FormTitle } from './components/FormTitle/FormTitle';
 import { AppRoutes } from '../../routes';
-import { useLoginMutation, UserData } from '../../core/api/auth';
+import { useLoginMutation, UserData } from '../../app/api/auth';
 import { getErrorMessage } from '../../utils/getErrorMessage';
 import styles from './index.module.css';
 

@@ -8,7 +8,7 @@ export const AppLayout: React.FC<React.PropsWithChildren> = ({children}) => {
   return (
     <main className={styles.container}>
       <AppHeader/>
-      <AntLayout.Content className={styles.fullHeight}>
+      <AntLayout.Content className={styles.content}>
         {children}
       </AntLayout.Content>
     </main>

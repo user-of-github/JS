@@ -27,3 +27,12 @@
         width: 1320px;
     }
 }
+
+.content {
+    width: 100%;
+
+    @media (max-width: 576px) {
+        width: 90%;
+        margin: auto;
+    }
+}

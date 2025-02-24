@@ -34,5 +34,5 @@ export const AuthApi = AppApi.injectEndpoints({
 });
 
 export const { useLoginMutation, useRegisterMutation, useCurrentUserQuery } = AuthApi;
-export const { endpoints: { login, register, currentUser } } = AuthApi;
+//export const { endpoints: { login, register, currentUser } } = AuthApi;
 
