@@ -1,4 +1,4 @@
-export const DEFAULT_PORT = 4000;
+export const defaultPort = 4000;
 
 export const StatusCode = Object.freeze({
   Ok: 200,
@@ -15,3 +15,9 @@ export const StatusCode = Object.freeze({
   ServiceUnavailable: 503,
   GatewayTimeout: 504
 } as const);
+
+
+export const corsOptions = {
+  origin: process.env.CLIENT_ORIGIN,
+  optionsSuccessStatus: StatusCode.Ok
+} as const;

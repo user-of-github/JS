@@ -1,13 +1,15 @@
 import express, { Express } from 'express';
-import { DEFAULT_PORT } from './constants/server';
+import cors from 'cors';
+import { corsOptions, defaultPort } from './constants/server';
 import { CURRENT_API_VERSION, URL_PREFIX } from './constants/routes';
 import { UserRouter } from './routes/users';
 import { EmployeeRouter } from './routes/employees';
 
 
 const app: Express = express();
-const port = process.env.PORT || DEFAULT_PORT;
+const port = process.env.PORT || defaultPort;
 
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
