@@ -14,13 +14,11 @@ const initialState: EmployeesSliceState = {
 const employeesSlice = createSlice({
   name: 'employees',
   initialState,
-  reducers: {
-    logout: () => initialState
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addMatcher(EmployeesApi.endpoints.getAllEmployees.matchFulfilled, (state, action) => {
-        state.employees = action.payload;
+        state.employees = action.payload.employees;
       })
   }
 });

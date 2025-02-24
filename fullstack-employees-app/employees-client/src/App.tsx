@@ -10,6 +10,8 @@ import { Provider } from 'react-redux';
 import { AppStore } from './app/store';
 import { AuthCurrentUser } from './components/AuthCurrentUser';
 import { EmployeesPage } from './pages/Employees';
+import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
+import { UnprotectedOnlyRoute } from './components/ProtectedRoute/UnprotectedOnlyRoute';
 
 
 export const App: React.FC = () => {
@@ -21,11 +23,11 @@ export const App: React.FC = () => {
             <AppLayout>
               <Routes>
                 <Route path="/" element={<Navigate to={AppRoutes.home.path}/> } />
-                <Route path={AppRoutes.login.path} element={<LoginPage/>}/>
-                <Route path={AppRoutes.register.path} element={<RegisterPage/>}/>
+                <Route path={AppRoutes.login.path} element={<UnprotectedOnlyRoute page={<LoginPage/>}/>}/>
+                <Route path={AppRoutes.register.path} element={<UnprotectedOnlyRoute page={<RegisterPage/>}/>}/>
 
                 <Route path={AppRoutes.employees.path}>
-                  <Route index element={<EmployeesPage/>}/>
+                  <Route index element={<ProtectedRoute page={<EmployeesPage/>}/>}/>
                   <Route path={AppRoutes.employees.add.path} element={<h1>Add employee</h1>}/>
                   <Route path={AppRoutes.employees.edit.path} element={<h1>Edit employee</h1>}/>
                 </Route>

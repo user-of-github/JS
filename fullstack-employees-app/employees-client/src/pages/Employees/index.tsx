@@ -24,7 +24,7 @@ export const EmployeesPage: React.FC = () => {
   console.log(data)
   return (
     <Layout>
-      <Flex vertical gap={10}>
+      <Flex vertical gap={30}>
         <Row>
           <Button type="primary" icon={<PlusCircleOutlined/>}>Add employee</Button>
         </Row>
