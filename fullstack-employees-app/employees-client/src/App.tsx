@@ -3,7 +3,7 @@ import { ConfigProvider } from 'antd';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { Provider } from 'react-redux';
 import { LoginPage } from './pages/Login';
-import { RegisterPage } from './pages/register';
+import { RegisterPage } from './pages/Register';
 import { AppLayout } from './components/Layout';
 import { AppStore } from './app/store';
 import { AuthCurrentUser } from './components/AuthCurrentUser';
@@ -15,6 +15,7 @@ import { AppRoutes } from './routes';
 import { themeConfig } from './theme';
 import { ViewEmployeePage } from './pages/Employees/ViewEmployee';
 import { EditEmployeePage } from './pages/Employees/EditEmployee';
+import { ProfilePage } from './pages/Profile';
 
 
 export const App: React.FC = () => {
@@ -37,6 +38,8 @@ export const App: React.FC = () => {
                     <Route path={AppRoutes.employees.view.edit.path} element={<EditEmployeePage/>}/>
                   </Route>
                 </Route>
+
+                <Route path={AppRoutes.profile.path} element={<ProtectedRoute page={<ProfilePage/>}/>}/>
 
                 <Route path="*" element={<h1>Not found</h1>}></Route>
               </Routes>

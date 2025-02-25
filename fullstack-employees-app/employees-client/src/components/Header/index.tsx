@@ -45,10 +45,12 @@ export const AppHeader: React.FC = ()=> {
             </Flex>
           ) : (
             <Flex gap={15} align="center">
-              <Flex gap={4} align="center">
-                <UserOutlined />
-                <Typography.Text type="secondary">{user.name}</Typography.Text>
-              </Flex>
+              <Link to={{ pathname: `/${AppRoutes.profile.path}`}} style={{ color: 'black' }}>
+                <Flex gap={4} align="center">
+                  <UserOutlined />
+                  <Typography.Text type="secondary">{user.name}</Typography.Text>
+                </Flex>
+              </Link>
               <Divider type="vertical" style={{ borderWidth: '2px'}} />
               <Button onClick={logoutFromApp} type="link" icon={<LogoutOutlined />}>Sign out</Button>
             </Flex>

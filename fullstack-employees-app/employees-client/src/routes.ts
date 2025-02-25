@@ -24,16 +24,16 @@ export const AppRoutes = Object.freeze({
 
   },
 
-  status: {
-    path: 'status',
-  },
-
   login: {
     path: 'login',
   },
 
   register: {
     path: 'register'
+  },
+
+  profile: {
+    path: 'profile',
   }
 } as const);
 
