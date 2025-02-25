@@ -8,7 +8,3 @@ ___
 - _[Redux Toolkit](https://redux-toolkit.js.org/) , [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)_
 - _[ESLint](https://eslint.org/) with [ESLint Stylistic](https://eslint.style/)_  
 - _[Vite](https://vite.dev/)_
-
-___   
-### UI: 
-![image](./Screenshot.png)

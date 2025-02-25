@@ -9,7 +9,7 @@ export const ProfilePage: React.FC = () => {
   const user = useSelector(selectUser);
 
   if (!user) {
-    return <Navigate to={{pathname: AppRoutes.home.path}}/>
+    return <Navigate to={{pathname: AppRoutes.home.path}}/>;
   }
 
   return (
@@ -28,5 +28,5 @@ export const ProfilePage: React.FC = () => {
         </Descriptions.Item>
       </Descriptions>
     </Layout>
-  )
+  );
 };
