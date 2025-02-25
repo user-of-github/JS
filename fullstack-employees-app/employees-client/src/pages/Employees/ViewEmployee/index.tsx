@@ -1,12 +1,14 @@
 import React from 'react';
 import { Button, Descriptions, Divider, Empty, Layout, notification, Popconfirm, Space, Spin } from 'antd';
 import { Link, useNavigate, useParams } from 'react-router';
-import { useDeleteEmployeeMutation, useGetEmployeeQuery } from '../../../app/api/employees';
+import { EditOutlined, LoadingOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
+import { useDeleteEmployeeMutation, useGetEmployeeQuery } from '../../../app/api/employees';
 import { selectUser } from '../../../app/store/slices/auth';
 import { AppRoutes } from '../../../routes';
-import { EditOutlined, LoadingOutlined } from '@ant-design/icons';
 import { getErrorMessage } from '../../../utils/getErrorMessage';
+import { ButtonBack } from '../../../components/ButtonBack';
+
 
 export const ViewEmployeePage: React.FC = () => {
   const params = useParams();
@@ -25,9 +27,7 @@ export const ViewEmployeePage: React.FC = () => {
         type: 'info',
         message: 'Deleted employee',
         duration: 1.5,
-        onClose: () => {
-          navigate(AppRoutes.employees.list.path);
-        }
+        onClose: () => navigate(AppRoutes.employees.list.path)
       });
     } catch (error) {
       const isError = getErrorMessage(error);
@@ -51,6 +51,7 @@ export const ViewEmployeePage: React.FC = () => {
     const errorText = getErrorMessage(error) || 'Error in fetching';
     return (
       <Layout>
+        <ButtonBack path={AppRoutes.employees.list.path}/>
         <Empty image={Empty.PRESENTED_IMAGE_DEFAULT} description={errorText}/>
       </Layout>
     );
@@ -58,6 +59,8 @@ export const ViewEmployeePage: React.FC = () => {
 
   return (
     <Layout>
+      <ButtonBack path={AppRoutes.employees.list.path}/>
+
       <Descriptions title="Employee details" bordered>
         <Descriptions.Item label="Name" span={3}>
           {data?.employee.firstName}{' '}{data?.employee.lastName}
@@ -73,7 +76,7 @@ export const ViewEmployeePage: React.FC = () => {
       </Descriptions>
 
       {
-        user?.id === data?.employee.userId && (
+        (user?.id === data?.employee.userId) ? (
           <>
             <Divider orientation="left">
               Actions
@@ -93,6 +96,17 @@ export const ViewEmployeePage: React.FC = () => {
               >
                 <Button danger shape="round">Delete</Button>
               </Popconfirm>
+            </Space>
+          </>
+        ) : (
+          <>
+            <Divider orientation="left">
+              You have no rights to perform actions with this employee
+            </Divider>
+
+            <Space>
+              <Button shape="round" type="default" icon={<EditOutlined/>} disabled>Edit</Button>
+              <Button danger shape="round" disabled>Delete</Button>
             </Space>
           </>
         )

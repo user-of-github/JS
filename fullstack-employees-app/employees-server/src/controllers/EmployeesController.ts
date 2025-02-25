@@ -1,9 +1,9 @@
 import type { Request, Response } from 'express';
+import { User } from '@prisma/client';
 import { CreateEmployeeDto, EmployeeResponse, GetEmployeesResponse, UpdateEmployeeDto } from './types';
 import { AppPrismaClient } from '../prisma';
 import { StatusCode } from '../constants/server';
 import { BaseController } from './BaseController';
-import { Employee, User } from '@prisma/client';
 
 
 export class EmployeesController extends BaseController {

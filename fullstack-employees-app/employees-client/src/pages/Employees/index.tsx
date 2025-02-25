@@ -10,7 +10,7 @@ import styles from './index.module.css';
 
 
 const columns: ColumnsType<Employee> = [{
-  title: 'Name', dataIndex: 'firstName', key: 'name'
+  title: 'Name', key: 'name', render: (item) => `${item.firstName} ${item.lastName}`,
 }, {
   title: 'Age', dataIndex: 'age', key: 'age'
 }, {
