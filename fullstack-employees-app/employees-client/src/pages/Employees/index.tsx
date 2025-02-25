@@ -7,7 +7,6 @@ import { useGetAllEmployeesQuery } from '../../app/api/employees';
 import { Employee } from '../../app/types';
 import { AppRoutes } from '../../routes';
 import styles from './index.module.css';
-import { NotificationAfterNavigate } from '../../components/ShowNotificationAfterNavigate';
 
 
 const columns: ColumnsType<Employee> = [{
@@ -40,13 +39,11 @@ export const EmployeesPage: React.FC = () => {
           rowClassName={styles.tableRow}
           onRow={(record) => ({
             onClick: () => {
-              navigate(AppRoutes.employees.info.link(record.id));
+              navigate(AppRoutes.employees.view.link(record.id));
             }
           })}
         />
       </Flex>
-
-      <NotificationAfterNavigate/>
     </Layout>
   );
 };

@@ -11,22 +11,22 @@ export const EmployeesApi = AppApi.injectEndpoints({
         })
       }),
 
-      getEmployee: builder.query<Employee, string>({
+      getEmployee: builder.query<{ employee: Employee}, string>({
         query: (id: string) => ({
-          url: `/employees${id}`,
+          url: `/employees/${id}`,
           method: 'GET'
         })
       }),
 
       editEmployee: builder.mutation<Employee, Employee>({
         query: (data: Employee) => ({
-          url: `/employees${data.id}`,
+          url: `/employees/${data.id}`,
           method: 'PUT',
           body: data
         })
       }),
 
-      addEmployee: builder.mutation<Employee, Omit<Employee, 'id' | 'userId'>>({
+      addEmployee: builder.mutation<{employee: Employee}, Omit<Employee, 'id' | 'userId'>>({
         query: data => ({
           url: '/employees',
           method: 'POST',

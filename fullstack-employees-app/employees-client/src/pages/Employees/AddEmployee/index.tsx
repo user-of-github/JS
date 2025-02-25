@@ -19,9 +19,11 @@ export const AddEmployeePage: React.FC = () => {
   const createEmployee = async (data: Omit<Employee, 'id' | 'userId'>) => {
     try {
       setIsLoading(true);
-      await addEmployeeMutation(data).unwrap();
-
-      navigate(`/${AppRoutes.employees.path}`, { state: { employeeCreated: true }})
+      const created = await addEmployeeMutation(data).unwrap();
+      notificationApi.open({
+        message: `Employee ${created.employee.firstName} ${created.employee.lastName} added`,
+        onClose: () => navigate(`/${AppRoutes.employees.path}`)
+      });
     } catch (error) {
       const isError = getErrorMessage(error);
       if (isError) {

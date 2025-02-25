@@ -13,6 +13,7 @@ import { UnprotectedOnlyRoute } from './components/ProtectedRoute/UnprotectedOnl
 import { AddEmployeePage } from './pages/Employees/AddEmployee';
 import { AppRoutes } from './routes';
 import { themeConfig } from './theme';
+import { ViewEmployeePage } from './pages/Employees/ViewEmployee';
 
 
 export const App: React.FC = () => {
@@ -30,7 +31,11 @@ export const App: React.FC = () => {
                 <Route path={AppRoutes.employees.path}>
                   <Route index element={<ProtectedRoute page={<EmployeesPage/>}/>}/>
                   <Route path={AppRoutes.employees.add.path} element={<ProtectedRoute page={<AddEmployeePage/>}/>}/>
-                  <Route path={AppRoutes.employees.edit.path} element={<h1>Edit employee</h1>}/>
+                  <Route path={AppRoutes.employees.view.path}>
+                    <Route index element={<ProtectedRoute page={<ViewEmployeePage/>}/>}/>
+                    <Route path={AppRoutes.employees.view.edit.path} element={<h1>Test</h1>}/>
+                  </Route>
+                  <Route path={AppRoutes.employees.view.edit.path} element={<ProtectedRoute page={<ViewEmployeePage/>}/>}/>
                 </Route>
 
                 <Route path="*" element={<h1>Not found</h1>}></Route>

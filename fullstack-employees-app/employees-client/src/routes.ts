@@ -9,17 +9,19 @@ export const AppRoutes = Object.freeze({
     list: {
       path: '/',
     },
-    info: {
+    view: {
       path: ':id',
-      link: (id: string) => `/employees/${id}`
+      link: (id: string) => `/employees/${id}`,
+
+      edit: {
+        path: 'edit',
+        link: (id: string) => `/employees/${id}/edit`
+      }
     },
     add: {
       path: 'create',
     },
-    edit: {
-      path: ':id/edit',
-      link: (id: string) => `employees/${id}/edit`
-    }
+
   },
 
   status: {
