@@ -57,13 +57,13 @@ export class EmployeesController extends BaseController {
       "An operation failed because it depends on one or more records that were required but not found.
        Record to delete does not exist.". So made a check and put it into transaction */
 
-      await AppPrismaClient.$transaction(async(prisma) => {
+      await AppPrismaClient.$transaction(async (prisma) => {
         const employee = await prisma.employee.findUnique({
           where: { id: req.params.id },
         });
 
         if (employee) {
-          await AppPrismaClient.employee.delete({ where: { id: req.params.id } });
+          await prisma.employee.delete({ where: { id: req.params.id } });
         }
       });
       res.status(StatusCode.NoContent).json({});

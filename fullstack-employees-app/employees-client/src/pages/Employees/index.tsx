@@ -26,7 +26,7 @@ export const EmployeesPage: React.FC = () => {
       <Flex vertical gap={30}>
         <Row>
           <Link to={{pathname: AppRoutes.employees.add.path }}>
-            <Button type="primary" icon={<PlusCircleOutlined/>}>Add employee</Button>
+            <Button type="primary" icon={<PlusCircleOutlined/>}>Add</Button>
           </Link>
         </Row>
 
