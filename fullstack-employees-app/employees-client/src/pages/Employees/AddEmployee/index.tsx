@@ -22,7 +22,8 @@ export const AddEmployeePage: React.FC = () => {
       const created = await addEmployeeMutation(data).unwrap();
       notificationApi.open({
         message: `Employee ${created.employee.firstName} ${created.employee.lastName} added`,
-        onClose: () => navigate(`/${AppRoutes.employees.path}`)
+        onClose: () => navigate(`/${AppRoutes.employees.path}`),
+        duration: 1.5
       });
     } catch (error) {
       const isError = getErrorMessage(error);
