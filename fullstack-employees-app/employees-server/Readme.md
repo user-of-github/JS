@@ -1,4 +1,5 @@
 # Employees App / Server  
+_Simple REST Api app with authorization, ORM, DTO validations and TypeScript of course._
 ___   
 
 ### Technologies:  

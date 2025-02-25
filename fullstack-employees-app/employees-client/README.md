@@ -1,4 +1,5 @@
-# Employees App / Server
+# Employees App / Server  
+_UI for application, built with modern UI lib Ant Design, state manager Redux (Redux Toolkit + RTK Query), routing, authorization._
 ___  
 ### Technologies:  
 - _[React](https://react.dev/)_  
