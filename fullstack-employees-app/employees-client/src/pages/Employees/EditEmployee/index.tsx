@@ -6,5 +6,5 @@ export const EditEmployeePage: React.FC = () => {
     <Layout>
 
     </Layout>
-  )
+  );
 };

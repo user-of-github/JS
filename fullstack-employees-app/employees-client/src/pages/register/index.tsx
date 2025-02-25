@@ -20,10 +20,10 @@ export const RegisterPage: React.FC = () => {
   const register = async (user: UserData) => {
     try {
       setIsLoading(true);
-      const newUser = await registerUserMutation(user).unwrap();
+      await registerUserMutation(user).unwrap();
       notificationApi.open({
         type: 'success',
-        message: `Registration successful`,
+        message: 'Registration successful',
         onClose: () => navigate(`/${AppRoutes.employees.path}`)
       });
     } catch (error) {

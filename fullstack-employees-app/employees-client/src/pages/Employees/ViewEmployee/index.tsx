@@ -26,9 +26,9 @@ export const ViewEmployeePage: React.FC = () => {
         message: 'Deleted employee',
         duration: 1.5,
         onClose: () => {
-          navigate(AppRoutes.employees.list.path)
+          navigate(AppRoutes.employees.list.path);
         }
-      })
+      });
     } catch (error) {
       const isError = getErrorMessage(error);
       if (isError) {
@@ -53,48 +53,48 @@ export const ViewEmployeePage: React.FC = () => {
       <Layout>
         <Empty image={Empty.PRESENTED_IMAGE_DEFAULT} description={errorText}/>
       </Layout>
-    )
+    );
   }
 
   return (
     <Layout>
-        <Descriptions title="Employee details" bordered>
-          <Descriptions.Item label="Name" span={3}>
-            {data?.employee.firstName}{' '}{data?.employee.lastName}
-          </Descriptions.Item>
+      <Descriptions title="Employee details" bordered>
+        <Descriptions.Item label="Name" span={3}>
+          {data?.employee.firstName}{' '}{data?.employee.lastName}
+        </Descriptions.Item>
 
-          <Descriptions.Item label="Age" span={3}>
-            {data?.employee.age}
-          </Descriptions.Item>
+        <Descriptions.Item label="Age" span={3}>
+          {data?.employee.age}
+        </Descriptions.Item>
 
-          <Descriptions.Item label="Address" span={3}>
-            {data?.employee.address}
-          </Descriptions.Item>
-        </Descriptions>
+        <Descriptions.Item label="Address" span={3}>
+          {data?.employee.address}
+        </Descriptions.Item>
+      </Descriptions>
 
       {
         user?.id === data?.employee.userId && (
-            <>
-              <Divider orientation="left">
-                Actions
-              </Divider>
+          <>
+            <Divider orientation="left">
+              Actions
+            </Divider>
 
-              <Space>
-                <Link to={{pathname: AppRoutes.employees.view.edit.path}}>
-                  <Button shape="round" type="default" icon={<EditOutlined/>}>Edit</Button>
-                </Link>
+            <Space>
+              <Link to={{pathname: AppRoutes.employees.view.edit.path}}>
+                <Button shape="round" type="default" icon={<EditOutlined/>}>Edit</Button>
+              </Link>
 
-                <Popconfirm
-                  title="Confirmation"
-                  description="Are you sure to delete this task?"
-                  onConfirm={onDelete}
-                  okText="Yes"
-                  cancelText="No"
-                >
-                  <Button danger shape="round">Delete</Button>
-                </Popconfirm>
-              </Space>
-            </>
+              <Popconfirm
+                title="Confirmation"
+                description="Are you sure to delete this task?"
+                onConfirm={onDelete}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Button danger shape="round">Delete</Button>
+              </Popconfirm>
+            </Space>
+          </>
         )
       }
 
