@@ -6,9 +6,7 @@ export class AuthDto {
     public readonly email: string;
 
 
-    @MinLength(6, {
-        message: 'Password must be at least 6 symbols long'
-    })
+    @MinLength(6, {message: 'Password must be at least 6 symbols long'})
     @IsString()
     public readonly password: string;
 }
