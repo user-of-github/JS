@@ -10,12 +10,13 @@ const Stack = createNativeStackNavigator<TypeRootStackParamList>();
 export const AppNavigation: React.FC = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {
-          AppRoutes.map(route => (
-            <Stack.Screen {...route} key={route.name}/>
-          ))
-        }
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          animation: 'fade'
+      }}>
+        <Stack.Screen {...AppRoutes.Home} key="Home"/>
+        <Stack.Screen {...AppRoutes.Auth} key="Auth"/>
       </Stack.Navigator>
     </NavigationContainer>
   );
