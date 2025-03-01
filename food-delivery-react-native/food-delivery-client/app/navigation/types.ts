@@ -6,6 +6,6 @@ export type TypeRootStackParamList = {
 };
 
 export interface Route {
-  name: string;
+  name: keyof TypeRootStackParamList;
   component: React.ComponentType;
 }
