@@ -13,6 +13,7 @@ export interface FormField<ValueType extends FieldValues>
   control: Control<ValueType>;
   name: FieldPath<ValueType>;
   rules?: RulesType<ValueType>;
+  label?: string;
 }
 
 export const FormInput = <ValueType extends Record<string, any>>({
@@ -20,12 +21,14 @@ export const FormInput = <ValueType extends Record<string, any>>({
   name,
   rules,
   className,
+  label,
   ...props
 }: FormField<ValueType>): React.ReactElement => {
   return (
     <Controller
       render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
         <View className={className}>
+          {label && <Text className="text-2xl">{label}</Text>}
           <TextInput
             autoCapitalize="none"
             onChangeText={onChange}
@@ -35,10 +38,9 @@ export const FormInput = <ValueType extends Record<string, any>>({
               'text-text-secondary text-lg bg-white w-full rounded-lg py-3 px-4',
               error ? 'outline outline-1 outline-error' : 'border-none'
             )}
-            placeholderTextColor="#6A6A6A"
             {...props}
           />
-          <Text className="text-error text-lg">{error ? error.message : ''}</Text>
+          <Text className="text-error text-md">{error ? error.message : ''}</Text>
         </View>
       )}
       control={control}

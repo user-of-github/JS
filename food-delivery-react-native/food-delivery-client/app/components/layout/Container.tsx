@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useAnimatedKeyboard, useAnimatedStyle } from 'react-native-reanimated';
 
-const AppPadings = {
+const AppPaddings = {
   vertical: 30,
   horizontal: 30
 } as const;
@@ -10,15 +11,22 @@ const AppPadings = {
 export const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
   const insets = useSafeAreaInsets();
 
+  const keyboard = useAnimatedKeyboard();
+
+  const animatedStyles = useAnimatedStyle(() => ({
+    transform: [{ translateY: -keyboard.height.value }],
+  }));
+
   return (
     <View
       style={[
         {
-          paddingTop: insets.top + AppPadings.vertical,
-          paddingBottom: insets.bottom + AppPadings.vertical,
-          paddingLeft: insets.left + AppPadings.horizontal,
-          paddingRight: insets.right + AppPadings.horizontal
-        }
+          paddingTop: insets.top + AppPaddings.vertical,
+          paddingBottom: insets.bottom + AppPaddings.vertical,
+          paddingLeft: insets.left + AppPaddings.horizontal,
+          paddingRight: insets.right + AppPaddings.horizontal
+        },
+        animatedStyles
       ]}
     >
       {children}
