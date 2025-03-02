@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { faker } from '@faker-js/faker';
 import { hash, verify } from 'argon2';
-import { AuthDto } from './dto/auth.dto';
+import { AuthDto, RegisterDto } from './dto/auth.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
@@ -50,7 +50,7 @@ export class AuthService {
     }
     
     
-    public async register(dto: AuthDto) {
+    public async register(dto: RegisterDto) {
         const oldUser = await this.prismaService.user.findUnique({
             where: {
                 email: dto.email
@@ -64,9 +64,9 @@ export class AuthService {
         const user = await this.prismaService.user.create({
             data: {
                 email: dto.email,
-                name: faker.person.firstName(),
+                name: dto.name,
                 avatarPath: faker.image.avatar(),
-                phone: faker.phone.number(),
+                phone: dto.phone,
                 password: await hash(dto.password)
             }
         });
