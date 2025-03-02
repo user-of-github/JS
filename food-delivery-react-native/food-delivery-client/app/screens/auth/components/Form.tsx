@@ -12,24 +12,21 @@ export const Form: React.FC = () => {
     setFormMode((prevState) => (prevState === 'login' ? 'register' : 'login'));
   };
 
-
   return (
     <View className="w-full h-full flex flex-col justify-center">
       <Text className="text-center text-secondary text-5xl font-bold mb-8">
         {formMode === 'login' ? 'Authorization' : 'Registration'}
       </Text>
 
-      { isLoading && <LoadingSpinner /> }
+      {isLoading && <LoadingSpinner />}
 
-      {
-        !isLoading && (
-          <View>
-            {formMode === 'login' && <LoginForm toggleLoading={setIsLoading} onSubmit={() => {}} />}
+      {!isLoading && (
+        <View>
+          {formMode === 'login' && <LoginForm toggleLoading={setIsLoading} onSubmit={() => {}} />}
 
-            <FormModeToggler mode={formMode} onToggle={toggleFormMode} className="mt-4" />
-          </View>
-        )
-      }
+          <FormModeToggler mode={formMode} onToggle={toggleFormMode} className="mt-4" />
+        </View>
+      )}
     </View>
   );
 };

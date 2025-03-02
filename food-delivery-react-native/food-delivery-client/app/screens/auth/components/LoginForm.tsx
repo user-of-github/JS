@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Vibration, View } from 'react-native';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { Animated as AnimatedNative } from 'react-native';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import type { AuthDto } from '@/types/auth.i';
 import { EmailRegex } from '@/screens/auth/components/email.regex';
 import { Button } from '@/components/ui/Button';

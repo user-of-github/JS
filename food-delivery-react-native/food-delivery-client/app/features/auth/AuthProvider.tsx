@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import type { AuthContextType, UserState } from '@/features/auth/auth-provider.i';
 
-
 SplashScreen.preventAutoHideAsync();
 
 const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
@@ -28,11 +27,7 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
     };
   }, []);
 
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      { children }
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext);
