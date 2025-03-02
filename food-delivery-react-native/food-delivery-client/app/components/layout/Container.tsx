@@ -4,7 +4,7 @@ import { View } from 'react-native';
 
 const AppPadings = {
   vertical: 30,
-  horizontal: 10
+  horizontal: 30
 } as const;
 
 

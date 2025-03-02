@@ -13,9 +13,9 @@ export const Button: React.FC<CustomButtonProps> = ({ children, className, ...pr
     <TouchableOpacity
       activeOpacity={0.8}
       {...props}
-      className={cn('self-center  rounded-lg bg-primary py-5 px-5 w-full', className)}
+      className={cn('self-center  rounded-lg bg-secondary py-4 w-full', className)}
     >
-        <Text className="text-white text-2xl">{children}</Text>
+        <Text className="text-white text-2xl font-bold text-center">{children}</Text>
     </TouchableOpacity>
   );
 };
