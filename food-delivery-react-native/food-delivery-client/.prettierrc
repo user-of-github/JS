@@ -5,6 +5,13 @@
   "singleQuote": true,
   "semi": true,
   "importOrder": [
+    "^react$",
+    "^react-native$",
+    "^expo",
+    "^react",
+    "<THIRD_PARTY_MODULES>",
+    "^@features/(.*)$",
+    "^@types/(.*)$",
     "^@/navigation/(.*)$",
     "^@/screens/(.*)$",
     "^@/hooks/(.*)$",
@@ -12,7 +19,7 @@
     "^@assets/(.*)$",
     "^[./]"
   ],
-  "importOrderSeparation": true,
+  "importOrderSeparation": false,
   "importOrderSortSpecifiers": true,
   "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

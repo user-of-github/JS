@@ -1,6 +1,6 @@
-import { Route, TypeRootStackParamList } from './types';
-import { HomeScreen } from '@/screens/home';
 import { AuthScreen } from '@/screens/auth';
+import { HomeScreen } from '@/screens/home';
+import { Route, TypeRootStackParamList } from './types';
 
 export const AppRoutes: Record<keyof TypeRootStackParamList, Route> = {
   Home: {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { cn } from '@/components/utils';
 
 interface FormModeTogglerProps {
   onToggle: VoidFunction;
@@ -9,13 +10,13 @@ interface FormModeTogglerProps {
 
 export const FormModeToggler: React.FC<FormModeTogglerProps> = ({ mode, onToggle, className }) => {
   return (
-    <TouchableOpacity onPress={onToggle} className={className}>
+    <View className={cn('flex flex-row items-center m-auto', className)}>
       <Text className="text-text-secondary text-lg text-center">
-        {mode === 'register' ? 'Already have an account ?' : 'Don\'t have an account ?'}
-        <Text className="text-secondary font-bold">
-          { mode === 'login' ? ' Sign up' : ' Login'}
-        </Text>
+        {mode === 'register' ? 'Already have an account ?' : "Don't have an account ?"}
       </Text>
-    </TouchableOpacity>
-  )
+      <TouchableOpacity onPress={onToggle}>
+        <Text className="text-secondary font-bold text-lg">{mode === 'login' ? ' Sign up' : ' Login'}</Text>
+      </TouchableOpacity>
+    </View>
+  );
 };

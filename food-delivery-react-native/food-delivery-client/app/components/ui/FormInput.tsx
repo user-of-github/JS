@@ -1,6 +1,6 @@
 import React from 'react';
+import { Text, TextInput, TextInputProps, View } from 'react-native';
 import { type Control, Controller, type FieldPath, type FieldValues, type RegisterOptions } from 'react-hook-form';
-import { TextInput, TextInputProps, View, Text } from 'react-native';
 import { cn } from '@/components/utils';
 
 type RulesType<ValueType extends FieldValues> = Omit<
@@ -24,23 +24,26 @@ export const FormInput = <ValueType extends Record<string, any>>({
 }: FormField<ValueType>): React.ReactElement => {
   return (
     <Controller
-      render={({ field: { value, onChange, onBlur}, fieldState: { error } }) => (
-        <View className={cn('bg-white w-full rounded-lg pb-4 pt-2.5 px-4 my-1', error ? 'border-red-500' : 'border-gray-400' )}>
+      render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
+        <View className={className}>
           <TextInput
             autoCapitalize="none"
             onChangeText={onChange}
             onBlur={onBlur}
             value={(value || '').toString()}
-            className="text-text-secondary"
+            className={cn(
+              'text-text-secondary text-lg bg-white w-full rounded-lg py-3 px-4',
+              error ? 'outline outline-1 outline-error' : 'border-none'
+            )}
             placeholderTextColor="#6A6A6A"
             {...props}
           />
-          {error && <Text className="text-red-500">{error.message}</Text>}
+          <Text className="text-error text-lg">{error ? error.message : ''}</Text>
         </View>
       )}
       control={control}
       rules={rules}
       name={name}
     />
-  )
+  );
 };
