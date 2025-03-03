@@ -19,5 +19,5 @@ ___
 #### Home Screen (Light & Dark theme)
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center; background-color: #A9B4AC">
 <img src="./screenshots/register.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
-<img src="./screenshots/login.jpg" width="250px" alt="light theme" style="margin-right: 10px; border-radius: 5px; overflow: hidden;"/>
+<img src="./screenshots/login.jpg" width="250px" alt="light theme" style="border-radius: 5px; overflow: hidden;"/>
 </div> 
