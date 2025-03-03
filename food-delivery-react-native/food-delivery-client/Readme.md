@@ -12,4 +12,12 @@
 - _[React Hook Form](https://react-hook-form.com/)_  
 - _[Axios HTTP Client](https://axios-http.com/docs/intro)_
 - _[React Native MMKV Storage](https://github.com/mrousavy/react-native-mmkv), [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)_
-- _[Prettier](https://prettier.io/)_
+- _[Prettier](https://prettier.io/)_  
+___  
+
+### Demo:
+#### Home Screen (Light & Dark theme)
+<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center; background-color: #A9B4AC">
+<img src="./screenshots/register.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
+<img src="./screenshots/login.jpg" width="250px" alt="light theme" style="margin-right: 10px; border-radius: 5px; overflow: hidden;"/>
+</div> 
