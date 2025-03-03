@@ -12,7 +12,7 @@ export const AuthScreen: React.FC = () => {
 
   return (
     <Container>
-      <View className="w-full h-full justify-center flex items-center">
+      <View className="w-full h-full justify-center flex items-centera">
         <Form />
       </View>
     </Container>

@@ -1,24 +1,24 @@
-import React, { useRef } from 'react';
-import { Vibration, View } from 'react-native';
-import { Animated as AnimatedNative } from 'react-native';
+import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import type { AuthDto } from '@/types/auth.i';
+import type { AuthDto, RegisterDto } from '@/types/auth.i';
+import { Vibration, View,  Animated as AnimatedNative } from 'react-native';
+import { FormInput } from '@/components/ui/FormInput';
 import { EmailRegex } from '@/screens/auth/components/email.regex';
 import { Button } from '@/components/ui/Button';
-import { FormInput } from '@/components/ui/FormInput';
 import { useShakeAnimation } from '@/hooks/useShakeAnimation';
 
-interface LoginFormProps {
-  onSubmit: (data: AuthDto) => void;
+
+interface RegisterFormProps {
+  onSubmit: (data: RegisterDto) => void;
   toggleLoading: (loading: boolean) => void;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, toggleLoading }) => {
-  const { handleSubmit, reset, control, clearErrors } = useForm<AuthDto>({ mode: 'onSubmit' });
+export const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, toggleLoading }) => {
+  const { handleSubmit, reset, control, clearErrors } = useForm<RegisterDto>({ mode: 'onSubmit' });
 
-  const { shake: shakeButton, shakingStyle } = useShakeAnimation();
+  const { shake, shakingStyle } = useShakeAnimation();
 
-  const submit: SubmitHandler<AuthDto> = (data) => {
+  const submit: SubmitHandler<RegisterDto> = (data) => {
     toggleLoading(true);
     console.log(data);
     onSubmit(data);
@@ -26,13 +26,38 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, toggleLoading })
 
   const onError = () => {
     Vibration.vibrate([50, 25, 50, 25]);
-    shakeButton();
+    shake();
   };
 
   return (
     <View>
       <View className="flex flex-col gap-y-2">
-        <FormInput<AuthDto>
+        <FormInput<RegisterDto>
+          placeholder="Tony Stark"
+          label="What is your name ?"
+          control={control}
+          name="name"
+          rules={{
+            required: 'Email required',
+            minLength: {
+              value: 2,
+              message: 'Name must be at least 2 characters long'
+            }
+          }}
+        />
+
+        <FormInput<RegisterDto>
+          placeholder="+1234567890"
+          label="Phone number"
+          control={control}
+          name="phone"
+          rules={{
+            required: 'Phone number required'
+          }}
+          keyboardType="phone-pad"
+        />
+
+        <FormInput<RegisterDto>
           placeholder="example@mail.com"
           label="Email"
           control={control}
@@ -47,8 +72,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, toggleLoading })
           keyboardType="email-address"
         />
 
-        <FormInput<AuthDto>
-          label="Password"
+        <FormInput<RegisterDto>
+          label="Come up with a password"
           control={control}
           name="password"
           rules={{

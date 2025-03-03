@@ -28,7 +28,7 @@ export const FormInput = <ValueType extends Record<string, any>>({
     <Controller
       render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
         <View className={className}>
-          {label && <Text className="text-2xl">{label}</Text>}
+          {label && <Text className="text-2xl mb-2">{label}</Text>}
           <TextInput
             autoCapitalize="none"
             onChangeText={onChange}
