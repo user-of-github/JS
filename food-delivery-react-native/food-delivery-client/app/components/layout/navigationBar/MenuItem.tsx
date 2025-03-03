@@ -19,7 +19,7 @@ export const MenuItem: React.FC<MenuItemProps> = ( { item, currentScreen, naviga
       onPress={() => navigate(item.path)}
       className="flex items-center w-[20%] pt-[20px]"
       style={{
-        paddingVertical: 20,
+        paddingVertical: 17,
         borderRadius: 10000
       }}
     >

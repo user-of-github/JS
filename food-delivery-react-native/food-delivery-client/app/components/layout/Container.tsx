@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { ScrollView, View } from 'react-native';
-import { useAnimatedKeyboard, useAnimatedStyle } from 'react-native-reanimated';
+import React from 'react';
+import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const AppPaddings = {

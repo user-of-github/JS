@@ -6,7 +6,6 @@ import { useAuth } from '@/features/auth/AuthProvider';
 import { NavigationBar } from '@/components/layout/navigationBar';
 
 export const RootLayout: React.FC = () => {
-  const { user } = useAuth();
   const [currentRoute, setCurrentRoute] = useState<string | null>(null);
   const navigationRef = useNavigationContainerRef();
 
@@ -25,12 +24,11 @@ export const RootLayout: React.FC = () => {
   return (
     <>
       <AppNavigation navigationContainerRef={navigationRef as any} />
-      { user && currentRoute && (
+
         <NavigationBar
           navigate={navigationRef.navigate}
           currentScreen={currentRoute as keyof NavigationScreensListType}
-        />
-      ) }
+      />
     </>
   );
 };
