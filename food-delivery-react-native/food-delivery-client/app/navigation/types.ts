@@ -1,11 +1,15 @@
 import React from 'react';
 
-export type TypeRootStackParamList = {
+export type NavigationScreensListType = Readonly<{
   Auth: undefined;
   Home: undefined;
-};
+  Profile: undefined;
+  Explorer: undefined;
+  Search: undefined;
+  Favourites: undefined;
+}>;
 
 export interface Route {
-  name: keyof TypeRootStackParamList;
+  name: keyof NavigationScreensListType;
   component: React.ComponentType;
 }

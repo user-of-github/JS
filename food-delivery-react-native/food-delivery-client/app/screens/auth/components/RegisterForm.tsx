@@ -84,6 +84,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, toggleLoad
             }
           }}
           secureTextEntry
+          placeholder="••••••••"
         />
       </View>
 

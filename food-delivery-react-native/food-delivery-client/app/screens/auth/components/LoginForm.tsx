@@ -51,6 +51,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, toggleLoading })
           label="Password"
           control={control}
           name="password"
+          placeholder="••••••••"
           rules={{
             required: 'Password required',
             minLength: {

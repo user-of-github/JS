@@ -3,24 +3,37 @@ import { useAuth } from '@/features/auth/AuthProvider';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AppRoutes } from '@/navigation/routes';
-import { TypeRootStackParamList } from '@/navigation/types';
+import { NavigationScreensListType } from '@/navigation/types';
+import type { NavigationContainerRef } from '@react-navigation/core';
+import type { NavigationContainerRefWithCurrent } from '@react-navigation/core/src/types';
 
-const Stack = createNativeStackNavigator<TypeRootStackParamList>();
+const Stack = createNativeStackNavigator<NavigationScreensListType>();
 
-export const AppNavigation: React.FC = () => {
+interface AppNavigationProps {
+  navigationContainerRef?: NavigationContainerRefWithCurrent<any>;
+}
+
+export const AppNavigation: React.FC<AppNavigationProps> = ({ navigationContainerRef }) => {
   const { user } = useAuth();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationContainerRef as any}>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          animation: 'fade'
+          animation: 'none'
         }}
       >
         {user ? (
           <>
             <Stack.Screen {...AppRoutes.Home} key="Home" />
+            <Stack.Screen {...AppRoutes.Search} key="Search" />
+            <Stack.Screen {...AppRoutes.Explorer} key="Explorer" />
+            <Stack.Screen {...AppRoutes.Profile} key="Profile" />
+            <Stack.Screen {...AppRoutes.Favourites} key="Favourites" />
+
+            {/* @TODO: remove later Auth route for authorized */ }
+            <Stack.Screen {...AppRoutes.Auth} key="Auth" />
           </>
         ) : (
           <Stack.Screen {...AppRoutes.Auth} key="Auth" />

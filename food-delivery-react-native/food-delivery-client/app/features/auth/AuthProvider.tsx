@@ -7,7 +7,7 @@ SplashScreen.preventAutoHideAsync();
 const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
 
 export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [user, setUser] = useState<UserState>(null);
+  const [user, setUser] = useState<UserState>({  } as UserState);
 
   useEffect(() => {
     let mounted = true;
