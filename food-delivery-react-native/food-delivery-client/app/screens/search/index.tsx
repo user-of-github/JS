@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container } from '@/components/layout/Container';
 import { Text } from 'react-native';
+import { Container } from '@/components/layout/Container';
 
 export const SearchScreen: React.FC = () => {
   return (

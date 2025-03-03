@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useAuth } from '@/features/auth/AuthProvider';
+import { useNavigationContainerRef } from '@react-navigation/native';
 import { AppNavigation } from '@/navigation/Navigation';
 import type { NavigationScreensListType } from '@/navigation/types';
-import { useNavigationContainerRef } from '@react-navigation/native';
-import { useAuth } from '@/features/auth/AuthProvider';
 import { NavigationBar } from '@/components/layout/navigationBar';
 
 export const RootLayout: React.FC = () => {
@@ -25,9 +25,9 @@ export const RootLayout: React.FC = () => {
     <>
       <AppNavigation navigationContainerRef={navigationRef as any} />
 
-        <NavigationBar
-          navigate={navigationRef.navigate}
-          currentScreen={currentRoute as keyof NavigationScreensListType}
+      <NavigationBar
+        navigate={navigationRef.navigate}
+        currentScreen={currentRoute as keyof NavigationScreensListType}
       />
     </>
   );

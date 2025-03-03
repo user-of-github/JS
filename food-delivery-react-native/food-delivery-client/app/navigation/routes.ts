@@ -1,10 +1,10 @@
 import { AuthScreen } from '@/screens/auth';
-import { HomeScreen } from '@/screens/home';
-import { Route, NavigationScreensListType } from './types';
-import { ProfileScreen } from '@/screens/profile';
 import { ExplorerScreen } from '@/screens/explorer';
-import { SearchScreen } from '@/screens/search';
 import { FavouritesScreen } from '@/screens/favourites';
+import { HomeScreen } from '@/screens/home';
+import { ProfileScreen } from '@/screens/profile';
+import { SearchScreen } from '@/screens/search';
+import { NavigationScreensListType, Route } from './types';
 
 export const AppRoutes: Record<keyof NavigationScreensListType, Route> = {
   Home: {

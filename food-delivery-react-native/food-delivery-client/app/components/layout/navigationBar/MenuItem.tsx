@@ -1,8 +1,8 @@
 import React from 'react';
 import { Pressable, StyleSheet, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import type { MenuItemType, NavigateFunctionType } from '@/components/layout/navigationBar/types';
 import type { NavigationScreensListType } from '@/navigation/types';
+import type { MenuItemType, NavigateFunctionType } from '@/components/layout/navigationBar/types';
 
 interface MenuItemProps {
   item: MenuItemType;
@@ -10,8 +10,7 @@ interface MenuItemProps {
   currentScreen?: keyof NavigationScreensListType;
 }
 
-
-export const MenuItem: React.FC<MenuItemProps> = ( { item, currentScreen, navigate }) => {
+export const MenuItem: React.FC<MenuItemProps> = ({ item, currentScreen, navigate }) => {
   const isActive = currentScreen === item.path;
 
   return (
@@ -23,11 +22,7 @@ export const MenuItem: React.FC<MenuItemProps> = ( { item, currentScreen, naviga
         borderRadius: 10000
       }}
     >
-      <Feather
-        name={ item.icon }
-        size={20}
-        color={ isActive ? '#194DC8' : '#999999' }
-      />
+      <Feather name={item.icon} size={22} color={isActive ? '#194DC8' : '#999999'} />
     </TouchableOpacity>
-  )
+  );
 };

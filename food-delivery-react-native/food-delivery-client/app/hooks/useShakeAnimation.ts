@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import  { type StyleProp, Animated as AnimatedNative } from 'react-native';
+import { Animated as AnimatedNative, type StyleProp } from 'react-native';
 
 interface UseShakeAnimationReturnValue {
   shake: VoidFunction;
@@ -21,4 +21,4 @@ export const useShakeAnimation = (duration = 75): UseShakeAnimationReturnValue =
   const shakingStyle: StyleProp<any> = { transform: [{ translateX: shakeAnimation.current }] };
 
   return { shake, shakingStyle };
-}
+};

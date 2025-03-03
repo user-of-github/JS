@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { FormModeToggler } from '@/screens/auth/components/FormModeToggler';
 import { LoginForm } from '@/screens/auth/components/LoginForm';
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { RegisterForm } from '@/screens/auth/components/RegisterForm';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 export const Form: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -23,10 +23,11 @@ export const Form: React.FC = () => {
 
       {!isLoading && (
         <View>
-          {formMode === 'login'
-            ? <LoginForm toggleLoading={setIsLoading} onSubmit={() => {}} />
-            : <RegisterForm onSubmit={() => {}} toggleLoading={setIsLoading}/>
-          }
+          {formMode === 'login' ? (
+            <LoginForm toggleLoading={setIsLoading} onSubmit={() => {}} />
+          ) : (
+            <RegisterForm onSubmit={() => {}} toggleLoading={setIsLoading} />
+          )}
 
           <FormModeToggler mode={formMode} onToggle={toggleFormMode} className="mt-4" />
         </View>

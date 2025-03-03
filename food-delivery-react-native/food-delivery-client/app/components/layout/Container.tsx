@@ -10,7 +10,6 @@ const AppPaddings = {
 export const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
   const insets = useSafeAreaInsets();
 
-
   return (
     <View
       style={[

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useAuth } from '@/features/auth/AuthProvider';
+import type { NavigationContainerRef } from '@react-navigation/core';
+import type { NavigationContainerRefWithCurrent } from '@react-navigation/core/src/types';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AppRoutes } from '@/navigation/routes';
 import { NavigationScreensListType } from '@/navigation/types';
-import type { NavigationContainerRef } from '@react-navigation/core';
-import type { NavigationContainerRefWithCurrent } from '@react-navigation/core/src/types';
 
 const Stack = createNativeStackNavigator<NavigationScreensListType>();
 
@@ -32,7 +32,7 @@ export const AppNavigation: React.FC<AppNavigationProps> = ({ navigationContaine
             <Stack.Screen {...AppRoutes.Profile} key="Profile" />
             <Stack.Screen {...AppRoutes.Favourites} key="Favourites" />
 
-            {/* @TODO: remove later Auth route for authorized */ }
+            {/* @TODO: remove later Auth route for authorized */}
             <Stack.Screen {...AppRoutes.Auth} key="Auth" />
           </>
         ) : (

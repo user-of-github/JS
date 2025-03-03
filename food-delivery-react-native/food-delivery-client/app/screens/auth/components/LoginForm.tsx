@@ -4,9 +4,9 @@ import { Animated as AnimatedNative } from 'react-native';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import type { AuthDto } from '@/types/auth.i';
 import { EmailRegex } from '@/screens/auth/components/email.regex';
+import { useShakeAnimation } from '@/hooks/useShakeAnimation';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
-import { useShakeAnimation } from '@/hooks/useShakeAnimation';
 
 interface LoginFormProps {
   onSubmit: (data: AuthDto) => void;

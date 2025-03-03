@@ -1,12 +1,11 @@
 import React from 'react';
+import { Animated as AnimatedNative, Vibration, View } from 'react-native';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import type { AuthDto, RegisterDto } from '@/types/auth.i';
-import { Vibration, View,  Animated as AnimatedNative } from 'react-native';
-import { FormInput } from '@/components/ui/FormInput';
 import { EmailRegex } from '@/screens/auth/components/email.regex';
-import { Button } from '@/components/ui/Button';
 import { useShakeAnimation } from '@/hooks/useShakeAnimation';
-
+import { Button } from '@/components/ui/Button';
+import { FormInput } from '@/components/ui/FormInput';
 
 interface RegisterFormProps {
   onSubmit: (data: RegisterDto) => void;

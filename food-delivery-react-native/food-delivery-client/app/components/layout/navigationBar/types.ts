@@ -1,5 +1,5 @@
-import type { NavigationScreensListType } from '@/navigation/types';
 import type { ExpoIconNames } from '@/types/expo-icon.t';
+import type { NavigationScreensListType } from '@/navigation/types';
 
 export interface MenuItemType {
   path: keyof NavigationScreensListType;
