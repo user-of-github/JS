@@ -3,7 +3,7 @@ import axios from 'axios';
 import type { AuthResponse } from '@/types/auth.i';
 import { API_URL, getAuthUrl } from '@/config/api';
 
-export const getNewToken = async () => {
+export const getNewTokens = async () => {
   try {
     const refreshToken = await geRefreshTokenFromStorage();
     const response = await axios.post<string, { data: AuthResponse }>(

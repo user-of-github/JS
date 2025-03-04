@@ -21,7 +21,7 @@ export const saveTokensToStorage = async (data: AuthTokens): Promise<void> => {
   ]);
 };
 
-export const deleteTokensToStorage = async (data: AuthTokens): Promise<void> => {
+export const deleteTokensFromStorage = async (): Promise<void> => {
   await Promise.all([deleteItemAsync(EnumSecureStore.AccessToken), deleteItemAsync(EnumSecureStore.RefreshToken)]);
 };
 

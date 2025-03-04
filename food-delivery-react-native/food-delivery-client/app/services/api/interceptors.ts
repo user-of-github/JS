@@ -1,8 +1,9 @@
 import { API_URL } from '@/config/api';
 import axios from 'axios';
-import { getAccessTokenFromStorage } from '@/services/auth/helper';
+import { getNewTokens } from '@/services/api/helper';
+import { deleteTokensFromStorage, getAccessTokenFromStorage } from '@/services/storage/auth-helper';
 
-const instance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json'
@@ -10,7 +11,7 @@ const instance = axios.create({
 });
 
 
-instance.interceptors.request.use(async (config) => {
+axiosInstance.interceptors.request.use(async (config) => {
   const accessToken = await getAccessTokenFromStorage();
 
   if (config.headers && accessToken) {
@@ -19,3 +20,21 @@ instance.interceptors.request.use(async (config) => {
 
   return config;
 });
+
+axiosInstance.interceptors.response.use(
+  config => config,
+  async error => {
+    const originalRequest = error.config;
+
+    if (error.response && error.response.status === 401) {
+      originalRequest._isRetry = true;
+
+      try {
+        await getNewTokens();
+        return axiosInstance.request(originalRequest);
+      } catch (error) {
+        await deleteTokensFromStorage();
+      }
+    }
+  }
+)
