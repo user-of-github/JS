@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import type { AuthContextType, UserState } from '@/features/auth/auth-provider.i';
+import { AuthDataStorageService } from '@/services/storage/auth-helper';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -10,10 +11,18 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
   const [user, setUser] = useState<UserState>({} as UserState);
 
   useEffect(() => {
-    let mounted = true;
+    let isMounted = true;
 
     const checkAccessToken = async () => {
       try {
+        const accessToken = await AuthDataStorageService.getAccessToken();
+
+        if (accessToken) {
+          const usr = await AuthDataStorageService.getUser();
+          if (isMounted && usr) {
+            setUser(usr);
+          }
+        }
       } catch {
       } finally {
         await SplashScreen.hideAsync();
@@ -23,7 +32,7 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
     checkAccessToken();
 
     return () => {
-      mounted = false;
+      isMounted = false;
     };
   }, []);
 

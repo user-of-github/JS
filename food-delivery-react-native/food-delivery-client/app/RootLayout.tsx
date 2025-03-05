@@ -4,6 +4,7 @@ import { useNavigationContainerRef } from '@react-navigation/native';
 import { AppNavigation } from '@/navigation/Navigation';
 import type { NavigationScreensListType } from '@/navigation/types';
 import { NavigationBar } from '@/components/layout/navigationBar';
+import { useCheckAuth } from '@/features/auth/useCheckAuth';
 
 export const RootLayout: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<string | null>(null);
@@ -20,6 +21,8 @@ export const RootLayout: React.FC = () => {
       navigationRef.removeListener('state', changeRouteListener);
     };
   }, []);
+
+  useCheckAuth(currentRoute);
 
   return (
     <>
