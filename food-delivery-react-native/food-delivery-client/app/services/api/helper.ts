@@ -1,7 +1,7 @@
 import axios from 'axios';
-import type { AuthResponse } from '@/types/auth.i';
-import { API_URL, ApiUrls, getAuthUrl } from '@/config/api';
+import { API_URL, ApiUrls } from '@/config/api';
 import { authDataStorageService } from '@/services/auth/auth-data-storage.service';
+import type { AuthResponse } from '@/types/auth.i';
 
 export const getNewTokens = async () => {
   try {
@@ -9,7 +9,7 @@ export const getNewTokens = async () => {
 
     const response = await axios.post<string, { data: AuthResponse }>(
       API_URL + ApiUrls.auth.accessToken,
-      { refreshToken},
+      { refreshToken },
       { headers: { 'Content-Type': 'application/json' } }
     );
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import { useAuth } from '@/features/auth/AuthProvider';
 import type { NavigationContainerRef } from '@react-navigation/core';
 import type { NavigationContainerRefWithCurrent } from '@react-navigation/core/src/types';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useAuth } from '@/features/auth/AuthProvider';
 import { AppRoutes } from '@/navigation/routes';
 import { NavigationScreensListType } from '@/navigation/types';
 

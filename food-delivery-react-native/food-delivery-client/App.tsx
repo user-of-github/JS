@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
+import { StatusBar } from 'expo-status-bar';
 import { RootLayout } from '@/RootLayout';
 import { AuthProvider } from '@/features/auth/AuthProvider';
 import './global.css';

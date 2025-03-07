@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, TextInput, TextInputProps, View } from 'react-native';
 import { type Control, Controller, type FieldPath, type FieldValues, type RegisterOptions } from 'react-hook-form';
+import { Text, TextInput, TextInputProps, View } from 'react-native';
 import { cn } from '@/components/utils';
 
 type RulesType<ValueType extends FieldValues> = Omit<

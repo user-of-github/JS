@@ -1,7 +1,7 @@
 import Toast from 'react-native-toast-message';
-import { getErrorText } from '@/services/api/utils';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { axiosInstance } from '@/services/api/interceptors';
+import { getErrorText } from '@/services/api/utils';
 
 export const request = async <ValueType>(config: AxiosRequestConfig) => {
   const onSuccess = async (response: AxiosResponse<ValueType>) => response.data;

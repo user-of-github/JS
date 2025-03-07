@@ -7,7 +7,7 @@ export const ApiUrls = Object.freeze({
   auth: {
     login: '/auth/login',
     register: '/auth/register',
-    accessToken: '/auth/login/access-token',
+    accessToken: '/auth/login/access-token'
   },
   users: {
     byId: (id: string) => `/users/${id}`
@@ -20,9 +20,8 @@ export const ApiUrls = Object.freeze({
   },
   orders: {
     byId: (id: string) => `/orders/${id}`
-  },
+  }
 } as const);
-
 
 export const getAuthUrl = (path: string) => `/auth/${path}`;
 export const getUsersUrl = (path: string) => `/users/${path}`;

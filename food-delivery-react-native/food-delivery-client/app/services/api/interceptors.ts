@@ -1,7 +1,7 @@
-import { API_URL } from '@/config/api';
 import axios from 'axios';
+import { API_URL } from '@/config/api';
 import { getNewTokens } from '@/services/api/helper';
-import { AuthDataStorageService } from '@/services/auth/auth-data-storage.service';
+import { authDataStorageService } from '@/services/auth/auth-data-storage.service';
 
 export const axiosInstance = axios.create({
   baseURL: API_URL,
@@ -10,9 +10,8 @@ export const axiosInstance = axios.create({
   }
 });
 
-
 axiosInstance.interceptors.request.use(async (config) => {
-  const accessToken = await AuthDataStorageService.getAccessToken();
+  const accessToken = await authDataStorageService.getAccessToken();
 
   if (config.headers && accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
@@ -22,8 +21,8 @@ axiosInstance.interceptors.request.use(async (config) => {
 });
 
 axiosInstance.interceptors.response.use(
-  config => config,
-  async error => {
+  (config) => config,
+  async (error) => {
     const originalRequest = error.config;
 
     if (error.response && error.response.status === 401) {
@@ -33,8 +32,8 @@ axiosInstance.interceptors.response.use(
         await getNewTokens();
         return axiosInstance.request(originalRequest);
       } catch (error) {
-        await AuthDataStorageService.deleteTokens();
+        await authDataStorageService.deleteTokens();
       }
     }
   }
-)
+);
