@@ -1,6 +1,6 @@
 import { useAuth } from './AuthProvider';
 import { useEffect } from 'react';
-import { AuthDataStorageService } from '@/services/storage/auth-helper';
+import { AuthDataStorageService } from '@/services/auth/auth-data-storage.service';
 import { AuthService } from '@/services/auth/auth.service';
 import { getNewTokens } from '@/services/api/helper';
 

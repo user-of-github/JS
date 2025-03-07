@@ -1,7 +1,7 @@
 import { API_URL } from '@/config/api';
 import axios from 'axios';
 import { getNewTokens } from '@/services/api/helper';
-import { AuthDataStorageService } from '@/services/storage/auth-helper';
+import { AuthDataStorageService } from '@/services/auth/auth-data-storage.service';
 
 export const axiosInstance = axios.create({
   baseURL: API_URL,

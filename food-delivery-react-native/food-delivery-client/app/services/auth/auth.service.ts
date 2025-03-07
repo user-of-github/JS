@@ -1,8 +1,8 @@
 import { type AuthDto, type AuthResponse, EnumAsyncStorage, type RegisterDto } from '@/types/auth.i';
 import { request } from '@/services/api/request';
 import { getAuthUrl } from '@/config/api';
-import { AuthDataStorageService } from '@/services/storage/auth-helper';
-import { AppStorage } from '@/services/storage/storage';
+import { authDataStorageService } from '@/services/auth/auth-data-storage.service';
+import { appStorageService } from '@/services/storage/storage';
 
 export class AuthService {
   public static async login(data: AuthDto) {
@@ -13,7 +13,7 @@ export class AuthService {
     });
 
     if (response.accessToken) {
-      await AuthDataStorageService.saveToStorage(response);
+      await authDataStorageService.saveToStorage(response);
     }
 
     return response;
@@ -27,14 +27,14 @@ export class AuthService {
     });
 
     if (response.accessToken) {
-      await AuthDataStorageService.saveToStorage(response);
+      await authDataStorageService.saveToStorage(response);
     }
 
     return response;
   }
 
   public static async logout(): Promise<void> {
-    await AuthDataStorageService.deleteTokens();
-    AppStorage.delete(EnumAsyncStorage.User);
+    await authDataStorageService.deleteTokens();
+    appStorageService.delete(EnumAsyncStorage.User);
   }
 }

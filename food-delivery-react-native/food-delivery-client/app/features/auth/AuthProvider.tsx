@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import type { AuthContextType, UserState } from '@/features/auth/auth-provider.i';
-import { AuthDataStorageService } from '@/services/storage/auth-helper';
+import { AuthDataStorageService } from '@/services/auth/auth-data-storage.service';
 
 SplashScreen.preventAutoHideAsync();
 
