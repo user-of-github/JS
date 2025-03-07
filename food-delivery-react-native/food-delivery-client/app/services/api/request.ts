@@ -5,8 +5,7 @@ import { getErrorText } from '@/services/api/utils';
 
 export const request = async <ValueType>(config: AxiosRequestConfig) => {
   const onSuccess = async (response: AxiosResponse<ValueType>) => {
-    console.log('RESPONSE', response)
-    return response?.data
+    return response?.data;
   };
 
   const onError = (error: AxiosError) => {
@@ -16,14 +15,8 @@ export const request = async <ValueType>(config: AxiosRequestConfig) => {
       text2: getErrorText(error)
     });
 
-    return Promise.reject(error);
+    return Promise.reject(error.response);
   };
 
-  const res = await fetch('http://localhost:4200/auth/login', {
-    body: JSON.stringify(config.data)
-  });
-
-  console.log(res);
-
-  return await res.json();
+ return axiosInstance(config).then(onSuccess).catch(onError);
 };

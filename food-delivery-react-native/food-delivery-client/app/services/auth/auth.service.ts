@@ -1,19 +1,21 @@
-import { ApiUrls, getAuthUrl } from '@/config/api';
+import { API_URL, ApiUrls } from '@/config/api';
 import { request } from '@/services/api/request';
 import { type AuthDto, type AuthResponse, type RegisterDto } from '@/types/auth.i';
 import { type AuthDataStorageServiceType, authDataStorageService } from './auth-data-storage.service';
+
 
 class AuthService {
   public constructor(private readonly authDataStorage: AuthDataStorageServiceType) {}
 
   public async login(data: AuthDto) {
-    debugger;
-    console.log(data)
     const response = await request<AuthResponse>({
-      url: ApiUrls.auth.login,
-      data,
+      url: `${API_URL}${ApiUrls.auth.login}`,
+      data: data,
       method: 'POST'
     });
+
+
+    console.log('RESPONSE', response?.accessToken)
 
     if (response.accessToken) {
       await this.authDataStorage.saveToStorage(response);

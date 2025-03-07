@@ -1,6 +1,6 @@
 
 export const SERVER_URL = process.env.EXPO_PUBLIC_SERVER_URL;
-export const API_URL = `${SERVER_URL}/api`;
+export const API_URL = `${SERVER_URL}`;
 
 export const ApiUrls = Object.freeze({
   auth: {
@@ -21,9 +21,3 @@ export const ApiUrls = Object.freeze({
     byId: (id: string) => `/orders/${id}`
   }
 } as const);
-
-export const getAuthUrl = (path: string) => `/auth/${path}`;
-export const getUsersUrl = (path: string) => `/users/${path}`;
-export const getProductsUrl = (path: string) => `/products/${path}`;
-export const getCategoriesUrl = (path: string) => `/categories/${path}`;
-export const getOrdersUrl = (path: string) => `/orders/${path}`;

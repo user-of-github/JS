@@ -32,7 +32,6 @@ export const AppNavigation: React.FC<AppNavigationProps> = ({ navigationContaine
             <Stack.Screen {...AppRoutes.Favourites} key="Favourites" />
 
             {/* @TODO: remove later Auth route for authorized */}
-            <Stack.Screen {...AppRoutes.Auth} key="Auth" />
           </>
         ) : (
           <Stack.Screen {...AppRoutes.Auth} key="Auth" />

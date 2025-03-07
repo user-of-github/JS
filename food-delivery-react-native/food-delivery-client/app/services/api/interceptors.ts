@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from '@/config/api';
+import { API_URL, ApiUrls } from '@/config/api';
 import { getNewTokens } from '@/services/api/helper';
 import { authDataStorageService } from '@/services/auth/auth-data-storage.service';
 
@@ -19,21 +19,25 @@ export const axiosInstance = axios.create({
 //
 //   return config;
 // });
-//
+// //
 // axiosInstance.interceptors.response.use(
 //   (config) => config,
 //   async (error) => {
 //     const originalRequest = error.config;
 //
-//     if (error.response && error.response.status === 401) {
+//     if (error.response && error.response.status === 401 && !originalRequest._retry) {
 //       originalRequest._isRetry = true;
 //
 //       try {
 //         await getNewTokens();
-//         return axiosInstance.request(originalRequest);
-//       } catch (error) {
+//         return Promise.resolve(axiosInstance(originalRequest));
+//       } catch (tokenError) {
 //         await authDataStorageService.deleteTokens();
+//
+//         return Promise.reject(tokenError);
 //       }
 //     }
+//
+//     return Promise.reject(error);
 //   }
 // );

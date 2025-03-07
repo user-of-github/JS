@@ -11,29 +11,33 @@ export const useAuthMutations = (resetForm?: UseFormReset<AuthFormType>) => {
 
   const { mutate: login, isPending: isLoginLoading } = useMutation({
     mutationKey: ['login'],
-    mutationFn: async (data: AuthDto) => await authService.login(data),
+    mutationFn: (data: AuthDto) => authService.login(data),
     onSuccess: (data: AuthResponse) => {
       resetForm?.();
+      console.log(data.user)
       setUser(data.user);
+      return data;
     }
   });
 
   const { mutate: register, isPending: isRegisterLoading } = useMutation({
     mutationKey: ['register'],
-    mutationFn: async (data: RegisterDto) => {
-      debugger;
-      console.log('MUTATION FN: DATA: ', data)
-      return await authService.register(data);
-    },
+    mutationFn: (data: RegisterDto) => authService.register(data),
     onSuccess: (data: AuthResponse) => {
       resetForm?.();
       setUser(data.user);
     }
   });
 
+  const logout = async () => {
+    setUser(null);
+    await authService.logout();
+  }
+
   return {
     login,
     register,
-    isLoading: isRegisterLoading || isRegisterLoading
+    isLoading: isRegisterLoading || isRegisterLoading,
+    logout
   };
 };

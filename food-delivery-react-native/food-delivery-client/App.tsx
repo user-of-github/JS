@@ -1,10 +1,11 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Toast from 'react-native-toast-message';
+import Toast, { BaseToast } from 'react-native-toast-message';
 import { StatusBar } from 'expo-status-bar';
 import { RootLayout } from '@/RootLayout';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from '@/features/auth/AuthProvider';
 import './global.css';
+import { NotificationToast } from '@/components/ui/Notification';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +24,8 @@ export default function App() {
         </SafeAreaProvider>
       </AuthProvider>
       <StatusBar style="dark" />
-      <Toast topOffset={50} />
+
+      <NotificationToast/>
     </QueryClientProvider>
   );
 }

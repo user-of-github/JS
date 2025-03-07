@@ -1,41 +1,30 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Animated as AnimatedNative, Vibration, View } from 'react-native';
+import { API_URL, ApiUrls } from '@/config/api';
 import type { AuthDto } from '@/types/auth.i';
+import { axiosInstance } from '@/services/api/interceptors';
+import { useAuthMutations } from '@/features/auth/useAuthMutations';
+import { FormModeToggler } from '@/screens/auth/components/FormModeToggler';
 import { EmailRegex } from '@/screens/auth/components/email.regex';
 import { useShakeAnimation } from '@/hooks/useShakeAnimation';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
-import { useAuthMutations } from '@/features/auth/useAuthMutations';
-import { FormModeToggler } from '@/screens/auth/components/FormModeToggler';
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import axios from 'axios';
-import { ApiUrls } from '@/config/api';
+
 
 interface LoginFormProps {
   toggleFormMode: VoidFunction;
 }
 
 
-
 export const LoginForm: React.FC<LoginFormProps> = ({ toggleFormMode }) => {
   const { handleSubmit, reset, control, clearErrors } = useForm<AuthDto>({ mode: 'onSubmit' });
   const { shake: shakeButton, shakingStyle } = useShakeAnimation();
-  const {isLoading, login } = useAuthMutations();
+  const { login } = useAuthMutations();
 
-  const onSubmit: SubmitHandler<AuthDto> = async (data) => {
-    console.log(data)
-    const res = await fetch(ApiUrls.auth.login, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    }).catch(e => console.log(e))
-
-    console.log(await res.json());
-
-    //login(data);
+  const onSubmit: SubmitHandler<AuthDto> = async (fields) => {
+    login(fields)
+    return;
   };
 
   const onError = () => {

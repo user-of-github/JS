@@ -35,7 +35,7 @@ export const FormInput = <ValueType extends Record<string, any>>({
             onBlur={onBlur}
             value={(value || '').toString()}
             className={cn(
-              'text-text-secondary text-lg bg-white w-full rounded-lg py-3 px-4',
+              'text-black placeholder:text-text-secondary text-lg bg-white w-full rounded-lg py-3 px-4',
               error ? 'outline outline-1 outline-error' : 'border-none'
             )}
             {...props}
