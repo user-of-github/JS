@@ -11,7 +11,7 @@ export const AuthScreen: React.FC = () => {
   return (
     <>
       <Container>
-        <View className="w-full h-full justify-center flex items-centera">
+        <View className="w-full h-full justify-self-center justify-center flex items-center">
           <Form />
         </View>
       </Container>

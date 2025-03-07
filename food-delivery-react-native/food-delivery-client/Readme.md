@@ -19,11 +19,18 @@
 
 ### Demo:
 
-#### Authorization screen
+#### Authorization
 
-<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center; background-color: #A9B4AC">
+<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center;">
 <img src="./screenshots/register.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
 <img src="./screenshots/login.jpg" width="250px" alt="light theme" style="border-radius: 5px; overflow: hidden;"/>
+</div>  
+
+
+#### Profile
+
+<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: space-between;">
+<img src="./screenshots/profile.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
 </div>
 ___
 
@@ -33,4 +40,6 @@ ___
 2. Download [Expo Go](https://expo.dev/go) on your mobile (or you can use Virtual Device Emulator in Android Studio)
 3. If you use local server, you need to [map ports](https://stackoverflow.com/questions/33704130/react-native-android-fetch-failing-on-connection-to-local-api)
    - `adb devices` - get number of device
-   - `adb -s <NUMBER> reverse tcp:4200 tcp:4200`
+   - `adb -s <NUMBER> reverse tcp:4200 tcp:4200`  
+4. Connect phone to PC, allow USB Debug Mode and transfering files
+5. `npm run android`
