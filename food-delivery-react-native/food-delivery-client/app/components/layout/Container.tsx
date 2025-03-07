@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const AppPaddings = {
@@ -7,7 +7,7 @@ const AppPaddings = {
   horizontal: 30
 } as const;
 
-export const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const Container: React.FC<React.PropsWithChildren<{ className?: string }>> = ({ children, className }) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -20,8 +20,11 @@ export const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
           paddingRight: insets.right + AppPaddings.horizontal
         }
       ]}
+      className={className}
     >
-      {children}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        { children }
+      </ScrollView>
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm, type UseFormReset } from 'react-hook-form';
 import { Animated as AnimatedNative, Vibration, View } from 'react-native';
 import type { RegisterDto } from '@/types/auth.i';
 import { EmailRegex } from '@/screens/auth/components/email.regex';
@@ -7,16 +7,15 @@ import { useShakeAnimation } from '@/hooks/useShakeAnimation';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
 import { FormModeToggler } from '@/screens/auth/components/FormModeToggler';
-import { useAuthMutations } from '@/features/auth/useAuthMutations';
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { type AuthFormType, useAuthMutations } from '@/features/auth/useAuthMutations';
 
 interface RegisterFormProps {
   toggleFormMode: VoidFunction;
 }
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({ toggleFormMode }) => {
-  const { handleSubmit, reset, control, clearErrors } = useForm<RegisterDto>({ mode: 'onSubmit' });
-  const {isLoading, register } = useAuthMutations();
+  const { handleSubmit, reset, control } = useForm<RegisterDto>({ mode: 'onSubmit' });
+  const { register } = useAuthMutations(reset as UseFormReset<AuthFormType>);
   const { shake, shakingStyle } = useShakeAnimation();
 
   const onSubmit: SubmitHandler<RegisterDto> = (data) => {

@@ -12,7 +12,7 @@ interface NavigationBarProps {
 
 export const NavigationBar: React.FC<NavigationBarProps> = (props) => {
   return (
-    <View className="px-2 flex flex-row justify-between items-center w-full">
+    <View className="flex flex-row justify-between items-center w-full">
       {menuItems.map((item) => (
         <MenuItem item={item} key={item.path} {...props} />
       ))}

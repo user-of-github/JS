@@ -20,6 +20,7 @@ export class AuthController {
   @HttpCode(200)
   @Post('login')
   public async login(@Body() dto: AuthDto) {
+    console.log(dto);
     return this.authService.login(dto);
   }
 

@@ -4,7 +4,7 @@ import { authService } from '@/services/auth/auth.service';
 import { useAuth } from '@/features/auth/AuthProvider';
 import type { AuthDto, AuthResponse, RegisterDto } from '@/types/auth.i';
 
-type AuthFormType = AuthDto | RegisterDto;
+export type AuthFormType = AuthDto | RegisterDto;
 
 export const useAuthMutations = (resetForm?: UseFormReset<AuthFormType>) => {
   const { user, setUser } = useAuth();

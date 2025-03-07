@@ -9,7 +9,7 @@ class AuthService {
 
   public async login(data: AuthDto) {
     const response = await request<AuthResponse>({
-      url: `${API_URL}${ApiUrls.auth.login}`,
+      url: ApiUrls.auth.login,
       data: data,
       method: 'POST'
     });

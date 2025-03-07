@@ -18,9 +18,9 @@ interface LoginFormProps {
 
 
 export const LoginForm: React.FC<LoginFormProps> = ({ toggleFormMode }) => {
-  const { handleSubmit, reset, control, clearErrors } = useForm<AuthDto>({ mode: 'onSubmit' });
+  const { handleSubmit, reset, control } = useForm<AuthDto>({ mode: 'onSubmit' });
   const { shake: shakeButton, shakingStyle } = useShakeAnimation();
-  const { login } = useAuthMutations();
+  const { login } = useAuthMutations(reset);
 
   const onSubmit: SubmitHandler<AuthDto> = async (fields) => {
     login(fields)
