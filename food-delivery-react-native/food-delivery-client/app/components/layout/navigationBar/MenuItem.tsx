@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, StyleSheet, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import type { NavigationScreensListType } from '@/navigation/types';
 import type { MenuItemType, NavigateFunctionType } from '@/components/layout/navigationBar/types';

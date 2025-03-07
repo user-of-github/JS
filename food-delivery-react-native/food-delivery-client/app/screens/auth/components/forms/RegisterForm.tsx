@@ -6,21 +6,21 @@ import { EmailRegex } from '@/screens/auth/components/email.regex';
 import { useShakeAnimation } from '@/hooks/useShakeAnimation';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
+import { FormModeToggler } from '@/screens/auth/components/FormModeToggler';
+import { useAuthMutations } from '@/features/auth/useAuthMutations';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 interface RegisterFormProps {
-  onSubmit: (data: RegisterDto) => void;
-  toggleLoading: (loading: boolean) => void;
+  toggleFormMode: VoidFunction;
 }
 
-export const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, toggleLoading }) => {
+export const RegisterForm: React.FC<RegisterFormProps> = ({ toggleFormMode }) => {
   const { handleSubmit, reset, control, clearErrors } = useForm<RegisterDto>({ mode: 'onSubmit' });
-
+  const {isLoading, register } = useAuthMutations();
   const { shake, shakingStyle } = useShakeAnimation();
 
-  const submit: SubmitHandler<RegisterDto> = (data) => {
-    toggleLoading(true);
-    console.log(data);
-    onSubmit(data);
+  const onSubmit: SubmitHandler<RegisterDto> = (data) => {
+    register(data);
   };
 
   const onError = () => {
@@ -92,6 +92,8 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, toggleLoad
           Sign in
         </Button>
       </AnimatedNative.View>
+
+      <FormModeToggler mode="register" onToggle={toggleFormMode} className="mt-4" />
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Text } from 'react-native';
 import { useAppNavigation } from '@/navigation/useAppNavigation';
 import { Container } from '@/components/layout/Container';
 

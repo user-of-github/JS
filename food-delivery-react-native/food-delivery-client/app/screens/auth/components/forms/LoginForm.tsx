@@ -6,21 +6,21 @@ import { EmailRegex } from '@/screens/auth/components/email.regex';
 import { useShakeAnimation } from '@/hooks/useShakeAnimation';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
+import { useAuthMutations } from '@/features/auth/useAuthMutations';
+import { FormModeToggler } from '@/screens/auth/components/FormModeToggler';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 interface LoginFormProps {
-  onSubmit: (data: AuthDto) => void;
-  toggleLoading: (loading: boolean) => void;
+  toggleFormMode: VoidFunction;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, toggleLoading }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({ toggleFormMode }) => {
   const { handleSubmit, reset, control, clearErrors } = useForm<AuthDto>({ mode: 'onSubmit' });
-
   const { shake: shakeButton, shakingStyle } = useShakeAnimation();
+  const {isLoading, login } = useAuthMutations();
 
-  const submit: SubmitHandler<AuthDto> = (data) => {
-    toggleLoading(true);
-    console.log(data);
-    onSubmit(data);
+  const onSubmit: SubmitHandler<AuthDto> = (data) => {
+    login(data);
   };
 
   const onError = () => {
@@ -67,6 +67,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, toggleLoading })
           Sign in
         </Button>
       </AnimatedNative.View>
+
+      <FormModeToggler mode="login" onToggle={toggleFormMode} className="mt-4" />
     </View>
   );
 };

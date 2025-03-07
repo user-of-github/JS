@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { cn } from '@/components/utils';
 
 interface CustomButtonProps extends React.PropsWithChildren<TouchableOpacityProps> {

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigationContainerRef } from '@react-navigation/native';
-import { useAuth } from '@/features/auth/AuthProvider';
 import { useCheckAuth } from '@/features/auth/useCheckAuth';
 import { AppNavigation } from '@/navigation/Navigation';
 import type { NavigationScreensListType } from '@/navigation/types';
 import { NavigationBar } from '@/components/layout/navigationBar';
+import { AppRoutes } from '@/navigation/routes';
 
 export const RootLayout: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<string | null>(null);
@@ -27,11 +27,12 @@ export const RootLayout: React.FC = () => {
   return (
     <>
       <AppNavigation navigationContainerRef={navigationRef as any} />
-
-      <NavigationBar
-        navigate={navigationRef.navigate}
-        currentScreen={currentRoute as keyof NavigationScreensListType}
-      />
+      { currentRoute !== AppRoutes.Auth.name && (
+        <NavigationBar
+          navigate={navigationRef.navigate}
+          currentScreen={currentRoute as keyof NavigationScreensListType}
+        />
+      )}
     </>
   );
 };

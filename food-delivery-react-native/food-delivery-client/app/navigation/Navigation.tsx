@@ -1,5 +1,4 @@
 import React from 'react';
-import type { NavigationContainerRef } from '@react-navigation/core';
 import type { NavigationContainerRefWithCurrent } from '@react-navigation/core/src/types';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
