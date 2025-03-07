@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import { FormModeToggler } from '@/screens/auth/components/FormModeToggler';
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { LoginForm } from './forms/LoginForm';
 import { RegisterForm } from './forms/RegisterForm';
-import { useAuthMutations } from '@/features/auth/useAuthMutations';
-import { LoadingOverlay } from '@/components/ui/LoadingOverlay';
 
 export const Form: React.FC = () => {
   const [formMode, setFormMode] = useState<'login' | 'register'>('login');
-  const { isLoading } = useAuthMutations();
 
   const toggleFormMode = () => {
     setFormMode((prevState) => (prevState === 'login' ? 'register' : 'login'));
@@ -21,8 +16,6 @@ export const Form: React.FC = () => {
         {formMode === 'login' ? 'Authorization' : 'Registration'}
       </Text>
 
-
-
         <View>
           {formMode === 'login' ? (
             <LoginForm toggleFormMode={toggleFormMode} />
@@ -30,8 +23,6 @@ export const Form: React.FC = () => {
             <RegisterForm toggleFormMode={toggleFormMode} />
           )}
         </View>
-
-      <LoadingOverlay />
     </View>
   );
 };

@@ -9,18 +9,33 @@ import { FormInput } from '@/components/ui/FormInput';
 import { useAuthMutations } from '@/features/auth/useAuthMutations';
 import { FormModeToggler } from '@/screens/auth/components/FormModeToggler';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import axios from 'axios';
+import { ApiUrls } from '@/config/api';
 
 interface LoginFormProps {
   toggleFormMode: VoidFunction;
 }
+
+
 
 export const LoginForm: React.FC<LoginFormProps> = ({ toggleFormMode }) => {
   const { handleSubmit, reset, control, clearErrors } = useForm<AuthDto>({ mode: 'onSubmit' });
   const { shake: shakeButton, shakingStyle } = useShakeAnimation();
   const {isLoading, login } = useAuthMutations();
 
-  const onSubmit: SubmitHandler<AuthDto> = (data) => {
-    login(data);
+  const onSubmit: SubmitHandler<AuthDto> = async (data) => {
+    console.log(data)
+    const res = await fetch(ApiUrls.auth.login, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).catch(e => console.log(e))
+
+    console.log(await res.json());
+
+    //login(data);
   };
 
   const onError = () => {

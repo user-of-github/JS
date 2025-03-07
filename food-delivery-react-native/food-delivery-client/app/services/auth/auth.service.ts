@@ -1,4 +1,4 @@
-import { getAuthUrl } from '@/config/api';
+import { ApiUrls, getAuthUrl } from '@/config/api';
 import { request } from '@/services/api/request';
 import { type AuthDto, type AuthResponse, type RegisterDto } from '@/types/auth.i';
 import { type AuthDataStorageServiceType, authDataStorageService } from './auth-data-storage.service';
@@ -7,8 +7,10 @@ class AuthService {
   public constructor(private readonly authDataStorage: AuthDataStorageServiceType) {}
 
   public async login(data: AuthDto) {
+    debugger;
+    console.log(data)
     const response = await request<AuthResponse>({
-      url: getAuthUrl('login'),
+      url: ApiUrls.auth.login,
       data,
       method: 'POST'
     });
@@ -22,10 +24,11 @@ class AuthService {
 
   public async register(data: RegisterDto) {
     const response = await request<AuthResponse>({
-      url: getAuthUrl('register'),
+      url: ApiUrls.auth.register,
       data,
       method: 'POST'
     });
+    debugger;
 
     if (response.accessToken) {
       await this.authDataStorage.saveToStorage(response);

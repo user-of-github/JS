@@ -1,29 +1,22 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { BlurView } from '@react-native-community/blur';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { View, StyleSheet } from 'react-native';
 
-export const LoadingOverlay: React.FC = () => (
-  <View style={styles.container}>
-  <BlurView style={styles.overlay}
-            blurType="light"
-            blurAmount={10}>
+export const LoadingOverlay: React.FC =  () => (
+  <View style={styles.overlay}>
     <LoadingSpinner />
-  </BlurView>
-    </View>
+  </View>
 );
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   overlay: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
-  }
+    bottom: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)', // Transparent effect
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
