@@ -31,8 +31,10 @@
 
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: space-between;">
 <img src="./screenshots/profile.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
-</div>
-___
+</div>  
+
+___  
+
 
 ### To run:
 
