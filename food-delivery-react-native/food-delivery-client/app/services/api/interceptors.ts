@@ -10,34 +10,34 @@ export const axiosInstance = axios.create({
   }
 });
 
-// axiosInstance.interceptors.request.use(async (config) => {
-//   const accessToken = await authDataStorageService.getAccessToken();
-//
-//   if (config.headers && accessToken) {
-//     config.headers.Authorization = `Bearer ${accessToken}`;
-//   }
-//
-//   return config;
-// });
-// //
-// axiosInstance.interceptors.response.use(
-//   (config) => config,
-//   async (error) => {
-//     const originalRequest = error.config;
-//
-//     if (error.response && error.response.status === 401 && !originalRequest._retry) {
-//       originalRequest._isRetry = true;
-//
-//       try {
-//         await getNewTokens();
-//         return Promise.resolve(axiosInstance(originalRequest));
-//       } catch (tokenError) {
-//         await authDataStorageService.deleteTokens();
-//
-//         return Promise.reject(tokenError);
-//       }
-//     }
-//
-//     return Promise.reject(error);
-//   }
-// );
+axiosInstance.interceptors.request.use(async (config) => {
+  const accessToken = await authDataStorageService.getAccessToken();
+
+  if (config.headers && accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
+
+  return config;
+});
+
+axiosInstance.interceptors.response.use(
+  (config) => config,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._isRetry = true;
+
+      try {
+        await getNewTokens();
+        return Promise.resolve(axiosInstance(originalRequest));
+      } catch (tokenError) {
+        await authDataStorageService.deleteTokens();
+
+        return Promise.reject(tokenError);
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
