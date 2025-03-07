@@ -9,7 +9,7 @@ import './global.css';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: false
     }
   }
 });
@@ -24,7 +24,7 @@ export default function App() {
       </AuthProvider>
       <StatusBar style="dark" />
 
-      <NotificationToast/>
+      <NotificationToast />
     </QueryClientProvider>
   );
 }

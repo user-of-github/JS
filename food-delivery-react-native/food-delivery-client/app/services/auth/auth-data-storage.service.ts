@@ -1,8 +1,8 @@
 import Toast from 'react-native-toast-message';
-import type { IStorageService } from '@/services/storage/storage.i';
-import { appStorageService, secureAppStorageService } from '@/services/storage/storage.service';
 import { type AuthResponse, type AuthTokens, EnumAsyncStorage, EnumSecureStore } from '@/types/auth.i';
 import type { User } from '@/types/user.i';
+import type { IStorageService } from '@/services/storage/storage.i';
+import { appStorageService, secureAppStorageService } from '@/services/storage/storage.service';
 
 class AuthDataStorageService {
   public constructor(

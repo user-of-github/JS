@@ -1,5 +1,5 @@
-import { AppRoutes } from '@/navigation/routes';
 import { Navigation } from 'react-native-navigation';
+import { AppRoutes } from '@/navigation/routes';
 
 export function registerScreens() {
   for (const key in AppRoutes) {

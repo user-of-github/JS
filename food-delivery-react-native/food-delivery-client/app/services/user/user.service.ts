@@ -1,6 +1,6 @@
+import { ApiUrls } from '@/config/api';
 import type { User } from '@/types/user.i';
 import { request } from '@/services/api/request';
-import { ApiUrls } from '@/config/api';
 
 class UserService {
   public async getProfile(): Promise<User> {
@@ -13,8 +13,8 @@ class UserService {
   public async toggleFavourite(productId: string): Promise<void> {
     return request({
       method: 'PATCH',
-      url:ApiUrls.profile.favourites.toggleById(productId)
-    })
+      url: ApiUrls.profile.favourites.toggleById(productId)
+    });
   }
 }
 

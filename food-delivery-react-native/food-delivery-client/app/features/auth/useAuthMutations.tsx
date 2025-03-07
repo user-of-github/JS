@@ -1,8 +1,8 @@
 import type { UseFormReset } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
+import type { AuthDto, AuthResponse, RegisterDto } from '@/types/auth.i';
 import { authService } from '@/services/auth/auth.service';
 import { useAuth } from '@/features/auth/AuthProvider';
-import type { AuthDto, AuthResponse, RegisterDto } from '@/types/auth.i';
 
 export type AuthFormType = AuthDto | RegisterDto;
 
@@ -14,7 +14,7 @@ export const useAuthMutations = (resetForm?: UseFormReset<AuthFormType>) => {
     mutationFn: (data: AuthDto) => authService.login(data),
     onSuccess: (data: AuthResponse) => {
       resetForm?.();
-      console.log(data.user)
+      console.log(data.user);
       setUser(data.user);
       return data;
     }
@@ -32,7 +32,7 @@ export const useAuthMutations = (resetForm?: UseFormReset<AuthFormType>) => {
   const logout = async () => {
     setUser(null);
     await authService.logout();
-  }
+  };
 
   return {
     login,

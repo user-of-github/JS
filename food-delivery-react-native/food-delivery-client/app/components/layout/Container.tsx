@@ -22,9 +22,7 @@ export const Container: React.FC<React.PropsWithChildren<{ className?: string }>
       ]}
       className={className}
     >
-      <ScrollView showsVerticalScrollIndicator={false}>
-        { children }
-      </ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>{children}</ScrollView>
     </View>
   );
 };

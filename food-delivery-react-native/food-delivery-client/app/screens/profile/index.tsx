@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container } from '@/components/layout/Container';
-import { Button } from '@/components/ui/Button';
+import { Image, Text, View } from 'react-native';
 import { useAuthMutations } from '@/features/auth/useAuthMutations';
 import { useProfile } from '@/features/auth/useProfile';
+import { Container } from '@/components/layout/Container';
+import { Button } from '@/components/ui/Button';
 import { Heading } from '@/components/ui/Heading';
-import { Image, View, Text } from 'react-native';
 import { LoadingOverlay } from '@/components/ui/LoadingOverlay';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
@@ -17,7 +17,7 @@ export const ProfileScreen: React.FC = () => {
       <Container className="min-h-screen-safe">
         <Heading center>Profile</Heading>
         <View className="my-6 flex items-center justify-center h-full">
-          <LoadingSpinner/>
+          <LoadingSpinner />
         </View>
       </Container>
     );
@@ -27,10 +27,7 @@ export const ProfileScreen: React.FC = () => {
     <Container className="min-h-screen-safe">
       <Heading center>Profile</Heading>
       <View className="my-6 flex items-center justify-center h-full">
-        <Image
-          source={{ uri: profile?.avatarPath }}
-          className="w-40 h-40 rounded-full"
-        />
+        <Image source={{ uri: profile?.avatarPath }} className="w-40 h-40 rounded-full" />
         <View className="flex flex-col w-full mt-2.5 px-5 gap-y-2">
           <View className="flex flex-row justify-center items-center">
             <Text className="text-4xl font-bold">{profile?.name}</Text>

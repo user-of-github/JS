@@ -1,8 +1,8 @@
 import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { View, StyleSheet } from 'react-native';
 
-export const LoadingOverlay: React.FC =  () => (
+export const LoadingOverlay: React.FC = () => (
   <View style={styles.overlay}>
     <LoadingSpinner />
   </View>
@@ -17,6 +17,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: 'rgba(255, 255, 255, 0.5)', // Transparent effect
     justifyContent: 'center',
-    alignItems: 'center',
-  },
+    alignItems: 'center'
+  }
 });

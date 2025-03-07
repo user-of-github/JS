@@ -1,8 +1,7 @@
 import { API_URL, ApiUrls } from '@/config/api';
-import { request } from '@/services/api/request';
 import { type AuthDto, type AuthResponse, type RegisterDto } from '@/types/auth.i';
+import { request } from '@/services/api/request';
 import { type AuthDataStorageServiceType, authDataStorageService } from './auth-data-storage.service';
-
 
 class AuthService {
   public constructor(private readonly authDataStorage: AuthDataStorageServiceType) {}
@@ -14,8 +13,7 @@ class AuthService {
       method: 'POST'
     });
 
-
-    console.log('RESPONSE', response?.accessToken)
+    console.log('RESPONSE', response?.accessToken);
 
     if (response.accessToken) {
       await this.authDataStorage.saveToStorage(response);

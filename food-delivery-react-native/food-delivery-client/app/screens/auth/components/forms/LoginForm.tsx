@@ -11,11 +11,9 @@ import { useShakeAnimation } from '@/hooks/useShakeAnimation';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
 
-
 interface LoginFormProps {
   toggleFormMode: VoidFunction;
 }
-
 
 export const LoginForm: React.FC<LoginFormProps> = ({ toggleFormMode }) => {
   const { handleSubmit, reset, control } = useForm<AuthDto>({ mode: 'onSubmit' });
@@ -23,7 +21,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ toggleFormMode }) => {
   const { login } = useAuthMutations(reset);
 
   const onSubmit: SubmitHandler<AuthDto> = async (fields) => {
-    login(fields)
+    login(fields);
     return;
   };
 

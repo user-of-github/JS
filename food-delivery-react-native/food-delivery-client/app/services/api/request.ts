@@ -18,5 +18,5 @@ export const request = async <ValueType>(config: AxiosRequestConfig) => {
     return Promise.reject(error.response);
   };
 
- return axiosInstance(config).then(onSuccess).catch(onError);
+  return axiosInstance(config).then(onSuccess).catch(onError);
 };

@@ -25,11 +25,12 @@
 <img src="./screenshots/register.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
 <img src="./screenshots/login.jpg" width="250px" alt="light theme" style="border-radius: 5px; overflow: hidden;"/>
 </div>
-___  
+___
 
-### To run:  
+### To run:
+
 1. You need to install Android SDK inside [Android Studio](https://developer.android.com/studio)
 2. Download [Expo Go](https://expo.dev/go) on your mobile (or you can use Virtual Device Emulator in Android Studio)
-2. If you use local server, you need to [map ports](https://stackoverflow.com/questions/33704130/react-native-android-fetch-failing-on-connection-to-local-api)  
+3. If you use local server, you need to [map ports](https://stackoverflow.com/questions/33704130/react-native-android-fetch-failing-on-connection-to-local-api)
    - `adb devices` - get number of device
    - `adb -s <NUMBER> reverse tcp:4200 tcp:4200`

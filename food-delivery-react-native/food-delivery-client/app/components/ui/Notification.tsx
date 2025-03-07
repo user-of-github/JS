@@ -1,6 +1,6 @@
 import React from 'react';
+import { Text, View } from 'react-native';
 import Toast, { BaseToast, ErrorToast, type ToastConfig } from 'react-native-toast-message';
-import { View, Text } from 'react-native';
 
 const toastConfig: ToastConfig = {
   /*
@@ -48,9 +48,6 @@ const toastConfig: ToastConfig = {
   )
 };
 
-
 export const NotificationToast: React.FC = () => {
-  return (
-    <Toast config={toastConfig}/>
-  )
+  return <Toast config={toastConfig} />;
 };

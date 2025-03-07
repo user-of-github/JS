@@ -16,13 +16,13 @@ export const Form: React.FC = () => {
         {formMode === 'login' ? 'Authorization' : 'Registration'}
       </Text>
 
-        <View>
-          {formMode === 'login' ? (
-            <LoginForm toggleFormMode={toggleFormMode} />
-          ) : (
-            <RegisterForm toggleFormMode={toggleFormMode} />
-          )}
-        </View>
+      <View>
+        {formMode === 'login' ? (
+          <LoginForm toggleFormMode={toggleFormMode} />
+        ) : (
+          <RegisterForm toggleFormMode={toggleFormMode} />
+        )}
+      </View>
     </View>
   );
 };
