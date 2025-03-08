@@ -4,10 +4,10 @@ import { CategoryScreen } from '@/screens/category';
 import { ExplorerScreen } from '@/screens/explorer';
 import { FavouritesScreen } from '@/screens/favourites';
 import { HomeScreen } from '@/screens/home';
+import { ProductScreen } from '@/screens/product';
 import { ProfileScreen } from '@/screens/profile';
 import { SearchScreen } from '@/screens/search';
 import { NavigationScreensListType, Route } from './types';
-import { ProductScreen } from '@/screens/product';
 
 export const AppRoutes: Record<keyof NavigationScreensListType, Route> = Object.freeze({
   Home: {

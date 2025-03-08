@@ -2,10 +2,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { RootLayout } from '@/RootLayout';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BACKGROUND_COLOR } from '@/config/colors';
 import { AuthProvider } from '@/features/auth/AuthProvider';
 import { NotificationToast } from '@/components/ui/Notification';
 import './global.css';
-import { BACKGROUND_COLOR } from '@/config/colors';
 
 const queryClient = new QueryClient({
   defaultOptions: {

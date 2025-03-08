@@ -13,7 +13,7 @@ export const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
   const { navigate } = useAppNavigation();
 
   return (
-    <View className="rounded-xl overflow-hidden" style={{ marginRight: 5}}>
+    <View className="rounded-xl overflow-hidden" style={{ marginRight: 5 }}>
       <TouchableNativeFeedback
         onPress={() => {
           navigate(AppRoutes.Category.name, { slug: item.slug } as any);

@@ -12,9 +12,9 @@ export const Products: React.FC = () => {
     <View className="mt-12 pb-20">
       <Heading>Popular products</Heading>
 
-      { isLoading && <LoadingSpinner/> }
+      {isLoading && <LoadingSpinner />}
 
-      { !isLoading && <Catalog products={products || []}/> }
+      {!isLoading && <Catalog products={products || []} />}
     </View>
-  )
+  );
 };

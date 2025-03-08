@@ -5,8 +5,8 @@ export const useProducts = () => {
   const { data: products, isLoading } = useQuery({
     queryKey: ['getProducts'],
     queryFn: () => productService.getAll(),
-    select: data => data.slice(0, 4)
+    select: (data) => data.slice(0, 4)
   });
 
-  return { products, isLoading }
+  return { products, isLoading };
 };

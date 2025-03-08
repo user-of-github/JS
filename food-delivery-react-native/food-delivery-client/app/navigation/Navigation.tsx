@@ -2,10 +2,10 @@ import React from 'react';
 import type { NavigationContainerRefWithCurrent } from '@react-navigation/core/src/types';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { BACKGROUND_COLOR } from '@/config/colors';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { AppRoutes } from '@/navigation/routes';
 import { NavigationScreensListType } from '@/navigation/types';
-import { BACKGROUND_COLOR } from '@/config/colors';
 
 const Stack = createNativeStackNavigator<NavigationScreensListType>();
 
@@ -14,7 +14,7 @@ const appNavigationTheme = {
   colors: {
     ...DefaultTheme.colors,
     background: BACKGROUND_COLOR
-  },
+  }
 } as const;
 
 interface AppNavigationProps {

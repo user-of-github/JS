@@ -30,7 +30,7 @@ export const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
     <ScrollView
       style={[
         {
-          paddingTop: avoidTopPadding ? 0 : (insets.top + AppPaddings.vertical + AppPaddings.top),
+          paddingTop: avoidTopPadding ? 0 : insets.top + AppPaddings.vertical + AppPaddings.top,
           paddingBottom: insets.bottom + AppPaddings.vertical + 100,
           paddingLeft: avoidLeftPadding ? 0 : insets.left + AppPaddings.horizontal,
           paddingRight: avoidRightPadding ? 0 : insets.right + AppPaddings.horizontal

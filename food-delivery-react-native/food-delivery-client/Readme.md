@@ -19,11 +19,10 @@
 
 ### Demo:
 
-#### Authorization
+#### Home
 
-<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center;">
-<img src="./screenshots/register.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
-<img src="./screenshots/login.jpg" width="250px" alt="light theme" style="border-radius: 5px; overflow: hidden;"/>
+<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: space-between;">
+<img src="./screenshots/home.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
 </div>
 
 #### Profile
@@ -32,6 +31,12 @@
 <img src="./screenshots/profile.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
 </div>
 
+#### Authorization
+
+<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center;">
+<img src="./screenshots/register.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
+<img src="./screenshots/login.jpg" width="250px" alt="light theme" style="border-radius: 5px; overflow: hidden;"/>
+</div>
 ---
 
 ### To run:

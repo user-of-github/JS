@@ -8,5 +8,10 @@ interface HeadingProps {
 }
 
 export const Heading: React.FC<React.PropsWithChildren<HeadingProps>> = ({ center = false, className, children }) => (
-  <Text className={cn('text-secondary font-black text-5xl', center && 'text-center', className)}>{children}</Text>
+  <Text
+    className={cn('text-secondary font-black text-5xl', center && 'text-center', className)}
+    style={{ fontSize: 38 }}
+  >
+    {children}
+  </Text>
 );

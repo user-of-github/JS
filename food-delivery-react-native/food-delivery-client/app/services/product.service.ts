@@ -1,6 +1,6 @@
-import { request } from '@/services/api/request';
 import { ApiUrls } from '@/config/api';
 import type { Product } from '@/types/product.i';
+import { request } from '@/services/api/request';
 
 class ProductService {
   public async getAll(searchTerm?: string): Promise<Product[]> {
