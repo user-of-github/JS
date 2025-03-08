@@ -3,7 +3,7 @@ import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
 import { Auth } from '../auth/auth.decorator';
 
-@Controller('product')
+@Controller('products')
 export class ProductController {
   public constructor(private readonly productService: ProductService) {}
 
@@ -22,6 +22,11 @@ export class ProductController {
   @Get('by-slug/:slug')
   public async getBySlug(@Param('slug') slug: string) {
     return await this.productService.getBySlug(slug);
+  }
+
+  @Get('by-category/:categorySlug')
+  public async getByCategory(@Param('categorySlug') categorySlug: string) {
+    return await this.productService.getByCategory(categorySlug);
   }
 
   @HttpCode(200)

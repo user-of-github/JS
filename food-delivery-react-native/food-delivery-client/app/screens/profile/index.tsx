@@ -16,7 +16,7 @@ export const ProfileScreen: React.FC = () => {
     return (
       <Container className="min-h-screen-safe">
         <Heading center>Profile</Heading>
-        <View className="my-6 flex items-center justify-center h-full">
+        <View className="my-6 flex items-center justify-center">
           <LoadingSpinner />
           <Button onPress={logout} className="mt-10" textClassName="text-lg">
             Log out
@@ -49,6 +49,9 @@ export const ProfileScreen: React.FC = () => {
           </View>
         </View>
       </View>
+      <Button onPress={logout} className="mt-10" textClassName="text-lg">
+        Log out
+      </Button>
     </Container>
   );
 };

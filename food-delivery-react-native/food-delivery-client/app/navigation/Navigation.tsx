@@ -19,8 +19,7 @@ export const AppNavigation: React.FC<AppNavigationProps> = ({ navigationContaine
     <NavigationContainer ref={navigationContainerRef as any}>
       <Stack.Navigator
         screenOptions={{
-          headerShown: false,
-          animation: 'none'
+          headerShown: false
         }}
       >
         {user ? (

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { categoryService } from '@/services/categories/category.service';
+import { categoryService } from '@/services/category.service';
 
 export const useGetAllCategories = () => {
   const { data: categories, isLoading } = useQuery({

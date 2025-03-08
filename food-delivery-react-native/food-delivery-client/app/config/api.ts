@@ -1,6 +1,7 @@
 export const SERVER_URL = process.env.EXPO_PUBLIC_SERVER_URL;
 export const API_URL = `${SERVER_URL}`;
 
+
 export const ApiUrls = Object.freeze({
   auth: {
     login: '/auth/login',
@@ -17,7 +18,10 @@ export const ApiUrls = Object.freeze({
     }
   },
   products: {
-    byId: (id: string) => `/products/${id}`
+    list: '/products',
+    byId: (id: string) => `/products/${id}`,
+    bySlug: (slug: string) => `/products/by-slug/${slug}`,
+    byCategory: (slug: string) => `/products/by-category/${slug}`,
   },
   categories: {
     list: '/categories',

@@ -1,6 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
-import type { IStorageService } from '@/services/storage/storage.i';
+
+export interface IStorageService {
+  get: (key: string) => Promise<string | null | undefined>;
+  set: (key: string, value: string) => Promise<void>;
+  delete: (key: string) => Promise<void>;
+}
 
 class AppStorageService implements IStorageService {
   public async set(key: string, value: string) {
