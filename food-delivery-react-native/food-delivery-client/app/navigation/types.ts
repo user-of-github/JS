@@ -8,11 +8,8 @@ export type NavigationScreensListType = {
   Search: undefined;
   Favourites: undefined;
   Cart: undefined;
-  Category:
-    | {
-        slug: string;
-      }
-    | undefined;
+  Category: { slug: string } | undefined;
+  Product: { slug: string } | undefined;
 };
 
 export interface Route {

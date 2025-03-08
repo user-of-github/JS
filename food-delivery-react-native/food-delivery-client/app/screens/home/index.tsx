@@ -11,24 +11,11 @@ export const HomeScreen: React.FC = () => {
   const { navigate } = useAppNavigation();
 
   return (
-    <View>
-      <Container avoidBottomPadding>
-        <Header />
-        <Banner className="mt-7" />
-      </Container>
-
-      <Container
-        className="mt-12 mb-4"
-        avoidRightPadding
-        avoidTopPadding
-        avoidBottomPadding
-      >
-        <Categories />
-      </Container>
-
-      <Container className="mt-12 mb-4" avoidTopPadding>
-        <Products />
-      </Container>
-    </View>
+    <Container>
+      <Header />
+      <Banner className="mt-7" />
+      <Categories />
+      <Products />
+    </Container>
   );
 };

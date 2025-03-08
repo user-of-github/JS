@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from '@/features/auth/AuthProvider';
 import { NotificationToast } from '@/components/ui/Notification';
 import './global.css';
+import { BACKGROUND_COLOR } from '@/config/colors';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +23,7 @@ export default function App() {
           <RootLayout />
         </SafeAreaProvider>
       </AuthProvider>
-      <StatusBar style="dark" />
+      <StatusBar style="dark" translucent={false} backgroundColor={BACKGROUND_COLOR} />
 
       <NotificationToast />
     </QueryClientProvider>

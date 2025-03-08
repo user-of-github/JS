@@ -7,6 +7,7 @@ import { HomeScreen } from '@/screens/home';
 import { ProfileScreen } from '@/screens/profile';
 import { SearchScreen } from '@/screens/search';
 import { NavigationScreensListType, Route } from './types';
+import { ProductScreen } from '@/screens/product';
 
 export const AppRoutes: Record<keyof NavigationScreensListType, Route> = Object.freeze({
   Home: {
@@ -47,5 +48,10 @@ export const AppRoutes: Record<keyof NavigationScreensListType, Route> = Object.
   Category: {
     name: 'Category',
     component: CategoryScreen
+  },
+
+  Product: {
+    name: 'Product',
+    component: ProductScreen
   }
 } as const);
