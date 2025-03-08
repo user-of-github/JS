@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Text } from 'react-native';
 import { useAppNavigation } from '@/navigation/useAppNavigation';
-import { Header } from '@/screens/home/components/Header';
-import { Container } from '@/components/layout/Container';
 import { Banner } from '@/screens/home/components/Banner';
 import { Categories } from '@/screens/home/components/Categories';
+import { Header } from '@/screens/home/components/Header';
+import { Container } from '@/components/layout/Container';
 
 export const HomeScreen: React.FC = () => {
   const { navigate } = useAppNavigation();
@@ -13,9 +13,9 @@ export const HomeScreen: React.FC = () => {
     <Container>
       <Header />
 
-      <Banner className="mt-7"/>
+      <Banner className="mt-7" />
 
-      <Categories/>
+      <Categories />
     </Container>
   );
 };

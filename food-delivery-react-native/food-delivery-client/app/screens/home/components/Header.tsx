@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useProfile } from '@/features/auth/useProfile';
 import { AppRoutes } from '@/navigation/routes';
@@ -12,9 +12,7 @@ export const Header: React.FC = () => {
 
   return (
     <View className="flex flex-row justify-between items-center">
-      <Text className="font-bold text-3xl text-secondary">
-        Hello, { isLoading ? <LoadingSpinner/> : profile?.name }
-      </Text>
+      <Text className="font-bold text-3xl text-secondary">Hello, {isLoading ? <LoadingSpinner /> : profile?.name}</Text>
 
       <TouchableOpacity onPress={() => navigate(AppRoutes.Cart.name)}>
         <Ionicons name="cart" size={33} color="gray" />

@@ -8,6 +8,9 @@ export type NavigationScreensListType = Readonly<{
   Search: undefined;
   Favourites: undefined;
   Cart: undefined;
+  Category: {
+    slug: string;
+  };
 }>;
 
 export interface Route {

@@ -11,7 +11,7 @@ ___
 ### To run:  
 1. `npm install`  
 2. Create Postgres Database `react-native-food-delivery` (actually any DB, but you will need to write its name, host and password to `.env`)  
-3. Make sure PostgreSQL Service is running (you can just check via `PgAdmin`)
+3. Make sure PostgreSQL Service is running (you can just check for example via `PgAdmin`). If not - start PostgreSQL service (for example via Windows Services)
 3. Create your `.env` file (see `.env.example` as a template or just copy it. But don't forget to make it suitable for DB created in _part 2_)
 4. Sync Prisma with your DB instance. Something like:  
     - `npx prisma migrate` or `npx prisma migrate --dev`

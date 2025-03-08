@@ -18,6 +18,9 @@ export const ProfileScreen: React.FC = () => {
         <Heading center>Profile</Heading>
         <View className="my-6 flex items-center justify-center h-full">
           <LoadingSpinner />
+          <Button onPress={logout} className="mt-10" textClassName="text-lg">
+            Log out
+          </Button>
         </View>
       </Container>
     );
@@ -45,9 +48,6 @@ export const ProfileScreen: React.FC = () => {
             <Text className="text-sm text-text-secondary">User ID: {profile?.id}</Text>
           </View>
         </View>
-        <Button onPress={logout} className="mt-10" textClassName="text-lg">
-          Log out
-        </Button>
       </View>
     </Container>
   );

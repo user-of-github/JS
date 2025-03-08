@@ -5,7 +5,7 @@ export const useGetAllCategories = () => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ['getCategories'],
     queryFn: () => categoryService.getAll(),
-    select: data => data
+    select: (data) => data
   });
 
   return { categories, isLoading };

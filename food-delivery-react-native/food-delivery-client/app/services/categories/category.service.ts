@@ -1,6 +1,6 @@
+import { ApiUrls } from '@/config/api';
 import type { Category } from '@/types/category.i';
 import { request } from '@/services/api/request';
-import { ApiUrls } from '@/config/api';
 
 class CategoryService {
   public async getAll(): Promise<Category[]> {
