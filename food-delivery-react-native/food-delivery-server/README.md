@@ -16,4 +16,5 @@ ___
 4. Sync Prisma with your DB instance. Something like:  
     - `npx prisma migrate` or `npx prisma migrate --dev`
     - `npx prisma generate`  
-5. `npm run start:dev`    
+5. `npm run start:dev`  
+6. Also check in `client` folder [Readme.md](../food-delivery-client/Readme.md) how to map ports, because connected by USB Android device does not see the port and Axios returns `NetworkError`
