@@ -21,7 +21,7 @@ export const Banner: React.FC<{ className?: string }> = ({ className }) => {
         </TouchableOpacity>
       </View>
 
-      <View className="absolute bottom-0 right-4 w-28 h-28">
+      <View className="absolute bottom-0 right-4 w-32 h-32">
         <Image source={require('@assets/images/delivery-man.png')} className="w-full h-full" />
       </View>
     </View>

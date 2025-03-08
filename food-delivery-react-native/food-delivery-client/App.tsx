@@ -23,7 +23,12 @@ export default function App() {
           <RootLayout />
         </SafeAreaProvider>
       </AuthProvider>
-      <StatusBar style="dark" translucent={false} backgroundColor={BACKGROUND_COLOR} />
+
+      <StatusBar
+        style="dark"
+        translucent={false}
+        backgroundColor={BACKGROUND_COLOR}
+      />
 
       <NotificationToast />
     </QueryClientProvider>
