@@ -27,7 +27,7 @@ export const ProfileScreen: React.FC = () => {
     <Container>
       <Heading center>Profile</Heading>
       <View className="my-6 flex items-center justify-center">
-        <Image source={{ uri: profile?.avatarPath }} className="w-40 h-40 rounded-full" />
+        <Image source={{ uri: profile?.avatarPath }} className="w-40 h-40 rounded-full" alt="Avatar" />
         <View className="flex flex-col w-full mt-2.5 px-5 gap-y-2">
           <View className="flex flex-row justify-center items-center">
             <Text className="text-4xl font-bold">{profile?.name}</Text>

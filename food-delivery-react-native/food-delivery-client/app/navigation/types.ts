@@ -7,6 +7,7 @@ export type NavigationScreensListType = Readonly<{
   Explorer: undefined;
   Search: undefined;
   Favourites: undefined;
+  Cart: undefined;
 }>;
 
 export interface Route {

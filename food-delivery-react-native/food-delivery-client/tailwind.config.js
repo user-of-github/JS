@@ -10,7 +10,8 @@ module.exports = {
       secondary: '#194DC8',
       'text-secondary': '#999999',
       accent: '#F6F4FB',
-      white: '#FFFFFF'
+      white: '#FFFFFF',
+      black: '#000000',
     },
     extend: {
       colors: {

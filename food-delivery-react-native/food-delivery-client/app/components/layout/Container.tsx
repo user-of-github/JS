@@ -4,24 +4,25 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const AppPaddings = {
   vertical: 30,
-  horizontal: 30
+  horizontal: 20,
+  top: 10
 } as const;
 
 export const Container: React.FC<React.PropsWithChildren<{ className?: string }>> = ({ children, className }) => {
   const insets = useSafeAreaInsets();
 
   return (
-      <View
-        style={[
+    <View
+      style={[
         {
-          paddingTop: insets.top + AppPaddings.vertical,
+          paddingTop: insets.top + AppPaddings.vertical + AppPaddings.top,
           paddingBottom: insets.bottom + AppPaddings.vertical,
           paddingLeft: insets.left + AppPaddings.horizontal,
           paddingRight: insets.right + AppPaddings.horizontal
         }
       ]}
-      >
-        {children}
-      </View>
+    >
+      {children}
+    </View>
   );
 };

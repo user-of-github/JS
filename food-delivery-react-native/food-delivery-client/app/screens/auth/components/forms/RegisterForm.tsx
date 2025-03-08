@@ -5,7 +5,7 @@ import type { RegisterDto } from '@/types/auth.i';
 import { type AuthFormType, useAuthMutations } from '@/features/auth/useAuthMutations';
 import { FormModeToggler } from '@/screens/auth/components/FormModeToggler';
 import { EmailRegex } from '@/screens/auth/components/email.regex';
-import { useShakeAnimation } from '@/hooks/useShakeAnimation';
+import { useShakeAnimation } from '@/components/hooks/useShakeAnimation';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
 

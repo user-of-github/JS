@@ -1,0 +1,24 @@
+import React from 'react';
+import { Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useProfile } from '@/features/auth/useProfile';
+import { AppRoutes } from '@/navigation/routes';
+import { useAppNavigation } from '@/navigation/useAppNavigation';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+
+export const Header: React.FC = () => {
+  const { profile, isLoading } = useProfile();
+  const { navigate } = useAppNavigation();
+
+  return (
+    <View className="flex flex-row justify-between items-center">
+      <Text className="font-bold text-3xl text-secondary">
+        Hello, { isLoading ? <LoadingSpinner/> : profile?.name }
+      </Text>
+
+      <TouchableOpacity onPress={() => navigate(AppRoutes.Cart.name)}>
+        <Ionicons name="cart" size={33} color="gray" />
+      </TouchableOpacity>
+    </View>
+  );
+};
