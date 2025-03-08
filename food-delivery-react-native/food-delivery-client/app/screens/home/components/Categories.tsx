@@ -1,6 +1,5 @@
 import React from 'react';
-import { Image, TouchableOpacity, View, Text } from 'react-native';
-import { ApiUrls } from '@/config/api';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { getMediaSource } from '@/services/utils';
 import { useGetAllCategories } from '@/features/categories/useGetAllCategories';
 import { AppRoutes } from '@/navigation/routes';
@@ -33,7 +32,7 @@ export const Categories: React.FC = () => {
               className="w-10 h-8 mb-2 p-3 object-cover"
               resizeMode="cover"
             />
-            <Text className="text-md text-center">{ category.name }</Text>
+            <Text className="text-md text-center">{category.name}</Text>
           </TouchableOpacity>
         ))}
       </View>
