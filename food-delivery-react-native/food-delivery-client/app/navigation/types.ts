@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type NavigationScreensListType = Readonly<{
+export type NavigationScreensListType = {
   Auth: undefined;
   Home: undefined;
   Profile: undefined;
@@ -10,8 +10,8 @@ export type NavigationScreensListType = Readonly<{
   Cart: undefined;
   Category: {
     slug: string;
-  };
-}>;
+  } | undefined;
+};
 
 export interface Route {
   name: keyof NavigationScreensListType;
