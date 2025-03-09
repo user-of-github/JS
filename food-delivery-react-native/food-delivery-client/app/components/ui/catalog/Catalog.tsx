@@ -21,7 +21,8 @@ export const Catalog: React.FC<CatalogProps> = ({ title, products }) => {
           keyExtractor={(item) => item.id}
           renderItem={(item) => <ProductItem product={item} />}
           numColumns={3}
-          gap={5}
+          gapX={5}
+          gapY={15}
         />
       ) : (
         <Text>No products</Text>
