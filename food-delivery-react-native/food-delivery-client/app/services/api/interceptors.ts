@@ -2,6 +2,8 @@ import axios from 'axios';
 import { API_URL, ApiUrls } from '@/config/api';
 import { getNewTokens } from '@/services/api/helper';
 import { authDataStorageService } from '@/services/auth/auth-data-storage.service';
+import { authService } from '@/services/auth/auth.service';
+import { useAuth } from '@/features/auth/AuthProvider';
 
 export const axiosInstance = axios.create({
   baseURL: API_URL,
@@ -25,17 +27,20 @@ axiosInstance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response && error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._isRetry = true;
+    console.log('INTERCEPTOR')
+    console.log(error);
 
-      try {
-        await getNewTokens();
-        return Promise.resolve(axiosInstance(originalRequest));
-      } catch (tokenError) {
-        await authDataStorageService.deleteTokens();
+    if (error.response && error.response.status === 401 && !originalRequest._isRetry) {
+      // originalRequest._isRetry = true;
+      //
+      // try {
+      //   await getNewTokens();
+      //   return Promise.resolve(axiosInstance(originalRequest));
+      // } catch (tokenError) {
+      //   return Promise.reject(tokenError);
+      // }
 
-        return Promise.reject(tokenError);
-      }
+      await authService.logout();
     }
 
     return Promise.reject(error);
