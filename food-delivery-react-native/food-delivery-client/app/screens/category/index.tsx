@@ -6,6 +6,7 @@ import { useCategory } from '@/features/categories/useCategory';
 import { Image, View } from 'react-native';
 import { getMediaSource } from '@/services/utils';
 import { Catalog } from '@/components/ui/catalog/Catalog';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 export const CategoryScreen: React.FC = () => {
   const { route, category, isLoading, products} = useCategory()
@@ -14,6 +15,10 @@ export const CategoryScreen: React.FC = () => {
     return (
       <Container>
         <Heading>{route}</Heading>
+
+        <View className="mt-5">
+          <LoadingSpinner/>
+        </View>
       </Container>
     );
   }
@@ -25,8 +30,6 @@ export const CategoryScreen: React.FC = () => {
       </Container>
     );
   }
-
-
 
   return (
     <Container>
