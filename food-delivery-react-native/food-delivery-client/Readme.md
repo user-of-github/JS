@@ -25,7 +25,7 @@
 <img src="./screenshots/home.jpg" width="250px" alt="Home" style="border-radius: 5px; overflow: hidden;"/>
 <img src="./screenshots/explorer.jpg" width="250px" alt="Explorer screen" style="border-radius: 5px; overflow: hidden;"/>
 <img src="./screenshots/search.jpg" width="250px" alt="Search screen" style="border-radius: 5px; overflow: hidden;"/>
-</div>  
+</div>
 
 #### Product, Category screens
 
@@ -49,6 +49,7 @@
 ---
 
 ### To run locally:
+
 0. `npm install`
 1. You need to install Android SDK inside [Android Studio](https://developer.android.com/studio)
 2. Download [Expo Go](https://expo.dev/go) on your mobile (or you can use Virtual Device Emulator in Android Studio)

@@ -15,7 +15,7 @@ interface IconButtonProps {
   };
 }
 
-const sizes: Record<IconButtonSize, { containerSize: number, iconSize: number }> = {
+const sizes: Record<IconButtonSize, { containerSize: number; iconSize: number }> = {
   default: {
     containerSize: 55,
     iconSize: 25
@@ -41,8 +41,8 @@ export const IconButton: React.FC<IconButtonProps> = ({ size = 'default ', onPre
           className="bg-[#FFF] rounded-full overflow-hidden justify-center items-center"
           style={{ width: containerSize, height: containerSize }}
         >
-          { icon.component}
-          { icon.name && <Feather name={icon.name} size={iconSize} color={icon.color} className="overflow-hidden"/>}
+          {icon.component}
+          {icon.name && <Feather name={icon.name} size={iconSize} color={icon.color} className="overflow-hidden" />}
         </View>
       </TouchableNativeFeedback>
     </View>

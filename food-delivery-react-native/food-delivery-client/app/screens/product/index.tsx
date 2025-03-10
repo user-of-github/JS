@@ -1,15 +1,15 @@
 import React from 'react';
-import { Image, View, Text } from 'react-native';
+import { Image, Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import { convertPrice, getMediaSource } from '@/services/utils';
 import { useProduct } from '@/features/products/useProduct';
+import { useAppNavigation } from '@/navigation/useAppNavigation';
+import { FavouriteButton } from '@/screens/product/components/FavouriteButton';
 import { Container } from '@/components/layout/Container';
+import { Button } from '@/components/ui/Button';
+import { GoBackButton } from '@/components/ui/GoBackButton';
 import { Heading } from '@/components/ui/Heading';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { useAppNavigation } from '@/navigation/useAppNavigation';
-import { convertPrice, getMediaSource } from '@/services/utils';
-import { GoBackButton } from '@/components/ui/GoBackButton';
-import { Button } from '@/components/ui/Button';
-import { Feather } from '@expo/vector-icons';
-import { FavouriteButton } from '@/screens/product/components/FavouriteButton';
 
 export const ProductScreen: React.FC = () => {
   const { isLoading, product, route } = useProduct();
@@ -29,7 +29,7 @@ export const ProductScreen: React.FC = () => {
   if (!isLoading && !product) {
     return (
       <Container>
-        <GoBackButton size="default"/>
+        <GoBackButton size="default" />
         <Heading>Product not found</Heading>
       </Container>
     );
@@ -38,17 +38,12 @@ export const ProductScreen: React.FC = () => {
   return (
     <Container>
       <View className="flex flex-row items-center justify-between w-full">
-        <GoBackButton size="small"/>
-        <FavouriteButton productId={product?.id || ''}/>
+        <GoBackButton size="small" />
+        <FavouriteButton productId={product?.id || ''} />
       </View>
       <View className="flex flex-col mt-2">
         <View className="items-center justify-center">
-          <Image
-            source={{ uri: getMediaSource(product?.image || '')}}
-            width={245}
-            height={245}
-            resizeMode="contain"
-          />
+          <Image source={{ uri: getMediaSource(product?.image || '') }} width={245} height={245} resizeMode="contain" />
         </View>
 
         <View className="mt-3">
@@ -58,8 +53,7 @@ export const ProductScreen: React.FC = () => {
         </View>
 
         <Button className="mt-6">
-          <Feather name="shopping-cart" size={20} color="#FFF" className="mr-3"/>
-          {' '}Add to cart
+          <Feather name="shopping-cart" size={20} color="#FFF" className="mr-3" /> Add to cart
         </Button>
       </View>
     </Container>

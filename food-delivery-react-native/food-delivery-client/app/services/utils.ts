@@ -5,8 +5,10 @@ export const getMediaSource = (path: string): string => {
 };
 
 export const convertPrice = (price?: number) => {
-  return price?.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }) || '';
+  return (
+    price?.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    }) || ''
+  );
 };

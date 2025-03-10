@@ -4,10 +4,10 @@ import { getMediaSource } from '@/services/utils';
 import { useCategory } from '@/features/categories/useCategory';
 import { useAppRoute } from '@/navigation/useAppRoute';
 import { Container } from '@/components/layout/Container';
+import { GoBackButton } from '@/components/ui/GoBackButton';
 import { Heading } from '@/components/ui/Heading';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { Catalog } from '@/components/ui/catalog/Catalog';
-import { GoBackButton } from '@/components/ui/GoBackButton';
 
 export const CategoryScreen: React.FC = () => {
   const { route, category, isLoading, products } = useCategory();
@@ -27,7 +27,7 @@ export const CategoryScreen: React.FC = () => {
   if (!isLoading && !category) {
     return (
       <Container>
-        <GoBackButton size="small"/>
+        <GoBackButton size="small" />
         <Heading>Category not found</Heading>
       </Container>
     );
@@ -36,7 +36,7 @@ export const CategoryScreen: React.FC = () => {
   return (
     <Container>
       <View className="flex flex-row items-end justify-between relative gap-x-2 p-2 pt-0 pb-4 border-b border-dashed border-b-primary">
-        <GoBackButton size="small"/>
+        <GoBackButton size="small" />
 
         <Heading size="page">{category?.name}</Heading>
 
