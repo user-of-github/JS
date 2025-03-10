@@ -3,7 +3,6 @@ Full-stack application built with Nest and React Native
 ___   
 
 ## Demo:  
-### Demo:
 
 
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center;">
