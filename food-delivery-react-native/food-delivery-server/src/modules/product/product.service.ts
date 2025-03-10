@@ -11,11 +11,13 @@ export class ProductService {
     public constructor(
         private readonly prismaService: PrismaService,
         private readonly categoryService: CategoryService
-    ) {}
-    
+    ) { }
+
     public async getAll(searchString?: string) {
         if (searchString) {
-            return this.search(searchString);
+            const results = await this.search(searchString);
+            console.log(searchString, results.map(r => r.name));
+            return results;
         }
 
         return this.prismaService.product.findMany({
@@ -29,17 +31,10 @@ export class ProductService {
     public async search(searchString: string) {
         return await this.prismaService.product.findMany({
             where: {
-                OR: [{
-                    name: {
-                        contains: searchString,
-                        mode: 'insensitive'
-                    }
-                }, {
-                    description: {
-                        contains: searchString,
-                        mode: 'insensitive'
-                    }
-                }]
+                name: {
+                    contains: searchString,
+                    mode: 'insensitive'
+                }
             },
             select: returnProductObject
         })
@@ -96,7 +91,7 @@ export class ProductService {
     public async create() {
         return await this.prismaService.product.create({
             data: {
-                name: '', 
+                name: '',
                 slug: '',
                 image: '',
                 price: 0,
@@ -106,7 +101,6 @@ export class ProductService {
     }
 
     public async update(id: string, dto: ProductDto) {
-
         await this.categoryService.getById(dto.categoryId); // if not exists ==> throw
 
         return await this.prismaService.product.update({
@@ -114,7 +108,7 @@ export class ProductService {
                 id
             },
             data: {
-                name: dto.name, 
+                name: dto.name,
                 slug: slug(dto.name),
                 image: dto.image,
                 price: dto.price,
