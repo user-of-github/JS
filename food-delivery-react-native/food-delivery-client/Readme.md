@@ -41,12 +41,13 @@
 </div>
 ---
 
-### To run:
-
+### To run locally:
+0. `npm install`
 1. You need to install Android SDK inside [Android Studio](https://developer.android.com/studio)
 2. Download [Expo Go](https://expo.dev/go) on your mobile (or you can use Virtual Device Emulator in Android Studio)
 3. If you use local server, you need to [map ports](https://stackoverflow.com/questions/33704130/react-native-android-fetch-failing-on-connection-to-local-api)
    - `adb devices` - get number of device
-   - `adb -s <NUMBER> reverse tcp:4200 tcp:4200`
-4. Connect phone to PC, allow USB Debug Mode and transfering files
-5. `npm run android`
+   - `adb -s <NUMBER> reverse tcp:4200 tcp:4200` (or port that is in `.env` in [../food-delivery-server](../food-delivery-server) )
+4. Connect phone to PC via USB cable, allow USB Debug Mode and transfering files
+5. Run server in [../food-delivery-server](../food-delivery-server)
+6. `npm run android`
