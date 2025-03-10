@@ -1,13 +1,21 @@
 import { ApiUrls } from '@/config/api';
 import type { Product } from '@/types/product.i';
 import { request } from '@/services/api/request';
+import type { CategoryWithProducts } from '@/types/category.i';
 
 class ProductService {
-  public async getAll(searchTerm?: string): Promise<Product[]> {
+  public async getAll(params?: { searchTerm?: string, limit?: number }): Promise<Product[]> {
     return request<Product[]>({
       url: ApiUrls.products.list,
       method: 'GET',
-      params: searchTerm ? { searchTerm } : {}
+      params: params || {}
+    });
+  }
+
+  public async getAllByCategories(): Promise<CategoryWithProducts[]> {
+    return request<CategoryWithProducts[]>({
+      url: ApiUrls.products.listByCategories,
+      method: 'GET',
     });
   }
 
@@ -18,8 +26,8 @@ class ProductService {
     });
   }
 
-  public async getByCategory(categorySlug: string): Promise<Product> {
-    return request<Product>({
+  public async getByCategory(categorySlug: string): Promise<Product[]> {
+    return request<Product[]>({
       url: ApiUrls.products.byCategory(categorySlug),
       method: 'GET'
     });

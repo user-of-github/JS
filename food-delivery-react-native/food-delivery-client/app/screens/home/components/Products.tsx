@@ -6,7 +6,7 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { Catalog } from '@/components/ui/catalog/Catalog';
 
 export const Products: React.FC = () => {
-  const { products, isLoading } = useProducts();
+  const { products, isLoading } = useProducts(4);
 
   return (
     <View className="mt-12 pb-20">

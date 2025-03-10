@@ -1,28 +1,21 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, type StyleProp, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const AppPaddings = {
+export const AppLayoutPaddings = Object.freeze({
   vertical: 30,
   horizontal: 20,
   top: 10
-} as const;
+} as const);
 
 interface ContainerProps {
   className?: string;
-  avoidLeftPadding?: boolean;
-  avoidRightPadding?: boolean;
-  avoidTopPadding?: boolean;
-  avoidBottomPadding?: boolean;
+  style?: StyleProp<any>;
 }
 
 export const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
   children,
-  className,
-  avoidLeftPadding = false,
-  avoidRightPadding = false,
-  avoidTopPadding = false,
-  avoidBottomPadding = false
+  className
 }) => {
   const insets = useSafeAreaInsets();
 
@@ -30,15 +23,40 @@ export const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
     <ScrollView
       style={[
         {
-          paddingTop: avoidTopPadding ? 0 : insets.top + AppPaddings.vertical + AppPaddings.top,
-          paddingBottom: insets.bottom + AppPaddings.vertical + 100,
-          paddingLeft: avoidLeftPadding ? 0 : insets.left + AppPaddings.horizontal,
-          paddingRight: avoidRightPadding ? 0 : insets.right + AppPaddings.horizontal
+          paddingTop: insets.top + AppLayoutPaddings.vertical + AppLayoutPaddings.top,
+          paddingBottom: insets.bottom + AppLayoutPaddings.vertical + 100,
+          paddingLeft: insets.left + AppLayoutPaddings.horizontal,
+          paddingRight: insets.right + AppLayoutPaddings.horizontal
         }
       ]}
       className={className}
     >
       {children}
     </ScrollView>
+  );
+};
+
+export const NoScrollViewContainer: React.FC<React.PropsWithChildren<ContainerProps>> = ({
+                                                                               children,
+                                                                               className,
+  style
+                                                                             }) => {
+  const insets = useSafeAreaInsets();
+
+  return (
+    <View
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+          paddingBottom: insets.bottom
+        },
+        style
+      ]}
+      className={className}
+    >
+      {children}
+    </View>
   );
 };

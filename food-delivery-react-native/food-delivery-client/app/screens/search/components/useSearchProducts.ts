@@ -7,7 +7,7 @@ export const useSearchProducts = () => {
 
   const { data: products, isLoading } = useQuery({
     queryKey: ['searchProducts', debouncedSearch],
-    queryFn: () => productService.getAll(debouncedSearch),
+    queryFn: () => productService.getAll({ searchTerm: debouncedSearch }),
     enabled: !!searchTerm
   });
 

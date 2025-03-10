@@ -18,6 +18,7 @@ export const ApiUrls = Object.freeze({
   },
   products: {
     list: '/products',
+    listByCategories: '/products/groupped-by-category',
     byId: (id: string) => `/products/${id}`,
     bySlug: (slug: string) => `/products/by-slug/${slug}`,
     byCategory: (slug: string) => `/products/by-category/${slug}`

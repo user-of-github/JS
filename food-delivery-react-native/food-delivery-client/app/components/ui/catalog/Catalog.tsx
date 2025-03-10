@@ -8,12 +8,13 @@ import { ProductItem } from '@/components/ui/catalog/ProductItem';
 export interface CatalogProps {
   title?: string;
   products: Product[];
+  className?: string;
 }
 
-export const Catalog: React.FC<CatalogProps> = ({ title, products }) => {
+export const Catalog: React.FC<CatalogProps> = ({ title, products, className }) => {
   return (
-    <View>
-      {title && <Heading>{title} </Heading>}
+    <View className={className}>
+      {title && <Heading size="section">{title}</Heading>}
 
       {products.length ? (
         <DynamicGrid
