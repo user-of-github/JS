@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { cn } from '@/components/utils';
 
 interface CustomButtonProps extends React.PropsWithChildren<TouchableOpacityProps> {
-  children?: string;
+  children?: React.ReactNode | React.ReactNode[];
   className?: string;
   textClassName?: string;
 }
@@ -11,7 +11,7 @@ interface CustomButtonProps extends React.PropsWithChildren<TouchableOpacityProp
 export const Button: React.FC<CustomButtonProps> = ({ children, className, textClassName, ...props }) => {
   return (
     <TouchableOpacity
-      activeOpacity={0.8}
+      activeOpacity={0.75}
       {...props}
       className={cn('self-center  rounded-lg bg-secondary py-4 w-full', className)}
     >
