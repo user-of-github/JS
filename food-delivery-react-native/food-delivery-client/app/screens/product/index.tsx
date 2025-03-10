@@ -36,13 +36,14 @@ export const ProductScreen: React.FC = () => {
 
   return (
     <Container>
-      <GoBackButton size="default"/>
+      <GoBackButton size="small"/>
       <View className="flex flex-col mt-2">
         <View className="items-center justify-center">
           <Image
             source={{ uri: getMediaSource(product?.image || '')}}
             width={245}
             height={245}
+            resizeMode="contain"
           />
         </View>
 
