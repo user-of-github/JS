@@ -9,9 +9,9 @@
 - _[TypeScript](https://www.typescriptlang.org/)_
 - _[React Native Navigation](https://reactnavigation.org/)_
 - _[NativeWind](https://www.nativewind.dev/) ([Tailwind CSS](https://tailwindcss.com/))_
-- _[React Hook Form](https://react-hook-form.com/)_
-- _[Axios HTTP Client](https://axios-http.com/docs/intro)_
 - _[TanStack React Query](https://tanstack.com/query/latest)_
+- _[Axios HTTP Client](https://axios-http.com/docs/intro)_
+- _[React Hook Form](https://react-hook-form.com/)_
 - _[React Native Async Storage](https://react-native-async-storage.github.io/async-storage/), [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)_
 - _[Prettier](https://prettier.io/) with plugins_
 
@@ -19,23 +19,26 @@
 
 ### Demo:
 
-#### Home
 
-<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: space-between;">
-<img src="./screenshots/home.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
+#### Home, Explorer, Search screens
+
+<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center;">
+<img src="./screenshots/home.jpg" width="250px" alt="Home" style="border-radius: 5px; overflow: hidden;"/>
+<img src="./screenshots/explorer.jpg" width="250px" alt="Explorer screen" style="border-radius: 5px; overflow: hidden;"/>
+<img src="./screenshots/search.jpg" width="250px" alt="Search screen" style="border-radius: 5px; overflow: hidden;"/>
 </div>
 
 #### Profile
 
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: space-between;">
-<img src="./screenshots/profile.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
+<img src="./screenshots/profile.jpg" width="250px" alt="Profile screen" style="border-radius: 5px; overflow: hidden;"/>
 </div>
 
 #### Authorization
 
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center;">
-<img src="./screenshots/register.jpg" width="250px" alt="dark theme" style="border-radius: 5px; overflow: hidden;"/>
-<img src="./screenshots/login.jpg" width="250px" alt="light theme" style="border-radius: 5px; overflow: hidden;"/>
+<img src="./screenshots/register.jpg" width="250px" alt="Registration screen" style="border-radius: 5px; overflow: hidden;"/>
+<img src="./screenshots/login.jpg" width="250px" alt="Sign in screen" style="border-radius: 5px; overflow: hidden;"/>
 </div>
 ---
 

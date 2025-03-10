@@ -88,7 +88,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ toggleFormMode }) =>
 
       <AnimatedNative.View style={shakingStyle}>
         <Button onPress={handleSubmit(onSubmit, onError)} className="mt-4">
-          Sign in
+          Sign up
         </Button>
       </AnimatedNative.View>
 
