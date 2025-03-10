@@ -11,7 +11,8 @@
 - _[NativeWind](https://www.nativewind.dev/) ([Tailwind CSS](https://tailwindcss.com/))_
 - _[TanStack React Query](https://tanstack.com/query/latest)_
 - _[Axios HTTP Client](https://axios-http.com/docs/intro)_
-- _[React Hook Form](https://react-hook-form.com/)_
+- _[React Hook Form](https://react-hook-form.com/)_  
+- _[Redux ToolKit](https://redux-toolkit.js.org/)_
 - _[React Native Async Storage](https://react-native-async-storage.github.io/async-storage/), [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)_
 - _[Prettier](https://prettier.io/) with plugins_
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { useProductsByCategories } from '@/features/products/useProductsByCategories';
-import { AppLayoutPaddings, Container, NoScrollViewContainer } from '@/components/layout/Container';
+import { AppLayoutPaddings, NoScrollViewContainer } from '@/components/layout/Container';
 import { Heading } from '@/components/ui/Heading';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { Catalog } from '@/components/ui/catalog/Catalog';
