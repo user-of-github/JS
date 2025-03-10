@@ -9,7 +9,7 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { Catalog } from '@/components/ui/catalog/Catalog';
 
 export const SearchScreen: React.FC = () => {
-  const { control, searchTerm, products, isLoading } = useSearchProducts();
+  const { control, searchTerm, products, isLoading, debouncedSearch } = useSearchProducts();
 
   return (
     <Container>
@@ -26,12 +26,12 @@ export const SearchScreen: React.FC = () => {
 
       <View>
         {
-          isLoading && (
+          (isLoading || debouncedSearch !== searchTerm) && (
             <LoadingSpinner/>
           )
         }
         {
-          !!searchTerm && !isLoading && (
+          !!searchTerm && !(isLoading || debouncedSearch !== searchTerm) && (
             <Catalog products={products || []} title="Results"/>
           )
         }
