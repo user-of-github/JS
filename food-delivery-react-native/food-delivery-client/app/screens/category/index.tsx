@@ -27,7 +27,7 @@ export const CategoryScreen: React.FC = () => {
   if (!isLoading && !category) {
     return (
       <Container>
-        <GoBackButton/>
+        <GoBackButton size="small"/>
         <Heading>Category not found</Heading>
       </Container>
     );
@@ -35,8 +35,7 @@ export const CategoryScreen: React.FC = () => {
 
   return (
     <Container>
-
-      <View className="flex flex-row items-end justify-between relative gap-x-2 p-2 pb-4 border-b border-dashed border-b-primary">
+      <View className="flex flex-row items-end justify-between relative gap-x-2 p-2 pt-0 pb-4 border-b border-dashed border-b-primary">
         <GoBackButton size="small"/>
 
         <Heading size="page">{category?.name}</Heading>
