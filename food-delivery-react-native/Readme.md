@@ -1,5 +1,5 @@
 # Food Delivery Application  
-Full-stack application built with Nest and React Native
+Full-stack mobile application built with Nest and React Native
 ___   
 
 ## Demo:  
@@ -26,5 +26,8 @@ ___
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center;">
 <img src="./food-delivery-client/screenshots/register.jpg" width="250px" alt="Registration screen" style="border-radius: 5px; overflow: hidden;"/>
 <img src="./food-delivery-client/screenshots/login.jpg" width="250px" alt="Sign in screen" style="border-radius: 5px; overflow: hidden;"/>
-</div>
----
+</div>  
+
+---   
+
+###### Copyright © 2025
