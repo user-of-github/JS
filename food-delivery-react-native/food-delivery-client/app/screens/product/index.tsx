@@ -9,6 +9,7 @@ import { convertPrice, getMediaSource } from '@/services/utils';
 import { GoBackButton } from '@/components/ui/GoBackButton';
 import { Button } from '@/components/ui/Button';
 import { Feather } from '@expo/vector-icons';
+import { FavouriteButton } from '@/screens/product/components/FavouriteButton';
 
 export const ProductScreen: React.FC = () => {
   const { isLoading, product, route } = useProduct();
@@ -36,7 +37,10 @@ export const ProductScreen: React.FC = () => {
 
   return (
     <Container>
-      <GoBackButton size="small"/>
+      <View className="flex flex-row items-center justify-between w-full">
+        <GoBackButton size="small"/>
+        <FavouriteButton productId={product?.id || ''}/>
+      </View>
       <View className="flex flex-col mt-2">
         <View className="items-center justify-center">
           <Image

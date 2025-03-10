@@ -6,16 +6,16 @@ export const menuItems: readonly MenuItemType[] = [
     icon: 'home'
   },
   {
-    path: 'Favourites',
-    icon: 'heart'
+    path: 'Explorer',
+    icon: 'shopping-bag'
   },
   {
     path: 'Search',
     icon: 'search'
   },
   {
-    path: 'Explorer',
-    icon: 'shopping-bag'
+    path: 'Favourites',
+    icon: 'heart'
   },
   {
     path: 'Profile',

@@ -1,3 +1,5 @@
+import type { Product } from './product.i';
+
 export interface User {
   email: string;
   password: string;
@@ -5,5 +7,5 @@ export interface User {
   phone: string;
   id: string;
   avatarPath: string;
-  favourites: any[];
+  favourites: Product[];
 }
