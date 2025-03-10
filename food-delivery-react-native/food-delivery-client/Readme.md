@@ -14,7 +14,8 @@
 - _[React Hook Form](https://react-hook-form.com/)_  
 - _[Redux ToolKit](https://redux-toolkit.js.org/)_
 - _[React Native Async Storage](https://react-native-async-storage.github.io/async-storage/), [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)_
-- _[Prettier](https://prettier.io/) with plugins_
+- _[Prettier](https://prettier.io/) with plugins_  
+- _[GitHub Actions CI](https://github.com/features/actions)_
 
 ---
 
