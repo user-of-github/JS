@@ -4,6 +4,7 @@ import slug from 'slug';
 import { returnProductObject } from './returnProduct.object';
 import { ProductDto } from './dto/product.dto';
 import { CategoryService } from '../category/category.service';
+import { Product } from '@prisma/client';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class ProductService {
         private readonly categoryService: CategoryService
     ) { }
 
-    public async getAll(searchString?: string) {
+    public async getAll(searchString?: string, limit?: number | undefined): Promise<Product[]> {
         if (searchString) {
             const results = await this.search(searchString);
             console.log(searchString, results.map(r => r.name));
@@ -24,7 +25,8 @@ export class ProductService {
             select: returnProductObject,
             orderBy: {
                 createdAt: 'desc'
-            }
+            },
+            take: limit
         });
     }
 
@@ -85,6 +87,16 @@ export class ProductService {
         }
 
         return products;
+    }
+
+    public async getAllGrouppedByCategory() {
+        const categories = await this.prismaService.category.findMany({
+            include: {
+                products: true, // Include all products in each category
+              },
+        });
+
+        return categories;
     }
 
 

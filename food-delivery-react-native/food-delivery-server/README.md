@@ -15,6 +15,6 @@ ___
 3. Create your `.env` file (see `.env.example` as a template or just copy it. But don't forget to make it suitable for DB created in _part 2_)
 4. Sync Prisma with your DB instance. Something like:  
     - `npx prisma migrate` or `npx prisma migrate --dev`
-    - `npx prisma generate`  
-5. `npm run start:dev`  
-6. Also check in `client` folder [Readme.md](../food-delivery-client/Readme.md) how to map ports, because connected by USB Android device does not see the port and Axios returns `NetworkError`
+    - `npx prisma generate`   
+5. Also check in `client` folder [Readme.md](../food-delivery-client/Readme.md) how to map ports, because connected by USB Android device does not see the port and Axios returns `NetworkError`  
+6. `npm run start:dev` 

@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Query, UsePi
 import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
 import { Auth } from '../auth/auth.decorator';
+import { OptionalParseIntPipe } from '../../pipes/optional-parse-int.pipe';
 
 @Controller('products')
 export class ProductController {
@@ -9,8 +10,11 @@ export class ProductController {
 
   @UsePipes(new ValidationPipe())
   @Get()
-  public async getAll(@Query('searchTerm') searchTerm?: string) {
-    return await this.productService.getAll(searchTerm);
+  public async getAll(
+    @Query('searchTerm') searchTerm?: string,
+    @Query('limit', OptionalParseIntPipe) limit?: number
+  ) {
+    return await this.productService.getAll(searchTerm, limit);
   }
 
   @Get('by-id/:id')
@@ -27,6 +31,11 @@ export class ProductController {
   @Get('by-category/:categorySlug')
   public async getByCategory(@Param('categorySlug') categorySlug: string) {
     return await this.productService.getByCategory(categorySlug);
+  }
+
+  @Get('groupped-by-category')
+  public async getAllGrouppedByCategory() {
+    return await this.productService.getAllGrouppedByCategory();
   }
 
   @HttpCode(200)
