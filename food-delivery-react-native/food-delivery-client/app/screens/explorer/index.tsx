@@ -11,7 +11,7 @@ export const ExplorerScreen: React.FC = () => {
 
   return (
     <NoScrollViewContainer className="h-full">
-      <View style={{ paddingVertical: AppLayoutPaddings.vertical, paddingBottom: AppLayoutPaddings.vertical * 2 }}>
+      <View style={{ paddingVertical: AppLayoutPaddings.vertical + AppLayoutPaddings.top, paddingBottom: AppLayoutPaddings.vertical * 2 }}>
         <View className="mb-10" style={{ paddingHorizontal: AppLayoutPaddings.horizontal }}>
           <Heading>Explorer</Heading>
         </View>
