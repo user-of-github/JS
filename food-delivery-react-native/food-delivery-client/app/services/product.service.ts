@@ -1,10 +1,10 @@
 import { ApiUrls } from '@/config/api';
+import type { CategoryWithProducts } from '@/types/category.i';
 import type { Product } from '@/types/product.i';
 import { request } from '@/services/api/request';
-import type { CategoryWithProducts } from '@/types/category.i';
 
 class ProductService {
-  public async getAll(params?: { searchTerm?: string, limit?: number }): Promise<Product[]> {
+  public async getAll(params?: { searchTerm?: string; limit?: number }): Promise<Product[]> {
     return request<Product[]>({
       url: ApiUrls.products.list,
       method: 'GET',
@@ -15,7 +15,7 @@ class ProductService {
   public async getAllByCategories(): Promise<CategoryWithProducts[]> {
     return request<CategoryWithProducts[]>({
       url: ApiUrls.products.listByCategories,
-      method: 'GET',
+      method: 'GET'
     });
   }
 

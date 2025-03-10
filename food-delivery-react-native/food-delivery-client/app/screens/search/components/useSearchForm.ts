@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useDebounce } from '@/components/hooks/useDebounce';
 
-
 export interface SearchFormData {
   searchTerm: string;
 }
@@ -15,8 +14,8 @@ export const useSearchForm = () => {
   const debouncedSearch = useDebounce(searchTerm, 500);
 
   return {
-      debouncedSearch,
-      searchTerm,
-      control
-    };
+    debouncedSearch,
+    searchTerm,
+    control
+  };
 };

@@ -12,7 +12,9 @@ export const Header: React.FC = () => {
 
   return (
     <View className="flex flex-row justify-between items-center py-3">
-      <Text className="font-light text-4xl text-secondary">Hello, {isLoading ? <LoadingSpinner /> : profile?.name}</Text>
+      <Text className="font-light text-4xl text-secondary">
+        Hello, {isLoading ? <LoadingSpinner /> : profile?.name}
+      </Text>
 
       <TouchableOpacity onPress={() => navigate(AppRoutes.Cart.name)}>
         <Ionicons name="cart" size={33} color="gray" />

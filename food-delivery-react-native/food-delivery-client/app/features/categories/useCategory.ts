@@ -1,7 +1,7 @@
-import { useAppRoute } from '@/navigation/useAppRoute';
 import { useQuery } from '@tanstack/react-query';
 import { categoryService } from '@/services/category.service';
 import { productService } from '@/services/product.service';
+import { useAppRoute } from '@/navigation/useAppRoute';
 
 export const useCategory = () => {
   const { params } = useAppRoute<'Category'>();

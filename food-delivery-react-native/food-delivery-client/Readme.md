@@ -19,7 +19,6 @@
 
 ### Demo:
 
-
 #### Home, Explorer, Search screens
 
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center;">

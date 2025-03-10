@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, Text, View } from 'react-native';
-import { AppLayoutPaddings, Container, NoScrollViewContainer } from '@/components/layout/Container';
 import { useProductsByCategories } from '@/features/products/useProductsByCategories';
+import { AppLayoutPaddings, Container, NoScrollViewContainer } from '@/components/layout/Container';
 import { Heading } from '@/components/ui/Heading';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { Catalog } from '@/components/ui/catalog/Catalog';
@@ -16,22 +16,15 @@ export const ExplorerScreen: React.FC = () => {
           <Heading>Explorer</Heading>
         </View>
 
-        { isLoading && <LoadingSpinner/>}
+        {isLoading && <LoadingSpinner />}
 
-        { !isLoading && (
+        {!isLoading && (
           <FlatList
-            style={{ paddingHorizontal: AppLayoutPaddings.horizontal}}
+            style={{ paddingHorizontal: AppLayoutPaddings.horizontal }}
             data={products}
-            renderItem={({item}) => (
-              <Catalog
-                products={item.products}
-                title={item.name}
-                className="my-5"
-              />
-            )}
+            renderItem={({ item }) => <Catalog products={item.products} title={item.name} className="my-5" />}
           />
         )}
-
       </View>
     </NoScrollViewContainer>
   );

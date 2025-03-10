@@ -13,10 +13,7 @@ interface ContainerProps {
   style?: StyleProp<any>;
 }
 
-export const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
-  children,
-  className
-}) => {
+export const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({ children, className }) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -37,10 +34,10 @@ export const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({
 };
 
 export const NoScrollViewContainer: React.FC<React.PropsWithChildren<ContainerProps>> = ({
-                                                                               children,
-                                                                               className,
+  children,
+  className,
   style
-                                                                             }) => {
+}) => {
   const insets = useSafeAreaInsets();
 
   return (

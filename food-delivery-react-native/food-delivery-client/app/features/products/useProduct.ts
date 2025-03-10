@@ -1,7 +1,6 @@
-import { useAppRoute } from '@/navigation/useAppRoute';
 import { useQuery } from '@tanstack/react-query';
 import { productService } from '@/services/product.service';
-
+import { useAppRoute } from '@/navigation/useAppRoute';
 
 export const useProduct = () => {
   const { params } = useAppRoute<'Product'>();

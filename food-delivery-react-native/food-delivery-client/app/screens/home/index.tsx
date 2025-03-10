@@ -8,10 +8,10 @@ import { Categories } from '@/screens/home/components/categories/Categories';
 import { Container } from '@/components/layout/Container';
 
 export const HomeScreen: React.FC = () => (
-    <Container>
-      <Header />
-      <Banner className="mt-7 mb-3" />
-      <Categories />
-      <Products />
-    </Container>
+  <Container>
+    <Header />
+    <Banner className="mt-7 mb-3" />
+    <Categories />
+    <Products />
+  </Container>
 );

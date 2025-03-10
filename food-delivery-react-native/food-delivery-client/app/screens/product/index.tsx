@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container } from '@/components/layout/Container';
-import { useProduct } from '@/features/products/useProduct';
-import { Heading } from '@/components/ui/Heading';
 import { View } from 'react-native';
+import { useProduct } from '@/features/products/useProduct';
+import { Container } from '@/components/layout/Container';
+import { Heading } from '@/components/ui/Heading';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 export const ProductScreen: React.FC = () => {
@@ -14,7 +14,7 @@ export const ProductScreen: React.FC = () => {
         <Heading>{route}</Heading>
 
         <View className="mt-5">
-          <LoadingSpinner/>
+          <LoadingSpinner />
         </View>
       </Container>
     );
@@ -30,9 +30,7 @@ export const ProductScreen: React.FC = () => {
 
   return (
     <Container>
-      <View className="flex flex-col items-center justify-center mt-4">
-
-      </View>
+      <View className="flex flex-col items-center justify-center mt-4"></View>
     </Container>
   );
 };

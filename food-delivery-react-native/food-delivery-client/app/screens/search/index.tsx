@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { Container } from '@/components/layout/Container';
-import { useSearchProducts } from '@/screens/search/components/useSearchProducts';
-import { Heading } from '@/components/ui/Heading';
-import { FormInput } from '@/components/ui/FormInput';
 import type { SearchFormData } from '@/screens/search/components/useSearchForm';
+import { useSearchProducts } from '@/screens/search/components/useSearchProducts';
+import { Container } from '@/components/layout/Container';
+import { FormInput } from '@/components/ui/FormInput';
+import { Heading } from '@/components/ui/Heading';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { Catalog } from '@/components/ui/catalog/Catalog';
 
@@ -25,16 +25,10 @@ export const SearchScreen: React.FC = () => {
       </View>
 
       <View>
-        {
-          (isLoading || debouncedSearch !== searchTerm) && (
-            <LoadingSpinner/>
-          )
-        }
-        {
-          !!searchTerm && !(isLoading || debouncedSearch !== searchTerm) && (
-            <Catalog products={products || []} title="Results"/>
-          )
-        }
+        {(isLoading || debouncedSearch !== searchTerm) && <LoadingSpinner />}
+        {!!searchTerm && !(isLoading || debouncedSearch !== searchTerm) && (
+          <Catalog products={products || []} title="Results" />
+        )}
       </View>
     </Container>
   );

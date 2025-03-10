@@ -25,12 +25,14 @@ export const ProductItem: React.FC<ProductItemsProps> = ({ product }) => {
           <View className="flex items-center justify-center mb-3 rounded-lg overflow-hidden">
             <Image source={{ uri: getMediaSource(product.image) }} width={100} height={100} resizeMode="contain" />
           </View>
-         <View className="px-1 pb-2">
-           <Text className="font-semibold text-base" numberOfLines={1}>{product.name}</Text>
-           <Text className="mt-1 font-normal text-sm rounded-full text-center w-[55px] w-fit bg-primary py-0.5 text-white">
-             {convertPrice(product.price)}
-           </Text>
-         </View>
+          <View className="px-1 pb-2">
+            <Text className="font-semibold text-base" numberOfLines={1}>
+              {product.name}
+            </Text>
+            <Text className="mt-1 font-normal text-sm rounded-full text-center w-[55px] w-fit bg-primary py-0.5 text-white">
+              {convertPrice(product.price)}
+            </Text>
+          </View>
         </View>
       </TouchableNativeFeedback>
     </View>
