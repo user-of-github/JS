@@ -4,13 +4,13 @@ import { Feather } from '@expo/vector-icons';
 import { convertPrice, getMediaSource } from '@/services/utils';
 import { useProduct } from '@/features/products/useProduct';
 import { useAppNavigation } from '@/navigation/useAppNavigation';
+import { AddToCartButton } from '@/screens/product/components/AddToCartButton';
 import { FavouriteButton } from '@/screens/product/components/FavouriteButton';
 import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
 import { GoBackButton } from '@/components/ui/GoBackButton';
 import { Heading } from '@/components/ui/Heading';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { AddToCartButton } from '@/screens/product/components/AddToCartButton';
 
 export const ProductScreen: React.FC = () => {
   const { isLoading, product, route } = useProduct();
@@ -53,7 +53,7 @@ export const ProductScreen: React.FC = () => {
           <Text className="text-3xl font-semibold mt-6 text-primary">{convertPrice(product?.price)}</Text>
         </View>
 
-        <AddToCartButton className="mt-5" product={product}/>
+        <AddToCartButton className="mt-5" product={product} />
       </View>
     </Container>
   );
