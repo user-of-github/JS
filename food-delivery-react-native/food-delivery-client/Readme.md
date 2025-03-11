@@ -37,7 +37,7 @@
 <img src="./screenshots/category.jpg" width="250px" alt="Category screen" style="border-radius: 5px; overflow: hidden;"/>
 </div>
 
-#### Cart, Profile screen
+#### Cart, Profile screens
 
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: space-between;">
 <img src="./screenshots/cart.jpg" width="250px" alt="Cart screen" style="border-radius: 5px; overflow: hidden;"/>

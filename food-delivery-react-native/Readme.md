@@ -18,7 +18,11 @@ ___
 </div>
 
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: space-between;">
+<img src="./food-delivery-client/screenshots/cart.jpg" width="250px" alt="Cart screen" style="border-radius: 5px; overflow: hidden;"/>
 <img src="./food-delivery-client/screenshots/profile.jpg" width="250px" alt="Profile screen" style="border-radius: 5px; overflow: hidden;"/>
+</div>   
+
+<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: space-between;">
 <img src="./food-delivery-client/screenshots/register.jpg" width="250px" alt="Registration screen" style="border-radius: 5px; overflow: hidden;"/>
 <img src="./food-delivery-client/screenshots/login.jpg" width="250px" alt="Sign in screen" style="border-radius: 5px; overflow: hidden;"/>
 </div>  
