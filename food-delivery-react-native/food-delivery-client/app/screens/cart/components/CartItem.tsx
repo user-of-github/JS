@@ -1,9 +1,9 @@
 import React from 'react';
 import type { CartItem } from '@/types/cart.i';
 import { useAppNavigation } from '@/navigation/useAppNavigation';
-import { Image, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { AppRoutes } from '@/navigation/routes';
-import { getMediaSource } from '@/services/utils';
+import { convertPrice, getMediaSource } from '@/services/utils';
 
 
 interface CartItemProps {
@@ -22,6 +22,11 @@ export const CartRow: React.FC<CartItemProps> = ({ item }) => {
       >
         <Image source={{ uri: getMediaSource(item.product.image)}} width={60} height={60} resizeMode="contain"/>
       </TouchableOpacity>
+
+      <View className="ml-3">
+        <Text className="font-semibold text-xl">{item.product.name}</Text>
+        <Text className="mt-1">{convertPrice(item.price)}</Text>
+      </View>
     </View>
   )
 };
