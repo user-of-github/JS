@@ -8,19 +8,17 @@ jobs:
     name: Install and build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
-          cache: npm
-      - name: Setup Expo and EAS
-        uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.REACT_NATIVE_FOOD_DELIVERY_EXPO_TOKEN }}
+          node-version: 22
       - name: Install dependencies
-        run: |
-          cd ./food-delivery-react-native/food-delivery-client
-          npm ci
-      - name: Build on EAS
-        run: eas build --platform all --non-interactive --no-wait
+        run: npm ci
+        working-directory: ./food-delivery-react-native/food-delivery-client
+      - name: EAS Build
+        run: npx eas build --platform android --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.REACT_NATIVE_FOOD_DELIVERY_EXPO_TOKEN  }}
+        working-directory: ./food-delivery-react-native/food-delivery-client  
