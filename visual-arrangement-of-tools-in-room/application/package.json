@@ -1,0 +1,24 @@
+{
+  "name": "platform-for-visual-objects-arrangement-in-room",
+  "version": "0.0.1",
+  "description": "Visualizer monorepo",
+  "keywords": [],
+  "scripts": {
+    "start:platform-web": "npm run start:dev --prefix packages/web",
+    "format:all": "npm run format --prefix packages/web",
+    "update-data": "npm run prebuild --prefix packages/web",
+    "format:all:TODO:toRestoreWhenServerReady": "npm run format --prefix packages/rest && npm run format --prefix packages/web"
+  },
+  "author": {
+    "name": "Slutski Mikita",
+    "url": "https://github.com/user-of-github"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/user-of-github/BSUIR-Diploma-project.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0"
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "products": [
+    {
+      "article": "classic-armchair-001",
+      "view": "classic-armchair-001.glb",
+      "dimensions": {
+        "length": 54,
+        "width": 75,
+        "height": 85.60
+      },
+      "category": "armchair",
+      "collection": "",
+      "price": 229,
+      "image": "classic-armchair-001.jpg"
+    },
+    {
+      "article": "shelving-001",
+      "view": "shelving-001.glb",
+      "dimensions": {
+        "length": 82,
+        "width": 40,
+        "height": 150
+      },
+      "category": "cabinet",
+      "collection": "",
+      "price": 419,
+      "image": "shelving-001.jpg"
+    },
+    {
+      "article": "sofa-blue-001",
+      "view": "sofa.glb",
+      "dimensions": {
+        "length": 177,
+        "width": 77,
+        "height": 89
+      },
+      "category": "sofa",
+      "collection": "",
+      "price": 799,
+      "image": "sofa-blue-001.png"
+    },
+    {
+      "article": "sofa-003",
+      "view": "sofa-003.glb",
+      "dimensions": {
+        "length": 202,
+        "width": 77,
+        "height": 67
+      },
+      "category": "sofa",
+      "collection": "",
+      "price": 999,
+      "image": "sofa-003.png"
+    },
+    {
+      "article": "sofa-002",
+      "view": "sofa-002.glb",
+      "dimensions": {
+        "length": 200,
+        "width": 108,
+        "height": 95
+      },
+      "category": "sofa",
+      "collection": "",
+      "price": 1049,
+      "image": "sofa-002.png"
+    },
+
+    {
+      "article": "table-brown-001",
+      "view": "table-brown-001.glb",
+      "dimensions": {
+        "length": 77,
+        "width": 77,
+        "height": 67
+      },
+      "category": "table",
+      "collection": "",
+      "price": 349,
+      "image": "table-brown-001.PNG"
+    },
+    {
+      "article": "table-glass-001",
+      "view": "table-glass-001.glb",
+      "dimensions": {
+        "length": 100,
+        "width": 80,
+        "height": 53
+      },
+      "category": "table",
+      "collection": "",
+      "price": 399,
+      "image": "table-glass-001.png"
+    },
+
+    {
+      "article": "chair-grey-001",
+      "view": "chair-grey-001.glb",
+      "dimensions": {
+        "length": 44.5,
+        "width": 53,
+        "height": 101.6
+      },
+      "category": "chair",
+      "collection": "",
+      "price": 119,
+      "image": "chair-grey-001.jpg"
+    },
+
+    {
+      "article": "chair-002",
+      "view": "chair-002.glb",
+      "dimensions": {
+        "length": 49,
+        "width": 48,
+        "height": 80
+      },
+      "category": "chair",
+      "collection": "",
+      "price": 79,
+      "image": "chair-002.jpg"
+    },
+
+    {
+      "article": "armchair-low-001",
+      "view": "armchair-low-001.glb",
+      "dimensions": {
+        "length": 63,
+        "width": 58.53,
+        "height": 69
+      },
+      "category": "armchair",
+      "collection": "",
+      "price": 279,
+      "image": "armchair-low-001.png"
+    },
+
+    {
+      "article": "armchair-003",
+      "view": "armchair-003.glb",
+      "dimensions": {
+        "length": 73,
+        "width": 68,
+        "height": 81
+      },
+      "category": "armchair",
+      "collection": "",
+      "price": 199,
+      "image": "armchair-003.png"
+    },
+    {
+      "article": "classic-bookcase-001",
+      "view": "classic-bookcase-001.glb",
+      "dimensions": {
+        "length": 119,
+        "width": 33,
+        "height": 181
+      },
+      "category": "cabinet",
+      "collection": "",
+      "price": 259,
+      "image": "classic-bookcase-001.png"
+    },
+
+    {
+      "article": "classic-bookcase-002",
+      "view": "classic-bookcase-002.glb",
+      "dimensions": {
+        "length": 80,
+        "width": 39,
+        "height": 80
+      },
+      "category": "cabinet",
+      "collection": "",
+      "price": 219,
+      "image": "classic-bookcase-002.png"
+    }
+
+
+  ],
+
+  "categories": [],
+
+  "collections": []
+}

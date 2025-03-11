@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  scrollbar-color: #a3a3a3 transparent;
+  scrollbar-width: thin;
+
+  font-family: 'Open Sans', sans-serif !important;
+  font-optical-sizing: auto;
+}
+
+body {
+  overflow: hidden;
+}
+
+/* background of toggler */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6366f1;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}

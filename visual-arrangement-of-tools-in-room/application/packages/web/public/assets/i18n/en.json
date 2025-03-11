@@ -1,0 +1,231 @@
+{
+  "ui": {
+    "units": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+
+      "shortageAll": "length × width × height"
+    },
+
+    "general": {
+      "starts": "Starts from",
+      "ends": "Ends in",
+      "length": "Length",
+      "2d": "2D",
+      "3d": "3D",
+
+      "remove": "Remove",
+      "loading": "Loading",
+
+      "create": "Create",
+
+      "errorPageTitle": "< Error />",
+      "goToHomePage": "Go to home page",
+      "refresh": "Refresh the page",
+
+      "back": "Back"
+
+    },
+
+    "header": {
+      "title": "3D visualizer",
+      "subtitle": "of objects arrangement in the room"
+    },
+
+    "home": {
+      "title": "3D visualizer of objects arrangement in the room",
+
+      "titleOrdinary": "3D visualizer",
+      "titlePrimary": "of objects arrangement in the room",
+
+
+      "description": "Discover the power of our 3D Configurator - a revolutionary tool designed to bring your interior design ideas to life.\n\nPlan, Visualize, and Customize your rooms with ease. Arrange furniture, decor, and more in a virtual 3D space. Experiment with layouts, swap items in and out, and see your ideas take shape in real-time.",
+      "exploreButton": "Explore configurator",
+      "settings": "Information"
+    },
+
+    "layoutsList": {
+      "title": "Layouts",
+      "createButton": "New configuration",
+      "name": "Name",
+      "created": "Created",
+      "modified": "Modified"
+    },
+
+    "configurator": {
+      "notFoundLayoutTitle": "Layout not found",
+      "notFoundLayoutText": "Requested by URL layout was not found. Please note that layouts are stored only within the browser and are not accessible from other devices or browsers",
+      "goToLayoutsList": "Navigate to layouts page",
+
+      "viewMode": "View mode",
+
+      "chooseProductButton": "Choose product",
+
+      "tools": {
+        "currentTool": "Current tool",
+        "select": "Select",
+        "wall": "Wall"
+      },
+      "binding": {
+        "blockTitle": "Binding",
+        "bindingForAngles": "Binding for angles",
+        "bindingToOtherWalls": "Binding to other walls"
+      },
+      "wallWidth": "Wall thickness",
+      "noWallSelected": "No wall selected",
+
+      "menu": {
+        "parameters": "Draw parameters",
+        "parametersText": "Set up drawing tool",
+        "selectedItem": "Selected wall",
+        "selectedItemText": "Information",
+        "wallNotSelected": "No wall selected. With \"select\" tool click on some wall",
+
+        "texture": "Texture",
+
+        "wallTexture": "Wall texture",
+        "wallTextureText": "Customize appearance of the wall",
+
+        "floorTexture": "Floor texture",
+        "floorTextureText": "Configure appearance of the floor",
+
+        "sceneSettings": "Scene settings",
+        "sceneSettingsText": "Additional customization for more comfortable process",
+
+        "predefinedTextures": "Predefined textures",
+        "staticColor": "Choose a color from palette",
+        "pickColor": "Color",
+        "clickAndChoose": "Click to choose",
+
+        "selectedProduct": "Selected product",
+        "movingMode": "Position change mode",
+        "installationMode": "Product installation mode"
+      },
+
+      "catalog": {
+        "title": "Products catalog",
+        "addToConfiguration": "Add to configuration"
+      },
+
+      "summary": {
+        "title": "Summary",
+        "submit": "Submit order",
+        "orderSummary": "Order summary",
+
+        "totalCount": "Totally items",
+        "totalPrice": "Price"
+      },
+
+      "sceneSettings": {
+        "gridSettings": "Grid settings",
+        "showGrid": "Show grid",
+        "gridOpacity": "Grid opacity",
+        "show": "Show / Hide",
+        "opacity": "Grid's opacity"
+      },
+
+      "cartButton": "Cart",
+
+      "panOffset": "View offset",
+      "resetOffset": "Reset offset",
+
+      "cancelInstallation": "Cancel",
+      "remove": "Remove",
+      "move": "Move",
+      "getProductBack": "Put product back",
+
+      "notifications": {
+        "onProductMounted": "Move mouse on the floor. By scrolling mouse wheel you can change product's rotation. After setting appropriate position double-click to install",
+        "onProductMove": "By moving cursor, scrolling wheel of mouse and further double-click change product's position",
+        "onProductInstalled": "Added to configuration"
+      }
+    },
+
+    "about": {
+      "firstParagraph": {
+        "ordinaryText": "Match furniture faster with our",
+        "primaryText": "3D visualizator of objects arrangement"
+      },
+      "description": "Draw room schema and arrange furniture or other types of items directly on 3D scene !",
+
+      "usedTechnologies": "The modernest tech-stack to provide the best solution",
+
+      "techs": {
+        "typescript": {
+          "name": "TypeScript",
+          "description": "Brings power of types, more advanced OOP to standard JavaScript, which helps to create more maintainable solution"
+        },
+        "react": {
+          "name": "React.js",
+          "description": "World No 1 library for creating dynamic user interfaces"
+        },
+        "reactRouter": {
+          "name": "React Router",
+          "description": "World No 1 router for React apps, powered by Remix team"
+        },
+        "three": {
+          "name": "Three.js",
+          "description": "World No 1 WebGL/WebGPU 3D library"
+        },
+        "mobx": {
+          "name": "MobX",
+          "description": "It's not the most popular, but anyway powerful and scalable state management, well integrated with React"
+        },
+        "tailwind": {
+          "name": "Taiwind CSS",
+          "description": "A utility-first CSS framework for flexible and fast interface development"
+        },
+        "vite": {
+          "name": "Vite",
+          "description": "World No 1 JS bundler nowadays in 2024"
+        },
+        "node": {
+          "name": "Node.js",
+          "description": "Platform to implement useful scripts on JS/TS for our configurator"
+        }
+      },
+
+      "contactUsOrdinary": "Contact us for embedding",
+      "contactUsPrimary": "our visual 3D configurator into your web-site or online shop",
+      "advantages": {
+        "advantages": "Advantages",
+        "accessibility": "Availability on different available monitor resolutions",
+        "translation": "The possibility of localization into different languages",
+        "versatility": "Versatility. You only need to provide models, pictures, prices and translations",
+        "integration": "Embeddability directly into your selling website or online store"
+      },
+
+      "switchLocale": "Switch app language"
+    }
+  },
+
+  "data": {
+    "category": {
+      "sofa": "Sofas",
+      "table": "Tables",
+      "chair": "Chairs",
+      "armchair": "Armchairs",
+      "cabinet": "Wardrobes & bookcases"
+    },
+
+    "product": {
+      "sofa-blue-001": "Modern Sofa (Blue)",
+      "sofa-black-001": "Couch black leather",
+      "sofa-grey-002": "Sofa grey standard 2",
+      "sofa-grey-003": "Sofa grey standard 3",
+      "table-brown-001": "Coffee table standard",
+      "chair-grey-001": "Dining chair",
+      "classic-armchair-001": "Classic armchair (Modern)",
+      "armchair-low-001": "Classic low armchair",
+      "classic-bookcase-001": "Classic bookcase",
+      "classic-bookcase-002": "Classic small bookcase",
+      "table-glass-001": "Modern coffee table (with glass top)",
+      "sofa-002": "Ceni Lagoon Blue Loveseat",
+      "sofa-003": "Blue couch",
+      "shelving-001": "Shelving Modern",
+      "armchair-003": "Alisha Barrel Chair",
+      "chair-002": "Soborg Chair"
+    }
+  }
+}

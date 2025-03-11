@@ -1,0 +1,112 @@
+{
+  "wallTexturesRootPath": "assets/images/textures/wall/",
+  "floorTexturesRootPath": "assets/images/textures/floor/",
+
+  "wall": [
+    {
+      "name": "001",
+      "type": "texture",
+      "view": "texture01.jpg",
+      "preview": "previews/texture01.avif"
+    },
+    {
+      "name": "002",
+      "type": "texture",
+      "view": "texture02.jpg",
+      "preview": "previews/texture02.avif"
+    },
+    {
+      "name": "002",
+      "type": "texture",
+      "view": "texture03.jpg",
+      "preview": "previews/texture03.avif"
+    },
+    {
+      "name": "004",
+      "type": "texture",
+      "view": "texture04.jpg",
+      "preview": "previews/texture04.avif"
+    },
+    {
+      "name": "005",
+      "type": "texture",
+      "view": "texture05.jpg",
+      "preview": "previews/texture05.avif"
+    },
+    {
+      "name": "006",
+      "type": "texture",
+      "view": "texture06.jpg",
+      "preview": "previews/texture06.avif"
+    },
+    {
+      "name": "007",
+      "type": "texture",
+      "view": "texture07.jpg",
+      "preview": "previews/texture07.avif"
+    },
+    {
+      "name": "008",
+      "type": "texture",
+      "view": "texture08.jpg",
+      "preview": "previews/texture08.avif"
+    },
+    {
+      "name": "009",
+      "type": "texture",
+      "view": "texture09.jpg",
+      "preview": "previews/texture09.avif"
+    },
+    {
+      "name": "010",
+      "type": "texture",
+      "view": "texture10.jpg",
+      "preview": "previews/texture10.avif"
+    }
+  ],
+
+  "floor": [
+    {
+      "name": "001",
+      "type": "texture",
+      "view": "texture01.jpg",
+      "preview": "previews/texture01.avif"
+    },
+    {
+      "name": "002",
+      "type": "texture",
+      "view": "texture02.jpg",
+      "preview": "previews/texture02.avif"
+    },
+    {
+      "name": "003",
+      "type": "texture",
+      "view": "texture03.jpg",
+      "preview": "previews/texture03.avif"
+    },
+    {
+      "name": "004",
+      "type": "texture",
+      "view": "texture04.jpg",
+      "preview": "previews/texture04.avif"
+    },
+    {
+      "name": "005",
+      "type": "texture",
+      "view": "texture05.jpg",
+      "preview": "previews/texture05.avif"
+    },
+    {
+      "name": "006",
+      "type": "texture",
+      "view": "texture06.jpg",
+      "preview": "previews/texture06.avif"
+    },
+    {
+      "name": "007",
+      "type": "texture",
+      "view": "texture07.jpg",
+      "preview": "previews/texture07.avif"
+    }
+  ]
+}
