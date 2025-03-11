@@ -1,8 +1,8 @@
 import React from 'react';
+import { useProfile } from '@/features/auth/useProfile';
 import { Container } from '@/components/layout/Container';
 import { Heading } from '@/components/ui/Heading';
 import { Catalog } from '@/components/ui/catalog/Catalog';
-import { useProfile } from '@/features/auth/useProfile';
 
 export const FavouritesScreen: React.FC = () => {
   const { profile } = useProfile();
@@ -10,7 +10,7 @@ export const FavouritesScreen: React.FC = () => {
   return (
     <Container>
       <Heading>Favourites</Heading>
-      <Catalog products={profile?.favourites || []}/>
+      <Catalog products={profile?.favourites || []} />
     </Container>
   );
 };

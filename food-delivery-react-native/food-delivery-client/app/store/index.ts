@@ -40,4 +40,4 @@ export type TypeRootState = ReturnType<typeof rootReducer>;
 
 export const rootActions = {
   ...cartActions
-}
+};
