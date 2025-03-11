@@ -14,11 +14,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.REACT_NATIVE_FOOD_DELIVERY_EXPO_TOKEN }}          
       - name: Install dependencies
         run: npm ci
         working-directory: ./food-delivery-react-native/food-delivery-client
       - name: EAS Build
-        run: npx eas build --platform android --non-interactive
+        run: eas build --platform android --non-interactive --no-wait
         env:
           EXPO_TOKEN: ${{ secrets.REACT_NATIVE_FOOD_DELIVERY_EXPO_TOKEN  }}
         working-directory: ./food-delivery-react-native/food-delivery-client  
