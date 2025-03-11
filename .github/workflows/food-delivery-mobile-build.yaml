@@ -23,7 +23,7 @@ jobs:
         run: npm ci
         working-directory: ./food-delivery-react-native/food-delivery-client
       - name: EAS Build
-        run: eas build --platform android
+        run: eas build --platform android --no-wait
         env:
           EXPO_TOKEN: ${{ secrets.REACT_NATIVE_FOOD_DELIVERY_EXPO_TOKEN  }}
           EXPO_PUBLIC_SERVER_URL: ${{ secrets.REACT_NATIVE_FOOD_DELIVERY_EAS_API_URL}}

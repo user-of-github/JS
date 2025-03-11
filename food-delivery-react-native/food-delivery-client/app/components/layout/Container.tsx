@@ -21,7 +21,7 @@ export const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({ c
       style={[
         {
           paddingTop: insets.top + AppLayoutPaddings.vertical + AppLayoutPaddings.top,
-          paddingBottom: insets.bottom + AppLayoutPaddings.vertical + 100,
+          paddingBottom: insets.bottom + AppLayoutPaddings.vertical,
           paddingLeft: insets.left + AppLayoutPaddings.horizontal,
           paddingRight: insets.right + AppLayoutPaddings.horizontal
         }

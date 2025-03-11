@@ -13,7 +13,7 @@ export const CartScreen: React.FC = () => {
 
   return (
     <>
-      <NoScrollViewContainer className="min-h-[80%]">
+      <NoScrollViewContainer className="h-full">
         <View
           style={{
             paddingVertical: AppLayoutPaddings.vertical + AppLayoutPaddings.top,
@@ -40,8 +40,8 @@ export const CartScreen: React.FC = () => {
       </NoScrollViewContainer>
 
       {
-        items.length && (
-          <View className="fixed bottom-5 w-full p-3 py-6 rounded-tl-3xl rounded-tr-3xl bg-primary">
+        items.length ? (
+          <View className="absolute bottom-0 w-full p-3 py-6 rounded-tl-3xl rounded-tr-3xl bg-primary">
             <Text className="font-bold text-white text-2xl mb-3">
               Total: {convertPrice(total)}
             </Text>
@@ -52,7 +52,7 @@ export const CartScreen: React.FC = () => {
               </View>
             </Button>
           </View>
-        )
+        ) : <></>
       }
     </>
   );
