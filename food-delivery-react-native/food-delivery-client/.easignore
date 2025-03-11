@@ -1,5 +1,10 @@
 screenshots/*
 screenshots
+/screenshots
+
 # Ignore native directories (if you are using EAS Build)
 /android
 /ios
+/.idea
+
+.example.env
