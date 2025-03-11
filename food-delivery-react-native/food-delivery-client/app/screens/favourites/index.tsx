@@ -1,11 +1,16 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { Container } from '@/components/layout/Container';
+import { Heading } from '@/components/ui/Heading';
+import { Catalog } from '@/components/ui/catalog/Catalog';
+import { useProfile } from '@/features/auth/useProfile';
 
 export const FavouritesScreen: React.FC = () => {
+  const { profile } = useProfile();
+
   return (
     <Container>
-      <Text>Favourites</Text>
+      <Heading>Favourites</Heading>
+      <Catalog products={profile?.favourites || []}/>
     </Container>
   );
 };

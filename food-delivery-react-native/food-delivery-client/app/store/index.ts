@@ -1,18 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
-  PersistConfig,
-  persistReducer,
   FLUSH,
   PAUSE,
   PERSIST,
   PURGE,
+  PersistConfig,
   REGISTER,
   REHYDRATE,
+  persistReducer,
   persistStore
 } from 'redux-persist';
-import { cartSlice } from './slices/cart.slice';
-
+import cartReducer, { cartActions } from './slices/cart.slice';
 
 const persistConfig: PersistConfig<any> = {
   key: 'root',
@@ -20,32 +19,25 @@ const persistConfig: PersistConfig<any> = {
   whitelist: ['cart']
 };
 
-
 const rootReducer = combineReducers({
-  cart: cartSlice.reducer
+  cart: cartReducer
 });
 
-  const persistedReducer = persistReducer<TypeRootState>(
-  persistConfig,
-  rootReducer
-);
-
+const persistedReducer = persistReducer<TypeRootState>(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [
-        FLUSH,
-        REHYDRATE,
-        PAUSE,
-        PERSIST,
-        PURGE,
-        REGISTER
-      ]
-    }
-  })
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
+    })
 });
 
 export const persistor = persistStore(store);
 export type TypeRootState = ReturnType<typeof rootReducer>;
+
+export const rootActions = {
+  ...cartActions
+}

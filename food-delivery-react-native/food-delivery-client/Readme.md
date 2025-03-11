@@ -11,22 +11,23 @@
 - _[NativeWind](https://www.nativewind.dev/) ([Tailwind CSS](https://tailwindcss.com/))_
 - _[TanStack React Query](https://tanstack.com/query/latest)_
 - _[Axios HTTP Client](https://axios-http.com/docs/intro)_
-- _[React Hook Form](https://react-hook-form.com/)_  
+- _[React Hook Form](https://react-hook-form.com/)_
 - _[Redux ToolKit](https://redux-toolkit.js.org/)_
 - _[React Native Async Storage](https://react-native-async-storage.github.io/async-storage/), [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)_
-- _[Prettier](https://prettier.io/) with plugins_  
+- _[Prettier](https://prettier.io/) with plugins_
 - _[GitHub Actions CI](https://github.com/features/actions)_
 
 ---
 
 ### Demo:
 
-#### Home, Explorer, Search screens
+#### Home, Explorer, Search, Favourites screens
 
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center;">
 <img src="./screenshots/home.jpg" width="250px" alt="Home" style="border-radius: 5px; overflow: hidden;"/>
 <img src="./screenshots/explorer.jpg" width="250px" alt="Explorer screen" style="border-radius: 5px; overflow: hidden;"/>
 <img src="./screenshots/search.jpg" width="250px" alt="Search screen" style="border-radius: 5px; overflow: hidden;"/>
+<img src="./screenshots/favourites.jpg" width="250px" alt="Favourites screen" style="border-radius: 5px; overflow: hidden;"/>
 </div>
 
 #### Product, Category screens
@@ -36,19 +37,13 @@
 <img src="./screenshots/category.jpg" width="250px" alt="Category screen" style="border-radius: 5px; overflow: hidden;"/>
 </div>
 
-#### Profile screen
+#### Profile, Authorization screens
 
 <div style="display: flex; column-gap: 20px; padding: 15px; justify-content: space-between;">
 <img src="./screenshots/profile.jpg" width="250px" alt="Profile screen" style="border-radius: 5px; overflow: hidden;"/>
-</div>
-
-#### Authorization screens
-
-<div style="display: flex; column-gap: 20px; padding: 15px; justify-content: center;">
 <img src="./screenshots/register.jpg" width="250px" alt="Registration screen" style="border-radius: 5px; overflow: hidden;"/>
 <img src="./screenshots/login.jpg" width="250px" alt="Sign in screen" style="border-radius: 5px; overflow: hidden;"/>
 </div>
----
 
 ### To run locally:
 
