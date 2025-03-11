@@ -9,7 +9,7 @@ const initialState: CartState = {
   items: []
 } as const;
 
-type AddToCartPayload = Omit<CartItem, 'id'>;
+type AddToCartPayload = Pick<CartItem, 'product'>;
 type ChangeCountPayload = Pick<CartItem, 'id'> & {
   type: 'inc' | 'dec';
 };
@@ -32,7 +32,7 @@ const cartSlice = createSlice({
     },
 
     removeFromCart: (state, action: PayloadAction<{ id: string }>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload.id);
+      state.items = state.items.filter((item) => item.product.id !== action.payload.id);
     },
 
     changeCount: (state, action: PayloadAction<ChangeCountPayload>) => {

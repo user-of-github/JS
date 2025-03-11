@@ -14,7 +14,6 @@ export const useAuthMutations = (resetForm?: UseFormReset<AuthFormType>) => {
     mutationFn: (data: AuthDto) => authService.login(data),
     onSuccess: (data: AuthResponse) => {
       resetForm?.();
-      console.log(data.user);
       setUser(data.user);
       return data;
     }

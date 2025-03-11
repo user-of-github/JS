@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/Button';
 import { GoBackButton } from '@/components/ui/GoBackButton';
 import { Heading } from '@/components/ui/Heading';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { AddToCartButton } from '@/screens/product/components/AddToCartButton';
 
 export const ProductScreen: React.FC = () => {
   const { isLoading, product, route } = useProduct();
@@ -26,7 +27,7 @@ export const ProductScreen: React.FC = () => {
     );
   }
 
-  if (!isLoading && !product) {
+  if (!product) {
     return (
       <Container>
         <GoBackButton size="default" />
@@ -52,9 +53,7 @@ export const ProductScreen: React.FC = () => {
           <Text className="text-3xl font-semibold mt-6 text-primary">{convertPrice(product?.price)}</Text>
         </View>
 
-        <Button className="mt-6">
-          <Feather name="shopping-cart" size={20} color="#FFF" className="mr-3" /> Add to cart
-        </Button>
+        <AddToCartButton className="mt-5" product={product}/>
       </View>
     </Container>
   );

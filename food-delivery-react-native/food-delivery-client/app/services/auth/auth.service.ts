@@ -13,8 +13,6 @@ class AuthService {
       method: 'POST'
     });
 
-    console.log('RESPONSE', response?.accessToken);
-
     if (response.accessToken) {
       await this.authDataStorage.saveToStorage(response);
     }
