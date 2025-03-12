@@ -19,9 +19,9 @@ import { OrderModule } from './modules/order/order.module';
       rootPath: `${path}/uploads`,
       serveRoot: '/uploads'
     }),
-    OrderModule,
+    OrderModule
   ],
   controllers: [],
-  providers: [],
+  providers: []
 })
 export class AppModule {}

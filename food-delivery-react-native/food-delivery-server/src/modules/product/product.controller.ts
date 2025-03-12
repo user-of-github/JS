@@ -35,7 +35,6 @@ export class ProductController {
     return await this.productService.getById(id);
   }
 
-  
   @Get('by-slug/:slug')
   public async getBySlug(@Param('slug') slug: string) {
     return await this.productService.getBySlug(slug);
@@ -56,7 +55,6 @@ export class ProductController {
   public async create() {
     return await this.productService.create();
   }
-
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)

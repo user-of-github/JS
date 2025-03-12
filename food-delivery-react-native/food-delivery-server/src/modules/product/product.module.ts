@@ -6,6 +6,6 @@ import { CategoryService } from '../category/category.service';
 
 @Module({
   controllers: [ProductController],
-  providers: [ProductService, PrismaService, CategoryService],
+  providers: [ProductService, PrismaService, CategoryService]
 })
 export class ProductModule {}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Animated as AnimatedNative, Vibration, View, Text } from 'react-native';
+import { Animated as AnimatedNative, Text, Vibration, View } from 'react-native';
 import { API_URL } from '@/config/api';
 import type { AuthDto } from '@/types/auth.i';
 import { useAuthMutations } from '@/features/auth/useAuthMutations';

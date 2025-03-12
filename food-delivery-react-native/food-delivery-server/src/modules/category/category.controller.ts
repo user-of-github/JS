@@ -14,7 +14,6 @@ import {
 import { CategoryService } from './category.service';
 import { CategoryDto } from './dto/category.dto';
 
-
 @Controller('categories')
 export class CategoryController {
   public constructor(private readonly categoryService: CategoryService) {}
@@ -29,7 +28,6 @@ export class CategoryController {
     return await this.categoryService.getById(id);
   }
 
-  
   @Get('by-slug/:slug')
   public async getBySlug(@Param('slug') slug: string) {
     return await this.categoryService.getBySlug(slug);
@@ -40,7 +38,6 @@ export class CategoryController {
   public async create() {
     return await this.categoryService.create();
   }
-
 
   @UsePipes(new ValidationPipe())
   @HttpCode(HttpStatus.OK)

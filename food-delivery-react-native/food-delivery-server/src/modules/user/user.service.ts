@@ -40,16 +40,18 @@ export class UserService {
     const user = await this.getById(userId);
 
     if (!user) {
-        throw new NotFoundException('User not found');
+      throw new NotFoundException('User not found');
     }
 
-    const doesExist = user.favourites.some(product => product.id === productId);
+    const doesExist = user.favourites.some(
+      (product) => product.id === productId
+    );
 
     await this.prismaService.user.update({
-      where: {id: user.id},
+      where: { id: user.id },
       data: {
         favourites: {
-          [doesExist ? 'disconnect': 'connect']: {
+          [doesExist ? 'disconnect' : 'connect']: {
             id: productId
           }
         }

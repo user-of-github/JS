@@ -22,7 +22,7 @@ export class OrderController {
 
   @Get()
   @Auth()
-  public async getAll(){
+  public async getAll() {
     return await this.orderService.getAll();
   }
 
@@ -36,7 +36,10 @@ export class OrderController {
   @HttpCode(HttpStatus.OK)
   @Post()
   @Auth()
-  public async createOrder(@Body() orderDto: OrderDto, @CurrentUser('id') userId: string) {
+  public async createOrder(
+    @Body() orderDto: OrderDto,
+    @CurrentUser('id') userId: string
+  ) {
     return this.orderService.placeOrder(orderDto, userId);
   }
 }

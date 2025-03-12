@@ -7,18 +7,18 @@ import { PrismaService } from 'src/modules/prisma/prisma.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-    public constructor(
-        private readonly configService: ConfigService,
-        private readonly prismaService: PrismaService
-    ) {
-        super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            ignoreExpiration: false,
-            secretOrKey: configService.get('JWT_SECRET')
-        });
-    }
+  public constructor(
+    private readonly configService: ConfigService,
+    private readonly prismaService: PrismaService
+  ) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: configService.get('JWT_SECRET')
+    });
+  }
 
-    public async validate({ id }: Pick<User, 'id'>) {
-        return this.prismaService.user.findUnique({ where: { id }})
-    }
+  public async validate({ id }: Pick<User, 'id'>) {
+    return this.prismaService.user.findUnique({ where: { id } });
+  }
 }

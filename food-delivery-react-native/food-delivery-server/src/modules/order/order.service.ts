@@ -6,16 +6,15 @@ import { returnProductObject } from '../product/returnProduct.object';
 import { Order, OrderItem } from '@prisma/client';
 import { OrderDto } from './dto/order.dto';
 
-
 @Injectable()
 export class OrderService {
   private readonly stripe: Stripe;
 
   public constructor(
     private readonly prismaService: PrismaService,
-    private readonly configService: ConfigService,
+    private readonly configService: ConfigService
   ) {
-    this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY'))
+    this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY'));
   }
 
   public async getAll(): Promise<Order[]> {
@@ -58,7 +57,10 @@ export class OrderService {
   }
 
   public async placeOrder(dto: OrderDto, userId: string) {
-    const total = dto.items.reduce((acc, current) => acc + current.price * current.count, 0);
+    const total = dto.items.reduce(
+      (acc, current) => acc + current.price * current.count,
+      0
+    );
     const minStripeSumAllowed = 0.5;
 
     if (total < minStripeSumAllowed) {

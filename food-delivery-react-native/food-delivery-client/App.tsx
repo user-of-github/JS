@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
 import { RootLayout } from '@/RootLayout';
 import { persistor, store } from '@/store';
+import { StripeProvider } from '@stripe/stripe-react-native';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -10,7 +11,6 @@ import { BACKGROUND_COLOR } from '@/config/colors';
 import { AuthProvider } from '@/features/auth/AuthProvider';
 import { NotificationToast } from '@/components/ui/Notification';
 import './global.css';
-import { StripeProvider } from '@stripe/stripe-react-native';
 
 const queryClient = new QueryClient({
   defaultOptions: {

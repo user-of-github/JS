@@ -1,6 +1,6 @@
+import { ApiUrls } from '@/config/api';
 import type { Order } from '@/types/order.i';
 import { request } from '@/services/api/request';
-import { ApiUrls } from '@/config/api';
 
 interface OrderData {
   items: Array<{
