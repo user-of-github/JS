@@ -10,6 +10,8 @@ import { EmailRegex } from '@/screens/auth/components/email.regex';
 import { useShakeAnimation } from '@/components/hooks/useShakeAnimation';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
+import { ToastUI } from 'react-native-toast-message/lib/src/ToastUI';
+import Toast from 'react-native-toast-message';
 
 interface LoginFormProps {
   toggleFormMode: VoidFunction;
@@ -21,6 +23,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({ toggleFormMode }) => {
   const { login } = useAuthMutations(reset);
 
   const onSubmit: SubmitHandler<AuthDto> = async (fields) => {
+    Toast.show({
+      text1: 'URL',
+      text2: API_URL
+    })
     login(fields);
     return;
   };
