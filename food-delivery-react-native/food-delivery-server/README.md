@@ -1,20 +1,20 @@
 # React Native Delivery Food / Server  
 ___  
 ### Tech stack:  
-- _[Node.js](https://nodejs.org/en)_  
 - _[NestJS](https://nestjs.com/)_  
 - _[TypeScript](https://www.typescriptlang.org/)_  
 - _[Prisma](https://www.prisma.io/)_  
-- _[PostgreSQL](https://www.postgresql.org/)_  
+- _[PostgreSQL](https://www.postgresql.org/)_
 - _[JWT](https://jwt.io/)_  
+- _[Stripe](https://stripe.com/) (trial demo test profile) for payments_
 ___  
 ### To run:  
 1. `npm install`  
 2. Create Postgres Database `react-native-food-delivery` (actually any DB, but you will need to write its name, host and password to `.env`)  
 3. Make sure PostgreSQL Service is running (you can just check for example via `PgAdmin`). If not - start PostgreSQL service (for example via Windows Services)
-3. Create your `.env` file (see `.env.example` as a template or just copy it. But don't forget to make it suitable for DB created in _part 2_)
-4. Sync Prisma with your DB instance. Something like:  
+4. Create your `.env` file (see `.example.env` as a template or just copy it. But don't forget to make it suitable for DB created in _part 2_)
+5. Sync Prisma with your DB instance. Something like:  
     - `npx prisma migrate` or `npx prisma migrate --dev`
     - `npx prisma generate`   
-5. Also check in `client` folder [Readme.md](../food-delivery-client/Readme.md) how to map ports, because connected by USB Android device does not see the port and Axios returns `NetworkError`  
-6. `npm run start:dev` 
+6. Also check in `client` folder [Readme.md](../food-delivery-client/Readme.md) how to map ports, because connected by USB Android device does not see the port and Axios returns `NetworkError`  
+7. `npm run start:dev` 

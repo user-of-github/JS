@@ -13,7 +13,8 @@
 - _[Axios HTTP Client](https://axios-http.com/docs/intro)_
 - _[React Hook Form](https://react-hook-form.com/)_
 - _[Redux ToolKit](https://redux-toolkit.js.org/)_
-- _[React Native Async Storage](https://react-native-async-storage.github.io/async-storage/), [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)_
+- _[React Native Async Storage](https://react-native-async-storage.github.io/async-storage/), [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)_  
+- _[Stripe](https://stripe.com/) (trial demo test profile) for payments_
 - _[Prettier](https://prettier.io/) with plugins_
 - _[GitHub Actions CI](https://github.com/features/actions)_ with Workflow file here [../../.github/workflows/food-delivery-mobile-build.yaml](../../.github/workflows/food-delivery-mobile-build.yaml)
 

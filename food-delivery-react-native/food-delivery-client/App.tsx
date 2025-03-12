@@ -10,6 +10,7 @@ import { BACKGROUND_COLOR } from '@/config/colors';
 import { AuthProvider } from '@/features/auth/AuthProvider';
 import { NotificationToast } from '@/components/ui/Notification';
 import './global.css';
+import { StripeProvider } from '@stripe/stripe-react-native';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,7 +27,9 @@ export default function App() {
         <Provider store={store}>
           <PersistGate persistor={persistor}>
             <SafeAreaProvider>
-              <RootLayout />
+              <StripeProvider publishableKey={process.env.EXPO_PUBLIC_STRIPE_KEY}>
+                <RootLayout />
+              </StripeProvider>
             </SafeAreaProvider>
           </PersistGate>
         </Provider>
