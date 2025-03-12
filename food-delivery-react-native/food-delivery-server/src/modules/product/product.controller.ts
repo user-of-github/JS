@@ -1,4 +1,17 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+  Query,
+  UsePipes,
+  ValidationPipe
+} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
 import { Auth } from '../auth/auth.decorator';
@@ -38,7 +51,7 @@ export class ProductController {
     return await this.productService.getAllGrouppedByCategory();
   }
 
-  @HttpCode(200)
+  @HttpCode(HttpStatus.CREATED)
   @Post()
   public async create() {
     return await this.productService.create();

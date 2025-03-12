@@ -1,4 +1,16 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+  UsePipes,
+  ValidationPipe
+} from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CategoryDto } from './dto/category.dto';
 
@@ -23,7 +35,7 @@ export class CategoryController {
     return await this.categoryService.getBySlug(slug);
   }
 
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   @Post()
   public async create() {
     return await this.categoryService.create();
@@ -31,13 +43,13 @@ export class CategoryController {
 
 
   @UsePipes(new ValidationPipe())
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   @Put(':id')
   public async update(@Param('id') id: string, @Body() dto: CategoryDto) {
     return await this.categoryService.update(id, dto);
   }
 
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   @Delete(':id')
   public async delete(@Param('id') id: string) {
     return await this.categoryService.delete(id);

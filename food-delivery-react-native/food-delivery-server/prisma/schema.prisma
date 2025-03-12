@@ -16,18 +16,18 @@ model User {
   password String
 
   name       String
-  avatarPath String  @default("/uploads/default-avatar.png") @map("avatar_path")
-  phone      String  @default("")
-  Order      Order[]
+  avatarPath String @default("/uploads/default-avatar.png") @map("avatar_path")
+  phone      String @default("")
 
   favourites Product[]
+  orders     Order[]
 
   @@map("user")
 }
 
 model Product {
   id        String   @id @default(cuid())
-  createdAt DateTime @default(now()) @map("created_at") // to make column name created_at inside real DB
+  createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   name String @unique
@@ -36,19 +36,20 @@ model Product {
   description String
   price       Float
   image       String
-  
-  category    Category? @relation(fields: [categoryId], references: [id])
-  categoryId  String?
 
-  user        User?     @relation(fields: [userId], references: [id])
-  userId      String?
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+
+  user       User?       @relation(fields: [userId], references: [id])
+  userId     String?
+  orderItems OrderItem[]
 
   @@map("product")
 }
 
 model Category {
   id        String   @id @default(cuid())
-  createdAt DateTime @default(now()) @map("created_at") // to make column name created_at inside real DB
+  createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   name  String @unique
@@ -60,15 +61,33 @@ model Category {
   @@map("category")
 }
 
-model Order {
+model OrderItem {
   id        String   @id @default(cuid())
-  createdAt DateTime @default(now()) @map("created_at") // to make column name created_at inside real DB
+  createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  reference String @unique
+  count Int
+  price Int
+
+  product   Product? @relation(fields: [productId], references: [id])
+  productId String?  @map("product_id")
+
+  Order   Order?  @relation(fields: [orderId], references: [id])
+  orderId String? @map("order_id")
+
+  @@map("order_item")
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  items OrderItem[]
+  total Int
 
   user   User?   @relation(fields: [userId], references: [id])
-  userId String?
+  userId String? @map("user_id")
 
   @@map("order")
 }

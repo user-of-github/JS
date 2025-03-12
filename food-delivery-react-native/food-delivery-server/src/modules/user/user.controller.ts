@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Param, Patch } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus, Param, Patch } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Auth } from '../auth/auth.decorator';
 import { CurrentUser } from '../auth/user.decorator';
@@ -13,7 +13,7 @@ export class UserController {
     return await this.userService.getById(id);
   }
 
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   @Auth()
   @Patch('profile/favourites/:productId')
   public async toggleFavourite(@CurrentUser('id') id: string, @Param('productId') productId: string) {

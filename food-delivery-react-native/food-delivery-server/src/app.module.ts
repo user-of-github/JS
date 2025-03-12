@@ -6,6 +6,7 @@ import { CategoryModule } from './modules/category/category.module';
 import { ProductModule } from './modules/product/product.module';
 import { UserModule } from './modules/user/user.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { OrderModule } from './modules/order/order.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       rootPath: `${path}/uploads`,
       serveRoot: '/uploads'
     }),
+    OrderModule,
   ],
   controllers: [],
   providers: [],

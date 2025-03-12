@@ -1,17 +1,14 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Animated as AnimatedNative, Vibration, View } from 'react-native';
-import { API_URL, ApiUrls } from '@/config/api';
+import { Animated as AnimatedNative, Vibration, View, Text } from 'react-native';
+import { API_URL } from '@/config/api';
 import type { AuthDto } from '@/types/auth.i';
-import { axiosInstance } from '@/services/api/interceptors';
 import { useAuthMutations } from '@/features/auth/useAuthMutations';
 import { FormModeToggler } from '@/screens/auth/components/FormModeToggler';
 import { EmailRegex } from '@/screens/auth/components/email.regex';
 import { useShakeAnimation } from '@/components/hooks/useShakeAnimation';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
-import { ToastUI } from 'react-native-toast-message/lib/src/ToastUI';
-import Toast from 'react-native-toast-message';
 
 interface LoginFormProps {
   toggleFormMode: VoidFunction;
@@ -23,10 +20,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ toggleFormMode }) => {
   const { login } = useAuthMutations(reset);
 
   const onSubmit: SubmitHandler<AuthDto> = async (fields) => {
-    Toast.show({
-      text1: 'URL',
-      text2: API_URL
-    })
     login(fields);
     return;
   };
@@ -75,6 +68,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ toggleFormMode }) => {
           Sign in
         </Button>
       </AnimatedNative.View>
+      <Text>{API_URL}</Text>
 
       <FormModeToggler mode="login" onToggle={toggleFormMode} className="mt-4" />
     </View>

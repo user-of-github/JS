@@ -2,7 +2,7 @@ name: React Native Food Delivery Build
 on:
   push:
     paths:
-      - 'food-delivery-react-native/**' 
+      - 'food-delivery-react-native/food-delivery-client/**' 
 jobs:
   build:
     name: Install and build
