@@ -10,6 +10,7 @@ export type NavigationScreensListType = {
   Cart: undefined;
   Category: { slug: string } | undefined;
   Product: { slug: string } | undefined;
+  Orders: undefined;
 };
 
 export interface Route {

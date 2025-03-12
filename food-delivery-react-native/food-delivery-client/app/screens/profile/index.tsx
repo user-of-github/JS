@@ -49,6 +49,9 @@ export const ProfileScreen: React.FC = () => {
           </View>
         </View>
       </View>
+      <Button className="mt-10" textClassName="text-lg">
+        Log out
+      </Button>
       <Button onPress={logout} className="mt-10" textClassName="text-lg">
         Log out
       </Button>

@@ -37,6 +37,7 @@ export const AppNavigation: React.FC<AppNavigationProps> = ({ navigationContaine
             <Stack.Screen {...AppRoutes.Cart} key="Cart" />
             <Stack.Screen {...AppRoutes.Category} key="Category" />
             <Stack.Screen {...AppRoutes.Product} key="Product" />
+            <Stack.Screen {...AppRoutes.Orders} key="Orders" />
           </>
         ) : (
           <Stack.Screen {...AppRoutes.Auth} key="Auth" />
