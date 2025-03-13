@@ -4,7 +4,7 @@ ___
 - _[NestJS](https://nestjs.com/)_  
 - _[TypeScript](https://www.typescriptlang.org/)_  
 - _[Prisma](https://www.prisma.io/)_  
-- _[PostgreSQL](https://www.postgresql.org/)_
+- _[PostgreSQL](https://www.postgresql.org/) and [SupaBase](https://supabase.com/) for DB free deployment_
 - _[JWT](https://jwt.io/)_  
 - _[Stripe](https://stripe.com/) (trial demo test profile) for payments_
 ___  

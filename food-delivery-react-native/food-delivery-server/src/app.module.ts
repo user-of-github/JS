@@ -10,7 +10,9 @@ import { OrderModule } from './modules/order/order.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: ['.env.prod', '.env.prod.sample'],
+    }),
     AuthModule,
     CategoryModule,
     ProductModule,
