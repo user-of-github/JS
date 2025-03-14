@@ -17,4 +17,33 @@ ___
     - `npx prisma migrate` or `npx prisma migrate --dev`
     - `npx prisma generate`   
 6. Also check in `client` folder [Readme.md](../food-delivery-client/Readme.md) how to map ports, because connected by USB Android device does not see the port and Axios returns `NetworkError`  
-7. `npm run start:dev` 
+7. `npm run start:dev`   
+___  
+### API endpoints:  
+- `/auth`
+  - `/login/access-token`, POST  
+  - `/login`, POST  
+  - `/register`, POST
+- `/categories`  
+    - `/`, GET  
+    - `/by-id/:id`, GET  
+    - `/by-slug/:slug`, GET  
+    - `/`, POST  
+    - `/:id`, PUT  
+    - `/:id`, DELETE  
+- `/products`, GET  
+    - `/by-id/:id`, GET  
+    - `/by-slug/:slug`, GET  
+    - `/by-category/:categorySlug`, GET  
+    - `/groupped-by-category`, GET  
+    - `/` POST  
+    - `/:id`, PUT  
+    - `/:id`, DELETE   
+
+- `/user`  
+  - `/profile`, GET
+  - `/favourites/:productId`, PATCH  
+- `/orders`  
+  - `/`, GET
+  - `/by-user`, GET  
+  - `/`, POST
