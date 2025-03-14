@@ -11,7 +11,7 @@ import { OrderModule } from './modules/order/order.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env.local', '.env.prod', '.env.prod.sample'],
+      envFilePath: ['.env.local', '.env.prod'],
     }),
     AuthModule,
     CategoryModule,
