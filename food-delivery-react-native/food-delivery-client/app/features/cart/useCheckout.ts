@@ -1,16 +1,13 @@
-import { useActions } from '@/store/useActions';
-import { useStripe } from '@stripe/stripe-react-native';
+import Toast from 'react-native-toast-message';
 import { useMutation } from '@tanstack/react-query';
+import { useStripe } from '@stripe/stripe-react-native';
 import { orderService } from '@/services/order.service';
-import { useAuth } from '@/features/auth/AuthProvider';
-import { useAppNavigation } from '@/navigation/useAppNavigation';
+import { useActions } from '@/store/useActions';
 import { useCart } from './useCart';
 
 export const useCheckout = () => {
-  const { items, total } = useCart();
-  const { user } = useAuth();
+  const { items } = useCart();
   const { reset } = useActions();
-  const { navigate } = useAppNavigation();
 
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
 
@@ -37,8 +34,35 @@ export const useCheckout = () => {
 
       if (error) {
         console.error('Error initializing payment sheet: ', error);
+        Toast.show({
+          text1: 'Payment error',
+          text2: 'Error initializing payment sheet'
+        });
         return;
       }
-    } catch {}
+
+      const { error: paymentError } = await presentPaymentSheet();
+
+      if (paymentError) {
+        console.error('Error presenting payment sheet: ', paymentError);
+        Toast.show({
+          text1: 'Payment error',
+          text2: 'Error presenting payment sheet'
+        });
+      }
+
+      reset();
+      Toast.show({
+        text1: 'Success',
+        text2: 'Payment successfully saved'
+      });
+    } catch {
+      Toast.show({
+        text1: 'Payment error',
+        text2: 'Try again later'
+      });
+    }
   };
+
+  return { onCheckout };
 };

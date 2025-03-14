@@ -3,6 +3,7 @@ import { FlatList, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { convertPrice } from '@/services/utils';
 import { useCart } from '@/features/cart/useCart';
+import { useCheckout } from '@/features/cart/useCheckout';
 import { CartRow } from '@/screens/cart/components/CartItem';
 import { AppLayoutPaddings, Container, NoScrollViewContainer } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
@@ -10,6 +11,7 @@ import { Heading } from '@/components/ui/Heading';
 
 export const CartScreen: React.FC = () => {
   const { total, items } = useCart();
+  const { onCheckout } = useCheckout();
 
   return (
     <>
@@ -42,7 +44,7 @@ export const CartScreen: React.FC = () => {
       {items.length ? (
         <View className="absolute bottom-0 w-full p-3 py-6 rounded-tl-3xl rounded-tr-3xl bg-primary">
           <Text className="font-bold text-white text-2xl mb-3">Total: {convertPrice(total)}</Text>
-          <Button onPress={() => {}} className="bg-white">
+          <Button onPress={onCheckout} className="bg-white">
             <View className="flex flex-row items-center justify-center gap-x-3">
               <Feather name="credit-card" size={20} color="#000" />
               <Text className="text-black text-xl font-semibold">Place order</Text>

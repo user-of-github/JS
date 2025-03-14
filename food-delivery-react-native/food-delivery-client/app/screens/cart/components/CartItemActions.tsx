@@ -2,8 +2,8 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import { useActions } from '@/store/useActions';
 import type { CartItem } from '@/types/cart.i';
+import { useActions } from '@/store/useActions';
 import { useCart } from '@/features/cart/useCart';
 import { IconButton } from '@/components/ui/IconButton';
 

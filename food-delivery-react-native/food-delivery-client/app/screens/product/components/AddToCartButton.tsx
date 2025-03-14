@@ -1,7 +1,7 @@
 import React from 'react';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useActions } from '@/store/useActions';
 import type { Product } from '@/types/product.i';
+import { useActions } from '@/store/useActions';
 import { useCart } from '@/features/cart/useCart';
 import { Button } from '@/components/ui/Button';
 

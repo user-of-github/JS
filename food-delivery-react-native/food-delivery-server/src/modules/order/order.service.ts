@@ -89,7 +89,7 @@ export class OrderService {
       automatic_payment_methods: {
         enabled: true
       },
-      description: `Order by user ${userId} with cost $${totalCents} USD. ${new Date().toLocaleString()}`
+      description: `Order by user ${userId} with cost $${total} USD. ${new Date().toLocaleString()}`
     });
 
     return { clientSecret: payment.client_secret };

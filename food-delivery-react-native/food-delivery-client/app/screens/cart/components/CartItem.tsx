@@ -14,7 +14,7 @@ export const CartRow: React.FC<CartItemProps> = ({ item }) => {
   const { navigate } = useAppNavigation();
 
   return (
-    <View className="flex flex-row items-center justify-between">
+    <View className="flex flex-row items-center justify-between w-full max-w-full">
       <View className="flex flex-row items-center">
         <TouchableOpacity
           onPress={() => navigate(AppRoutes.Product.name, { slug: item.product.slug } as any)}
@@ -24,7 +24,7 @@ export const CartRow: React.FC<CartItemProps> = ({ item }) => {
         </TouchableOpacity>
 
         <View className="ml-3">
-          <Text className="font-semibold text-xl">{item.product.name}</Text>
+          <Text className="font-semibold text-xl max-w-[100px]">{item.product.name}</Text>
           <Text className="mt-1">{convertPrice(item.price)}</Text>
         </View>
       </View>
