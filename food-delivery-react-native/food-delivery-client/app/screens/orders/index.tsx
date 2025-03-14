@@ -1,13 +1,13 @@
 import React from 'react';
-import { Container } from '@/components/layout/Container';
-import { Heading } from '@/components/ui/Heading';
-import { useCategory } from '@/features/categories/useCategory';
-import { View, Text } from 'react-native';
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { GoBackButton } from '@/components/ui/GoBackButton';
-import { useGetAllOrders } from '@/features/orders/useOrders';
+import { Text, View } from 'react-native';
 import type { Order } from '@/types/order.i';
 import { convertPrice } from '@/services/utils';
+import { useCategory } from '@/features/categories/useCategory';
+import { useGetAllOrders } from '@/features/orders/useOrders';
+import { Container } from '@/components/layout/Container';
+import { GoBackButton } from '@/components/ui/GoBackButton';
+import { Heading } from '@/components/ui/Heading';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 export const OrdersScreen: React.FC = () => {
   const { isLoading, orders } = useGetAllOrders();
@@ -26,7 +26,7 @@ export const OrdersScreen: React.FC = () => {
     );
   }
 
-  if (!isLoading && (!orders || orders.length === 0) ) {
+  if (!isLoading && (!orders || orders.length === 0)) {
     return (
       <Container>
         <GoBackButton size="small" />
@@ -42,17 +42,20 @@ export const OrdersScreen: React.FC = () => {
       <Heading>Orders</Heading>
 
       <View className="flex flex-col gap-y-1 mt-3">
-        {
-          orders?.map((order: Order) => (
-            <View className="rounded-lg flex flex-row items-center justify-between w-full max-w-full py-2 bg-secondary px-3" key={order.id}>
-              <View>
-                <Text className="text-white font-light text-lg">{new Date(order.createdAt).toLocaleString()}</Text>
-                <Text className="text-white mt-1">Total items: {order.total}</Text>
-                <Text className="text-white font-black">Price: {convertPrice(order.items.reduce((acc, curr) => acc + curr.price * curr.count, 0))}</Text>
-              </View>
+        {orders?.map((order: Order) => (
+          <View
+            className="rounded-lg flex flex-row items-center justify-between w-full max-w-full py-2 bg-secondary px-3"
+            key={order.id}
+          >
+            <View>
+              <Text className="text-white font-light text-lg">{new Date(order.createdAt).toLocaleString()}</Text>
+              <Text className="text-white mt-1">Total items: {order.total}</Text>
+              <Text className="text-white font-black">
+                Price: {convertPrice(order.items.reduce((acc, curr) => acc + curr.price * curr.count, 0))}
+              </Text>
             </View>
-          ))
-        }
+          </View>
+        ))}
       </View>
     </Container>
   );

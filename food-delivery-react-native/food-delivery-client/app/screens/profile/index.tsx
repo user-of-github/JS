@@ -1,22 +1,21 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import { useAuthMutations } from '@/features/auth/useAuthMutations';
 import { useProfile } from '@/features/auth/useProfile';
+import { AppRoutes } from '@/navigation/routes';
+import { useAppNavigation } from '@/navigation/useAppNavigation';
 import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
 import { Heading } from '@/components/ui/Heading';
 import { LoadingOverlay } from '@/components/ui/LoadingOverlay';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { useAppNavigation } from '@/navigation/useAppNavigation';
-import { Feather } from '@expo/vector-icons';
 import { cn } from '@/components/utils';
-import { AppRoutes } from '@/navigation/routes';
 
 export const ProfileScreen: React.FC = () => {
   const { logout } = useAuthMutations();
   const { profile, isLoading } = useProfile();
   const { navigate } = useAppNavigation();
-
 
   if (isLoading) {
     return (
