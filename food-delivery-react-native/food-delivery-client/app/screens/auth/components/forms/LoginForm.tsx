@@ -68,7 +68,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ toggleFormMode }) => {
           Sign in
         </Button>
       </AnimatedNative.View>
-      <Text>{API_URL}</Text>
 
       <FormModeToggler mode="login" onToggle={toggleFormMode} className="mt-4" />
     </View>
