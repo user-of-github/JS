@@ -22,4 +22,4 @@ export const validateDto = <Dto extends object>(dtoClass: new () => Dto) => {
 
     next();
   };
-}
+};

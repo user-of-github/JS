@@ -18,7 +18,7 @@ export const configureApp = async (): Promise<Express> => {
   const storage = multer.diskStorage({
     destination: UPLOADS_DIR_NAME,
     filename: (request, file, next) => {
-      next(null, file.originalname)
+      next(null, file.originalname);
     }
   });
 
@@ -31,6 +31,6 @@ const createUploadsDir = async (): Promise<void> => {
   try {
     await fs.promises.access(UPLOADS_DIR_NAME);
   } catch (error) {
-    await fs.promises.mkdir(UPLOADS_DIR_NAME)
+    await fs.promises.mkdir(UPLOADS_DIR_NAME);
   }
 };
