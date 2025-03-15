@@ -6,9 +6,12 @@
   "scripts": {
     "start:dev": "npx tsx watch --env-file=.env.local ./src/index.ts",
     "start": "npx tsx --env-file=.env.local ./src/index.ts",
+
     "docker:run-db-local": "docker run --name mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=\"user\" -e MONGO_INITDB_ROOT_PASSWORD=\"root\" -d prismagraphql/mongo-single-replica:5.0.3",
     "prisma:db-push-local": "dotenv -e .env.local -- npx prisma db push",
     "prisma:studio-local": "dotenv -e .env.local -- npx prisma studio",
+    "prisma:generate-local": "dotenv -e .env.local -- npx prisma generate",
+
     "prettify": "npx eslint . --fix"
   },
   "keywords": [],

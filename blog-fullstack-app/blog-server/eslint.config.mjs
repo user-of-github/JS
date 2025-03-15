@@ -5,7 +5,7 @@ import parserTs from '@typescript-eslint/parser';
 export default [
   {
     files: ['**/*.ts', '**/*.js'],
-    ignores: ['.idea/*', 'node_modules/*'],
+    ignores: ['.idea/*', 'node_modules/*', './package.json', './package-lock.json'],
     plugins: {
       '@stylistic': stylistic
     },

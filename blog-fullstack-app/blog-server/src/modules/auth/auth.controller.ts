@@ -9,6 +9,7 @@ import { badRequest, serverError } from '../utils/response';
 import { StatusCode, UPLOADS_DIR_NAME } from '../../config/server';
 import { __dirname } from '../../config/dirname';
 import { toUserDtoObject } from '../../mappers/toUserDto';
+import { prismaUserSelect } from '../../mappers/prismaUserSelect';
 
 
 class AuthController {
@@ -31,10 +32,11 @@ class AuthController {
       await fs.promises.writeFile(avatarFilePath, avatarPng, { flag: 'wx' });
 
       const user = await prismaService.user.create({
-        data: { email, name, password: hashedPassword, avatarUrl: avatarFilePath }
+        data: { email, name, password: hashedPassword, avatarUrl: avatarFilePath },
+        select: prismaUserSelect
       });
 
-      res.status(StatusCode.Created).json({ user: toUserDtoObject(user) });
+      res.status(StatusCode.Created).json({ user });
     } catch (error) {
       console.error('Error in AuthController::register()', error);
       serverError(res, { error: 'Internal server error'});
