@@ -2,21 +2,25 @@
   "name": "blog-server",
   "version": "1.0.0",
   "author": "https://github.com/user-of-github",
+  "type": "module",
   "scripts": {
-    "dev": "npx tsx watch --env-file=.env ./src/app.ts",
-    "start": "npx tsx --env-file=.env ./src/app.ts",
+    "start:dev": "npx tsx watch --env-file=.env.local ./src/index.ts",
+    "start": "npx tsx --env-file=.env.local ./src/index.ts",
     "prettify": "npx eslint . --fix"
   },
   "keywords": [],
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.10",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
   }
 }
