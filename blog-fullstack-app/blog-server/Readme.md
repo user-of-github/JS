@@ -6,6 +6,7 @@ ___
 
 - _[Express]()_
 - _[TypeScript](https://www.typescriptlang.org/)_
+- _[Class Validator](https://github.com/typestack/class-validator) and [Class Transformer](https://github.com/typestack/class-transformer) for DTO validation_
 - _[Prisma](https://www.prisma.io/)_
 - _[Mongo DB](https://www.mongodb.com/)_
 - _[Docker](https://www.docker.com/) for running Mongo_
