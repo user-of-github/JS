@@ -7,8 +7,8 @@ import { authRouter } from './modules/auth/auth.router';
 
 const app: Express = await configureApp();
 
-app.use(`/${RouteConfig.urlPrefix}/${RouteConfig.currentApiVersion}/users`, userRouter);
 app.use(`/${RouteConfig.urlPrefix}/${RouteConfig.currentApiVersion}/auth`, authRouter);
+app.use(`/${RouteConfig.urlPrefix}/${RouteConfig.currentApiVersion}/users`, userRouter);
 
 app.listen(PORT, () => {
   console.log(`[server]: Blog-Server-App is running at http://localhost:${PORT}`);

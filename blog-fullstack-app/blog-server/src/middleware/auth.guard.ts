@@ -15,11 +15,14 @@ export const AuthGuard = (req: CustomRequest, res: Response, next: NextFunction)
 
   const token = bearerAndToken[1];
 
-  jwt.verify(token, AuthConfig.jwtSecret, (error, userId) => {
+  jwt.verify(token, AuthConfig.jwtSecret, (error, user) => {
     if (error) {
-      return void res.status(StatusCode.Unauthorized).json({ error: 'Unauthorized' });
+      res.status(StatusCode.Unauthorized).json({ error: 'Unauthorized' });
+      return;
     }
 
-    req.user = { id: userId as string };
+    req.user = { id: (user as { id: string}).id as string };
+
+    next();
   });
 };

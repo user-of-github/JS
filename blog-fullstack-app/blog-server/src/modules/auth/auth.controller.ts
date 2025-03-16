@@ -60,7 +60,7 @@ class AuthController {
         return notFound(res, { error: 'Invalid email or password' });
       }
 
-      const token = jwt.sign({ userId: user.id}, AuthConfig.jwtSecret, {});
+      const token = jwt.sign({ id: user.id}, AuthConfig.jwtSecret, { expiresIn: '10d' });
 
       res.send({ token, user: toUserDtoObject(user) });
     } catch (error) {
