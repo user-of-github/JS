@@ -13,6 +13,6 @@ export const notFound = (res: Response, data: ErrorData): void => {
   res.status(StatusCode.NotFound).json(data);
 };
 
-export const serverError = (res: Response, data: ErrorData): void => {
+export const serverError = (res: Response, data: ErrorData = { error: 'Internal server error. Try again later or contact app\'s developer' }): void => {
   res.status(StatusCode.InternalServerError).json(data);
 };

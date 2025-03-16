@@ -1,24 +1,25 @@
 import { type Request, type Response } from 'express';
 import { toPng } from 'jdenticon';
-import { hash } from 'bcryptjs';
+import { compare, hash } from 'bcryptjs';
 import path from 'node:path';
 import fs from 'node:fs';
+import jwt from 'jsonwebtoken';
 import { type RegisterDto } from './dto/register.dto';
 import { prismaService } from '../prisma/prisma.service';
-import { badRequest, serverError } from '../utils/response';
-import { StatusCode, UPLOADS_DIR_NAME } from '../../config/server';
-import { __dirname } from '../../config/dirname';
-import { toUserDtoObject } from '../../mappers/toUserDto';
+import { badRequest, notFound, serverError } from '../utils/response';
+import { StatusCode, UPLOADS_DIR_NAME, ROOT_DIRNAME } from '../../config/server';
 import { prismaUserSelect } from '../../mappers/prismaUserSelect';
+import { LoginDto } from './dto/login.dto';
+import { toUserDtoObject } from '../../mappers/toUserDto';
+import { AuthConfig } from '../../config/auth';
 
 
 class AuthController {
   public async register(req: Request<{}, {}, RegisterDto>, res: Response) {
-    const {name, email, password} = req.body;
+    const { name, email, password } = req.body;
+
     try {
-      const existingUser = await prismaService.user.findUnique({
-        where: { email }
-      });
+      const existingUser = await prismaService.user.findUnique({ where: { email } });
 
       if (existingUser) {
         return badRequest(res, { error: 'User already exists' });
@@ -27,7 +28,7 @@ class AuthController {
       const hashedPassword = await hash(password, 10);
       const avatarPng = toPng(name, 200);
       const avatarFileName = `${name}_${Date.now()}.png`;
-      const avatarFilePath = path.join(__dirname, UPLOADS_DIR_NAME, avatarFileName);
+      const avatarFilePath = path.join(ROOT_DIRNAME, UPLOADS_DIR_NAME, avatarFileName);
 
       await fs.promises.writeFile(avatarFilePath, avatarPng, { flag: 'wx' });
 
@@ -39,12 +40,33 @@ class AuthController {
       res.status(StatusCode.Created).json({ user });
     } catch (error) {
       console.error('Error in AuthController::register()', error);
-      serverError(res, { error: 'Internal server error'});
+      return serverError(res);
     }
   }
 
-  public async login(req: Request, res: Response) {
-    res.send('login');
+  public async login(req: Request<{}, {}, LoginDto>, res: Response) {
+    const { email, password } = req.body;
+
+    try {
+      const user = await prismaService.user.findUnique({ where: { email } });
+
+      if (!user) {
+        return notFound(res, { error: 'Invalid email or password' });
+      }
+
+      const isPassValid = await compare(password, user.password);
+
+      if (!isPassValid) {
+        return notFound(res, { error: 'Invalid email or password' });
+      }
+
+      const token = jwt.sign({ userId: user.id}, AuthConfig.jwtSecret, {});
+
+      res.send({ token, user: toUserDtoObject(user) });
+    } catch (error) {
+      console.error('Error in AuthController::login()', error);
+      return serverError(res);
+    }
   }
 }
 

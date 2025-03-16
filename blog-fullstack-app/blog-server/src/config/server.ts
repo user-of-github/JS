@@ -1,3 +1,6 @@
+import url from 'node:url';
+import path from 'node:path';
+
 export const PORT = process.env.PORT || 4000;
 
 export const StatusCode = Object.freeze({
@@ -22,3 +25,8 @@ export const CORS_OPTIONS = {
 } as const;
 
 export const UPLOADS_DIR_NAME = 'uploads';
+
+const __filename = url.fileURLToPath(import.meta.url);
+
+// @TODO: ATTENTION: it now depends on folders structure
+export const ROOT_DIRNAME = path.resolve(path.dirname(__filename), '../../');
