@@ -75,7 +75,7 @@ class PostController {
         liked: post.likes.some(like => like.userId === userId)
       };
 
-      res.json({ post: postWithLikeInfo })
+      res.json({ post: postWithLikeInfo });
     } catch (error) {
       serverError(res, error);
     }

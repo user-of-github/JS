@@ -22,5 +22,8 @@ export const serverError = (
   error?: unknown
 ): void => {
   console.log(error);
-  res.status(StatusCode.InternalServerError).json({ error: 'Internal server error. Try again later or contact app\'s developer' });
+
+  res.status(StatusCode.InternalServerError).json({
+    error: 'Internal server error. Try again later or contact app\'s developer'
+  });
 };
