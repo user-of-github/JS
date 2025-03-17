@@ -1,13 +1,15 @@
 import type { Request, Response } from 'express';
-import { CustomRequest } from '../../types/RequestWithUser';
+import { CustomRequest } from '../../types/server/responses/RequestWithUser';
 import { prismaService } from '../prisma/prisma.service';
-import { notFound, serverError } from '../utils/response';
+import { badRequest, forbidden, notFound, serverError } from '../utils/response';
 import { UserDetailsResponseDto } from './dto/user-details.dto';
 import { toUserFullDtoObject } from '../../mappers/toUserDto';
+import { type UpdateUserDto } from './dto/update-user.dto';
+import { IdParam } from '../../types/server/idParam';
 
 
 class UserController {
-  public async getById(req: CustomRequest, res: Response){
+  public async getById(req: CustomRequest<IdParam>, res: Response){
     const { id } = req.params;
     const currentUserId = req.user?.id;
 
@@ -48,8 +50,42 @@ class UserController {
     }
   }
 
-  public async updateUser(req: CustomRequest, res: Response){
-    res.send('Update')
+  public async updateUser(req: CustomRequest<IdParam, {}, UpdateUserDto>, res: Response){
+    const { id } = req.params;
+    const { email, birthDate, bio, name, location } = req.body;
+
+    const filePath = (req.file && req.file.path) ? req.file.path : null;
+
+    if (id !== req.user?.id) {
+      return forbidden(res, { error: 'Access denied. Unable to edit another user' });
+    }
+
+    try {
+      if (email) {
+        const existingUser = await prismaService.user.findFirst({ where: { email } });
+
+        if (existingUser && existingUser.id !== id) {
+          return badRequest(res, { error: 'Email already exists' });
+        }
+      }
+
+      const updatedUser = await prismaService.user.update({
+        where: { id },
+        data: {
+          email: email || undefined,
+          bio: bio || undefined,
+          name: name || undefined,
+          location: location || undefined,
+          avatarUrl: filePath ? `/${filePath}` : undefined,
+          birthDate: birthDate || undefined,
+        }
+      });
+
+      return res.json({ user: updatedUser });
+    } catch (error) {
+      console.error(error);
+      serverError(res);
+    }
   }
 
 

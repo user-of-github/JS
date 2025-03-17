@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import type { Request, Response, NextFunction } from 'express';
 import { StatusCode } from '../config/server';
 import { AuthConfig } from '../config/auth';
-import { CustomRequest } from '../types/RequestWithUser';
+import { CustomRequest } from '../types/server/responses/RequestWithUser';
 
 
 export const AuthGuard = (req: CustomRequest, res: Response, next: NextFunction) => {

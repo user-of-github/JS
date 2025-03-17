@@ -1,5 +1,5 @@
 # Blog Application / Server
-
+API service for blog application. Built with authentication, middleware, dto validation, database, OOP and other concepts and principles.
 ___  
 
 ### Technologies:
@@ -31,7 +31,7 @@ I used Docker to pull and run container with MongoDB:
 5. `npm install`  
 6. `npm run prisma:db-push-local`  
 7. `npm run prisma:generate-local`
-7. `npm run start:dev`
+8. `npm run start:dev`
 
 ___  
 

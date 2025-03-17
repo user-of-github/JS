@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import { ResponseUser, ResponseUserFull, UserFull } from '../types/ResponseUser';
+import { ResponseUser, ResponseUserFull, UserFull } from '../types/server/responses/ResponseUser';
 
 export const toUserDtoObject = (user: User): ResponseUser => {
   const { createdAt, updatedAt, password, ...data } = user;

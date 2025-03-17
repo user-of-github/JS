@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import { Follow } from './Follow';
+import { Follow } from '../../Follow';
 
 export interface UserFull extends User {
   followers: Follow[];
