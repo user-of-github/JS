@@ -16,13 +16,12 @@ class PostController {
 
       res.json({ post });
     } catch (error) {
-      console.error(error);
-      serverError(res);
+      serverError(res, error);
     }
   }
 
   public async getAll(req: CustomRequest, res: Response) {
-    const userId = req.user?.id;
+    const currentUserId = req.user?.id;
 
     try {
       const posts = await prismaService.post.findMany({
@@ -34,10 +33,16 @@ class PostController {
         orderBy: {
           createdAt: 'desc'
         }
-      })
+      });
+
+      const postsWithLikeInfo = posts.map(post => ({
+        ...post,
+        liked: post.likes.some(like => like.userId === currentUserId)
+      }));
+
+      res.json({ posts: postsWithLikeInfo });
     } catch (error) {
-      console.error(error);
-      serverError(res);
+      serverError(res, error);
     }
 
     res.json({ posts: 'Posts' });
