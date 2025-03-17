@@ -42,7 +42,7 @@ model Post {
   author   User      @relation(fields: [authorId], references: [id])
   authorId String    @db.ObjectId
   likes    Like[]
-  comment  Comment[]
+  comments Comment[]
 }
 
 model Like {

@@ -47,8 +47,7 @@ class UserController {
 
       res.json({ user: response });
     } catch (error) {
-      console.error(error);
-      serverError(res);
+      serverError(res, error);
     }
   }
 
@@ -86,8 +85,7 @@ class UserController {
 
       res.json({ user: updatedUser });
     } catch (error) {
-      console.error(error);
-      serverError(res);
+      serverError(res, error);
     }
   }
 
@@ -109,8 +107,8 @@ class UserController {
       const userResponse = toUserFullDtoObject(user);
 
       res.json({ user: userResponse });
-    } catch {
-
+    } catch (error) {
+      serverError(res, error);
     }
   }
 }

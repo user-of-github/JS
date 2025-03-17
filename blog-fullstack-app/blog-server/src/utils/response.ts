@@ -19,7 +19,8 @@ export const forbidden = (res: Response, data: ErrorData): void => {
 
 export const serverError = (
   res: Response,
-  data: ErrorData = { error: 'Internal server error. Try again later or contact app\'s developer' }
+  error?: unknown
 ): void => {
-  res.status(StatusCode.InternalServerError).json(data);
+  console.log(error);
+  res.status(StatusCode.InternalServerError).json({ error: 'Internal server error. Try again later or contact app\'s developer' });
 };

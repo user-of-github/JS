@@ -39,8 +39,7 @@ class AuthController {
 
       res.status(StatusCode.Created).json({ user });
     } catch (error) {
-      console.error('Error in AuthController::register()', error);
-      return serverError(res);
+      serverError(res, error);
     }
   }
 
@@ -64,8 +63,7 @@ class AuthController {
 
       res.send({ token, user: toUserDtoObject(user) });
     } catch (error) {
-      console.error('Error in AuthController::login()', error);
-      return serverError(res);
+      serverError(res, error);
     }
   }
 }

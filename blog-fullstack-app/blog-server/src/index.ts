@@ -4,11 +4,16 @@ import { configureApp } from './configureApp';
 import { RouteConfig } from './config/routes';
 import { userRouter } from './modules/user/user.route';
 import { authRouter } from './modules/auth/auth.router';
+import { postRouter } from './modules/post/post.router';
+
+
+const baseUrl = `${RouteConfig.urlPrefix}/${RouteConfig.currentApiVersion}`;
 
 const app: Express = await configureApp();
 
-app.use(`/${RouteConfig.urlPrefix}/${RouteConfig.currentApiVersion}/auth`, authRouter);
-app.use(`/${RouteConfig.urlPrefix}/${RouteConfig.currentApiVersion}/users`, userRouter);
+app.use(`/${baseUrl}/auth`, authRouter);
+app.use(`/${baseUrl}/users`, userRouter);
+app.use(`/${baseUrl}/posts`, postRouter);
 
 app.listen(PORT, () => {
   console.log(`[server]: Blog-Server-App is running at http://localhost:${PORT}`);
