@@ -6,6 +6,7 @@ import { UserDetailsResponseDto } from './dto/user-details.dto';
 import { toUserFullDtoObject } from '../../mappers/toUserDto';
 import { type UpdateUserDto } from './dto/update-user.dto';
 import { IdParam } from '../../types/server/idParam';
+import { prismaUserSelect } from '../../mappers/prismaUserSelect';
 
 
 class UserController {
@@ -78,7 +79,8 @@ class UserController {
           location: location || undefined,
           avatarUrl: filePath ? `/${filePath}` : undefined,
           birthDate: birthDate || undefined,
-        }
+        },
+        select: prismaUserSelect
       });
 
       return res.json({ user: updatedUser });
