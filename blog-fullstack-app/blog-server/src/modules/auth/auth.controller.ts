@@ -33,7 +33,7 @@ class AuthController {
       await fs.promises.writeFile(avatarFilePath, avatarPng, { flag: 'wx' });
 
       const user = await prismaService.user.create({
-        data: { email, name, password: hashedPassword, avatarUrl: avatarFilePath },
+        data: { email, name, password: hashedPassword, avatarUrl: `/${UPLOADS_DIR_NAME}/${avatarFileName}` },
         select: prismaUserSelect
       });
 

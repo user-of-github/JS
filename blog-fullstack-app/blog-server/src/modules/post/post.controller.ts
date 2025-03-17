@@ -89,7 +89,7 @@ class PostController {
       }
 
       if (post.authorId !== req.user?.id) {
-        return forbidden(res);
+        return forbidden(res, { error: 'Access denied'});
       }
 
       await prismaService.$transaction([
