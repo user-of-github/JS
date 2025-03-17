@@ -13,7 +13,7 @@ export const notFound = (res: Response, data: ErrorData): void => {
   res.status(StatusCode.NotFound).json(data);
 };
 
-export const forbidden = (res: Response, data: ErrorData): void => {
+export const forbidden = (res: Response, data: ErrorData = { error: 'Access denied' }): void => {
   res.status(StatusCode.Forbidden).json(data);
 };
 

@@ -48,8 +48,6 @@ class PostController {
     } catch (error) {
       serverError(res, error);
     }
-
-    res.json({ posts: 'Posts' });
   }
 
   public async getById(req: CustomRequest<IdParam>, res: Response) {
@@ -91,7 +89,7 @@ class PostController {
       }
 
       if (post.authorId !== req.user?.id) {
-        return forbidden(res, { error: 'Access denied'});
+        return forbidden(res);
       }
 
       await prismaService.$transaction([
