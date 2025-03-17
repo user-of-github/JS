@@ -11,7 +11,7 @@ function extractErrorMessages(errors: ValidationError[]): string[] {
   );
 }
 
-export const validateDto = <Dto extends object>(dtoClass: new () => Dto) => {
+export const dtoValidator = <Dto extends object>(dtoClass: new () => Dto) => {
   return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
     const dtoInstance = plainToInstance(dtoClass, req.body);
     const errors = await validate(dtoInstance);
