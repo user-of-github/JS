@@ -1,4 +1,4 @@
-import { type Request, type Response } from 'express';
+import type { Request, Response } from 'express';
 import { toPng } from 'jdenticon';
 import { compare, hash } from 'bcryptjs';
 import path from 'node:path';
@@ -6,10 +6,10 @@ import fs from 'node:fs';
 import jwt from 'jsonwebtoken';
 import { type RegisterDto } from './dto/register.dto';
 import { prismaService } from '../prisma/prisma.service';
-import { badRequest, notFound, serverError } from '../utils/response';
+import { badRequest, notFound, serverError } from '../../utils/response';
 import { StatusCode, UPLOADS_DIR_NAME, ROOT_DIRNAME } from '../../config/server';
 import { prismaUserSelect } from '../../mappers/prismaUserSelect';
-import { LoginDto } from './dto/login.dto';
+import { type LoginDto } from './dto/login.dto';
 import { toUserDtoObject } from '../../mappers/toUserDto';
 import { AuthConfig } from '../../config/auth';
 

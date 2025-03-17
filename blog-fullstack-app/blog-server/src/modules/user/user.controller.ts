@@ -1,11 +1,11 @@
-import type { Request, Response } from 'express';
-import { CustomRequest } from '../../types/server/responses/RequestWithUser';
+import type { Response } from 'express';
+import { type CustomRequest } from '../../types/server/responses/RequestWithUser';
 import { prismaService } from '../prisma/prisma.service';
-import { badRequest, forbidden, notFound, serverError } from '../utils/response';
-import { UserDetailsResponseDto } from './dto/user-details.dto';
+import { badRequest, forbidden, notFound, serverError } from '../../utils/response';
+import { type UserDetailsResponseDto } from './dto/user-details.dto';
 import { toUserFullDtoObject } from '../../mappers/toUserDto';
 import { type UpdateUserDto } from './dto/update-user.dto';
-import { IdParam } from '../../types/server/idParam';
+import { type IdParam } from '../../types/server/idParam';
 import { prismaUserSelect } from '../../mappers/prismaUserSelect';
 
 
@@ -17,7 +17,8 @@ class UserController {
     try {
       let user;
       try {
-        // because if invalid hex ==> MongoDb just throws error (in Postgres Prisma returns null), so need additional try-catch
+        // because if invalid hex ==> MongoDb just throws error (in Postgres Prisma returns null),
+        // so need additional try-catch
         user = await prismaService.user.findUnique({
           where : { id },
           include: { followers: true, following: true }
@@ -83,7 +84,7 @@ class UserController {
         select: prismaUserSelect
       });
 
-      return res.json({ user: updatedUser });
+      res.json({ user: updatedUser });
     } catch (error) {
       console.error(error);
       serverError(res);
@@ -92,9 +93,25 @@ class UserController {
 
 
   public async current(req: CustomRequest, res: Response) {
-    const { user } = req;
+    try {
+      const user = await prismaService.user.findUnique({
+        where: { id: req.user?.id },
+        include: {
+          followers: { include: { follower: true } },
+          following: { include: { following: true } }
+        },
+      });
 
-    res.send('current');
+      if (!user) {
+        return notFound(res, { error: 'User not found' });
+      }
+
+      const userResponse = toUserFullDtoObject(user);
+
+      res.json({ user: userResponse });
+    } catch {
+
+    }
   }
 }
 

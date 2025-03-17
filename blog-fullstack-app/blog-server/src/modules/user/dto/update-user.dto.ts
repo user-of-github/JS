@@ -24,6 +24,8 @@ export class UpdateUserDto {
   public location: string;
 
   @IsOptional()
-  @IsDateString({}, { message: 'Birth date must be a valid ISO 8601 date string. For example 2025-03-17T12:28:00.000Z' })
+  @IsDateString({}, {
+    message: 'Birth date must be a valid ISO 8601 date string. For example 2025-03-17T12:28:00.000Z'
+  })
   public birthDate: any;
 }

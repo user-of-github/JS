@@ -2,6 +2,7 @@ import type { Request, Response, NextFunction } from 'express';
 import { plainToInstance } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
 import { StatusCode } from '../config/server';
+import { CustomRequest } from '../types/server/responses/RequestWithUser';
 
 
 function extractErrorMessages(errors: ValidationError[]): string[] {
@@ -11,7 +12,7 @@ function extractErrorMessages(errors: ValidationError[]): string[] {
 }
 
 export const validateDto = <Dto extends object>(dtoClass: new () => Dto) => {
-  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
     const dtoInstance = plainToInstance(dtoClass, req.body);
     const errors = await validate(dtoInstance);
 
