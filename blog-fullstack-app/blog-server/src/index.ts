@@ -5,7 +5,7 @@ import { RouteConfig } from './config/routes';
 import { userRouter } from './modules/user/user.route';
 import { authRouter } from './modules/auth/auth.router';
 import { postRouter } from './modules/post/post.router';
-import { commentRouter } from './modules/comment/comment.route';
+import { commentRouter } from './modules/comment/comment.router';
 
 
 const baseUrl = `${RouteConfig.urlPrefix}/${RouteConfig.currentApiVersion}`;
