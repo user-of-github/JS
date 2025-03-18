@@ -4,6 +4,7 @@ import { IdParam } from '../../types/server/idParam';
 import type { LikeDto } from './dto/like.dto';
 import { badRequest, serverError } from '../../utils/response';
 import { prismaService } from '../prisma/prisma.service';
+import { StatusCode } from '../../config/server';
 
 class LikeController {
   public async like(req: CustomRequest<{}, {}, LikeDto>, res: Response) {
@@ -23,7 +24,7 @@ class LikeController {
         data: { postId, userId}
       });
 
-      res.send();
+      res.status(StatusCode.Created).send();
     } catch (error) {
       serverError(res, error);
     }
