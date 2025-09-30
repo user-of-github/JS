@@ -1,5 +1,5 @@
-import { toSortedWithQuickSort } from './quick_sort.ts';
-import { isSorted, numsComparator } from './shared/utils.ts';
+import { toSortedWithQuickSort } from '../quick_sort.ts';
+import { isSorted, numsComparator } from '../shared/utils.ts';
 
 function test(): void {
     const data: Array<number[]> = [

@@ -1,5 +1,5 @@
-import { sortWithSelectionSort } from './selection_sort.ts';
-import { isSorted, numsComparator } from './shared/utils.ts';
+import { sortWithSelectionSort } from '../selection_sort.ts';
+import { isSorted, numsComparator } from '../shared/utils.ts';
 
 
 function test(): void {

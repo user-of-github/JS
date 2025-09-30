@@ -1,5 +1,5 @@
-import { binarySearch } from './binary_search.ts';
-import type { ComparatorType } from './shared/types.ts';
+import { binarySearch } from '../binary_search.ts';
+import type { ComparatorType } from '../shared/types.ts';
 
 test();
 
