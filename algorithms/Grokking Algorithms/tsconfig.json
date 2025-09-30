@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "module": "ESNext",
+      "target": "ES2022",
+      "lib": ["ES2024", "ESNext", "DOM"],
+      "allowImportingTsExtensions": true,
+      "verbatimModuleSyntax": true,
+      "noEmit": true,
+    }
+  }
