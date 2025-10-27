@@ -37,3 +37,4 @@ jobs:
             --dir dist \
             --site ${{ secrets.GAME_RUNNING_BALL_NETLIFY_PROJECT_ID }} \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+            --prod

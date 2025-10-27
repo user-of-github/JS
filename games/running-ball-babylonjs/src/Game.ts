@@ -73,9 +73,6 @@ export class Game {
 
         this.initControls();
 
-        //this.ball.showBoundingBox = true;
-        //this.walls.forEach(w => w.showBoundingBox = true);
-
         this.loadCoinModel();
         void this.coinModel;
 
