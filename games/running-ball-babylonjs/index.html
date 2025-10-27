@@ -1,45 +1,43 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Running Ball (Babylon.js + TypeScript)</title>
+    <link rel="shortcut icon" href="/assets/images/football.png" type="image/x-icon" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/src/style.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Running Ball (Babylon.js + TypeScript)</title>
-  <link rel="shortcut icon" href="/assets/images/football.png" type="image/x-icon">
-</head>
+  <body>
+    <main class="app">
+      <canvas id="game-canvas" class="game-canvas"></canvas>
 
-<body>
-  <main class="app">
-    <canvas id="game-canvas" class="game-canvas"></canvas>
-
-    <div class="user-ui user-ui__top">
-      <div class="score">
-        <span class="game-score" id="game-score">0</span>
-        <img src="/assets/images/coin.png" class="coin-img" />
-      </div>
-    </div>
-
-    <div class="user-ui user-ui__bottom">
-      <button id="restart-btn" class="ui-btn">
-        <img src="/assets/images/restart.png" width="30px" />
-      </button>
-    </div>
-
-    <div class="game-over-screen" id="game-over-screen">
-      <div class="game-over-modal">
-        <span class="game-over-info">GAME OVER</span>
-        <span class="game-over-info" id="game-over-score-current">CURRENT SCORE</span>
-        <span class="game-over-info" id="game-over-score-best">BEST SCORE</span>
+      <div class="user-ui user-ui__top">
+        <div class="score">
+          <span class="game-score" id="game-score">0</span>
+          <img src="/assets/images/coin.png" class="coin-img" />
+        </div>
       </div>
 
-      <span class="tap-to-restart">Tap to restart</span>
-    </div>
-  </main>
-  <script type="module" src="/src/main.ts"></script>
-</body>
+      <div class="user-ui user-ui__bottom">
+        <button id="restart-btn" class="ui-btn">
+          <img src="/assets/images/restart.png" width="30px" />
+        </button>
+      </div>
 
+      <div class="game-over-screen" id="game-over-screen">
+        <div class="game-over-modal">
+          <span class="game-over-info">GAME OVER</span>
+          <span class="game-over-info" id="game-over-score-current">CURRENT SCORE</span>
+          <span class="game-over-info" id="game-over-score-best">BEST SCORE</span>
+        </div>
+
+        <span class="tap-to-restart">Tap to restart</span>
+      </div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

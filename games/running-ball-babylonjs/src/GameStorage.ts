@@ -3,7 +3,6 @@ export const enum StoredDataType {
   BestScore = 'BestScore'
 }
 
-
 export class GameStorage {
   private static readonly CoinsScoreKey = 'running-ball-coins';
   private static readonly CoinsBestScoreKey = 'running-ball-coins-best';
@@ -14,10 +13,7 @@ export class GameStorage {
   });
 
   public saveScore(type: StoredDataType, value: number): void {
-    window.localStorage.setItem(
-      GameStorage.Mapping[type],
-      JSON.stringify(value)
-    );
+    window.localStorage.setItem(GameStorage.Mapping[type], JSON.stringify(value));
   }
 
   public loadScore(type: StoredDataType): number {

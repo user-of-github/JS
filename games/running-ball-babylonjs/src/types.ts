@@ -11,7 +11,7 @@ export interface GameHTMLElementsRefs {
     screen: HTMLDivElement;
     currentScore: HTMLSpanElement;
     bestScore: HTMLSpanElement;
-  }
+  };
 }
 
 export const enum GameStatus {
