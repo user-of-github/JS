@@ -4,7 +4,17 @@ export interface Size3D {
   depth: number;
 }
 
-export interface GameArgs {
-  canvasRef: HTMLCanvasElement;
-  scoreTextRef: HTMLElement;
+export interface GameHTMLElementsRefs {
+  canvas: HTMLCanvasElement;
+  scoreText: HTMLElement;
+  gameOver: {
+    screen: HTMLDivElement;
+    currentScore: HTMLSpanElement;
+    bestScore: HTMLSpanElement;
+  }
+}
+
+export const enum GameStatus {
+  Playing = 'Playing',
+  GameOver = 'GameOver'
 }
