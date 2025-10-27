@@ -18,6 +18,7 @@ import {
     type BoundingBox,
     SceneLoader
 } from '@babylonjs/core';
+import '@babylonjs/loaders/glTF'
 //@ts-ignore
 import * as CANNON from 'cannon';
 import type { Size3D } from './types';
@@ -46,6 +47,7 @@ export class Game {
     private readonly platforms: Mesh[];
     private readonly walls: Mesh[];
     private readonly ball: Mesh;
+    private coinModel: Mesh;
     private readonly shadowGenerator: ShadowGenerator;
 
 
@@ -73,14 +75,14 @@ export class Game {
         //this.ball.showBoundingBox = true;
         //this.walls.forEach(w => w.showBoundingBox = true);
 
+        this.loadCoinModel();
+
         this.scene.registerBeforeRender(this.checkSphereBoxCollision.bind(this));
 
         this.engine.runRenderLoop(() => {
             this.updateCameraAndLight();
             this.scene.render();
         });
-
-        this.loadCoinModel();
     }
 
     private loadCoinModel() {
@@ -97,6 +99,11 @@ export class Game {
                 const coin = meshArray[0];
                 coin.scaling = new Vector3(0.07, 0.07, 0.07);
                 coin.position = new Vector3(2, 1, 0);
+
+                this.coinModel = coin;
+
+                this.shadowGenerator.addShadowCaster(coin);
+                coin.receiveShadows = true;
             }
         );
     }
