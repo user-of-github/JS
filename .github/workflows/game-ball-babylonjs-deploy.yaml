@@ -10,20 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Repository Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup NodeJS
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "npm"
+          node-version: 22
 
       - name: Install Netlify
         run: npm install netlify-cli -g
         working-directory: ./games/running-ball-babylonjs
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
         working-directory: ./games/running-ball-babylonjs
 
       - name: Build project
