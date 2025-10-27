@@ -36,7 +36,7 @@ export class Game {
   private static readonly SingleWallSize: Size3D = Object.freeze({
     height: Game.SinglePlatformSize.width / 3,
     depth: Game.SinglePlatformSize.width / 8,
-    width: Game.SinglePlatformSize.width / 3
+    width: (Game.SinglePlatformSize.width / 3) - 0.075
   });
   private static readonly ZeroVector = new Vector3(0, 0, 0);
   private static readonly StartSpeedOfMovingStraight = 6;
@@ -100,7 +100,7 @@ export class Game {
     this.gameStatus = GameStatus.Playing;
 
     this.scene.registerBeforeRender(() => {
-      this.checkSphereBoxCollision();
+      this.checkIfGameOver();
       this.checkCoinEarned();
     });
 
@@ -352,7 +352,11 @@ export class Game {
     return walls;
   }
 
-  private checkSphereBoxCollision(): void {
+  private checkIfGameOver(): void {
+    if (this.ball.getAbsolutePosition().y <= 0) {
+        this.gameOver();
+    }
+
     const check = (spherePos: Vector3, box: BoundingBox): boolean => {
       const min = box.minimumWorld;
       const max = box.maximumWorld;
