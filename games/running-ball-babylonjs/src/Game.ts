@@ -21,13 +21,13 @@ import {
 import '@babylonjs/loaders/glTF'
 //@ts-ignore
 import * as CANNON from 'cannon';
-import type { Size3D } from './types';
+import type { GameArgs, Size3D } from './types';
 import { notRepeatedRandomFreeSpacePositionGenerator } from './utils';
 
 
 export class Game {
     private static readonly SinglePlatformSize: Size3D = Object.freeze({ height: 0.6, depth: 6, width: 8 });
-    private static readonly SingleWallSize: Size3D = Object.freeze({ height: Game.SinglePlatformSize.width / 3, depth: Game.SinglePlatformSize.width / 6, width: Game.SinglePlatformSize.width / 3 });
+    private static readonly SingleWallSize: Size3D = Object.freeze({ height: Game.SinglePlatformSize.width / 3, depth: Game.SinglePlatformSize.width / 8, width: Game.SinglePlatformSize.width / 3 });
     private static readonly ZeroVector = new Vector3(0, 0, 0);
     private static readonly SpeedOfMovingStraight = 6;
     private static readonly SpeedOfMovingAside = 2;
@@ -47,12 +47,18 @@ export class Game {
     private readonly platforms: Mesh[];
     private readonly walls: Mesh[];
     private readonly ball: Mesh;
-    private coinModel: Mesh = {} as Mesh;
+    private readonly coins: Mesh[] = [];
     private readonly shadowGenerator: ShadowGenerator;
+    private coinScore = 0;
+    private readonly canvasRef: HTMLCanvasElement;
+    private readonly scoreTextRef: HTMLElement;
 
 
-    public constructor(private readonly canvas: HTMLCanvasElement) {
-        this.engine = new Engine(this.canvas);
+    public constructor(args: GameArgs) {
+        this.scoreTextRef = args.scoreTextRef;
+        this.canvasRef = args.canvasRef;
+
+        this.engine = new Engine(this.canvasRef);
         this.scene = this.configureScene();
         this.light = this.configureLight();
         this.camera = this.configureCamera();
@@ -72,10 +78,10 @@ export class Game {
 
         this.initControls();
 
-        this.loadCoinModel();
-        void this.coinModel;
-
-        this.scene.registerBeforeRender(this.checkSphereBoxCollision.bind(this));
+        this.scene.registerBeforeRender(() => {
+            this.checkSphereBoxCollision();
+            this.checkCoinEarned();
+        });
 
         this.engine.runRenderLoop(() => {
             this.updateCameraAndLight();
@@ -83,7 +89,7 @@ export class Game {
         });
     }
 
-    private loadCoinModel() {
+    private createCoin(position: Vector3) {
         // I see, that deprecated, but Babylon is so strange, that the fastest way to load this
         // is just to use deprecated SceneLoader sync import
         SceneLoader.ImportMesh(
@@ -95,10 +101,10 @@ export class Game {
                 console.log(m)
                 const meshArray = m as unknown as Mesh[];
                 const coin = meshArray[0];
-                coin.scaling = new Vector3(0.07, 0.07, 0.07);
-                coin.position = new Vector3(2, 1, 0);
+                coin.scaling = new Vector3(0.05, 0.05, 0.05);
+                coin.position = position;
 
-                this.coinModel = coin;
+                this.coins.push(coin);
 
                 this.shadowGenerator.addShadowCaster(coin);
                 coin.receiveShadows = true;
@@ -163,15 +169,17 @@ export class Game {
 
     private updateCameraAndLight(): void {
         this.camera.position.z = this.ball.getAbsolutePosition().z - 12;
-        this.camera.position.y = this.ball.getAbsolutePosition().y + 5;
+        this.camera.position.y = this.ball.getAbsolutePosition().y + 6;
+        //this.camera.setTarget(this.ball.getAbsolutePosition());
+
         this.light.position.z = this.ball.getAbsolutePosition().z + 10;
         this.light.position.y = this.ball.getAbsolutePosition().y + 10;
         this.light.position.z = this.ball.getAbsolutePosition().z + 10;
     }
 
     private shrinkCanvas() {
-        this.canvas.width = this.canvas.clientWidth;
-        this.canvas.height = this.canvas.clientHeight;
+        this.canvasRef.width = this.canvasRef.clientWidth;
+        this.canvasRef.height = this.canvasRef.clientHeight;
         this.engine.resize();
     }
 
@@ -200,7 +208,7 @@ export class Game {
     }
 
     private configureCamera(): Camera {
-        const camera = new FreeCamera('camera', new Vector3(-1, 5, -10), this.scene);
+        const camera = new FreeCamera('camera', new Vector3(-2, 5, -10), this.scene);
         camera.setTarget(Game.ZeroVector);
         ///camera.attachControl(this.canvas)
 
@@ -290,6 +298,14 @@ export class Game {
         const walls: Mesh[] = []
         for (let counter = 0; counter < 3; ++counter) {
             if (counter === skipPartIndex) {
+                // here probably must be coin with probability of ~70%
+                if (Math.random() < 0.6) {
+                    this.createCoin(new Vector3(
+                        counter * oneThirdOfWidth - oneThirdOfWidth,
+                        1,
+                        3 + z
+                    ))
+                }
                 continue;
             }
 
@@ -309,7 +325,7 @@ export class Game {
 
         for (let counter = 0; counter < 20; ++counter) {
             const skippingPart = notRepeatedFreeSpaceGenerator();
-            const row = this.createWallRow(counter * (Game.SingleWallSize.depth * 7) + offset, skippingPart);
+            const row = this.createWallRow(counter * (Game.SingleWallSize.depth * 10) + offset, skippingPart);
             walls.push(...row);
         }
 
@@ -342,6 +358,22 @@ export class Game {
                 if (check(ballPos, wallBounds)) {
                     this.walls[i].material = this.wallTouchedMaterial;
                 }
+            }
+        }
+    }
+    private updateScoreText() {
+        this.scoreTextRef.innerText = String(this.coinScore);
+    }
+
+    private checkCoinEarned(): void {
+        for (let i = 0; i < this.coins.length; ++i) {
+            if (this.ball.intersectsMesh(this.coins[i], true)) {
+                ++this.coinScore;
+                this.updateScoreText();
+                this.scene.removeMesh(this.coins[i]);
+                this.coins[i].dispose();
+                this.coins.splice(i, 1);
+                break;
             }
         }
     }

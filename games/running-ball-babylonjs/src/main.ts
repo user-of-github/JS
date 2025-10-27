@@ -2,9 +2,10 @@ import { Game } from './Game';
 
 
 async function main() {
-  const appCanvas = document.getElementById('game-canvas') as HTMLCanvasElement;
+  const canvasRef = document.getElementById('game-canvas') as HTMLCanvasElement;
+  const scoreTextRef = document.getElementById('game-score') as HTMLCanvasElement;
 
-  new Game(appCanvas);
+  new Game({ canvasRef, scoreTextRef });
 }
 
 

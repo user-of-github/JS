@@ -3,3 +3,8 @@ export interface Size3D {
   height: number;
   depth: number;
 }
+
+export interface GameArgs {
+  canvasRef: HTMLCanvasElement;
+  scoreTextRef: HTMLElement;
+}

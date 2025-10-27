@@ -8,6 +8,10 @@
 
 body {
   overflow-y: hidden;
+
+  font-family: "Black Ops One", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .app {
@@ -17,17 +21,40 @@ body {
 }
 
 .user-ui {
+  padding: 10px 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  z-index: 9999;
+}
+
+.user-ui__bottom {
   position: absolute;
   bottom: 25px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 30px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0 , 0, 0, 0.1);
+}
+
+.user-ui__top {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
+.coin-img {
+  width: 5vh;
+}
+
+.score {
+  display: flex;
   width: 100%;
-  max-width: 300px;
-  z-index: 9999;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 5px;
+  color: black;
+  font-size: 5vh;
 }
 
 .ui-btn {
