@@ -11,6 +11,7 @@
 - [TypeScript](https://www.typescriptlang.org/)
 - [Babylon.js](https://www.babylonjs.com/)
 - [Vite](https://vite.dev/)
+- [GitHub Actions CI](https://github.com/features/actions) with [Netlify](https://www.netlify.com/)
 
 ---
 
