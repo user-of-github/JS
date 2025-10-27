@@ -39,12 +39,12 @@ export class Game {
     width: Game.SinglePlatformSize.width / 3
   });
   private static readonly ZeroVector = new Vector3(0, 0, 0);
-  private static readonly SpeedOfMovingStraight = 6;
+  private static readonly StartSpeedOfMovingStraight = 6;
   private static readonly SpeedOfMovingAside = 2;
-  private static readonly MoveVectorStraight = new Vector3(0, 0, Game.SpeedOfMovingStraight);
   private static readonly MoveVectorLeft = new Vector3(-Game.SpeedOfMovingAside, 0, 0);
   private static readonly MoveVectorRight = new Vector3(Game.SpeedOfMovingAside, 0, 0);
   private static readonly BallRadius = 0.75;
+  private readonly MoveVectorStraight = new Vector3(0, 0, Game.StartSpeedOfMovingStraight);
 
   private readonly platformMaterial: Material;
   private readonly wallMaterial: Material;
@@ -186,7 +186,7 @@ export class Game {
 
   private configureLight(): PointLight {
     const light = new PointLight('light', new Vector3(10, 10, 10), this.scene);
-    light.intensity = 0.3;
+    light.intensity = 0.4;
     return light;
   }
     
@@ -336,7 +336,7 @@ export class Game {
 
   private createAllWalls(): Mesh[] {
     const notRepeatedFreeSpaceGenerator = notRepeatedRandomFreeSpacePositionGenerator(3);
-    const offset = 10;
+    const offset = 7;
     const rowsCount = 20;
 
     const walls = new Array<Mesh>(rowsCount);
@@ -383,7 +383,8 @@ export class Game {
   }
 
   private stopBallMovingAside(): void {
-    this.ball.physicsImpostor?.setLinearVelocity(Game.MoveVectorStraight);
+    this.MoveVectorStraight.z += this.MoveVectorStraight.z * 0.01;
+    this.ball.physicsImpostor?.setLinearVelocity(this.MoveVectorStraight);
     this.ball.physicsImpostor?.setAngularVelocity(Game.ZeroVector);
   }
 
@@ -434,6 +435,6 @@ export class Game {
     this.storage.saveScore(StoredDataType.CurrentScore, 0);
 
     this.elementsRefs.gameOver.currentScore.innerText = `CURRENT SCORE: ${this.coinScore}`;
-    this.elementsRefs.gameOver.bestScore.innerText = `BEST SCORE:dad ${this.bestScore}`;
+    this.elementsRefs.gameOver.bestScore.innerText = `BEST SCORE: ${this.bestScore}`;
   }
 }
