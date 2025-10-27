@@ -22,11 +22,7 @@ jobs:
         working-directory: ./games/running-ball-babylonjs
 
       - name: Install Dependencies
-        run: npm install
-        working-directory: ./games/running-ball-babylonjs
-
-      - name: Build project
-        run: npm run build
+        run: npm ci
         working-directory: ./games/running-ball-babylonjs
 
       - name: Deploy to Netlify
@@ -36,5 +32,5 @@ jobs:
           netlify deploy \
             --dir dist \
             --site ${{ secrets.GAME_RUNNING_BALL_NETLIFY_PROJECT_ID }} \
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
             --prod
