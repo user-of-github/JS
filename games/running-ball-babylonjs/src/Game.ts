@@ -74,6 +74,8 @@ export class Game {
     this.camera = this.configureCamera();
     this.sky = this.configureSky();
     [this.water, this.ground] = this.configureGround();
+    void this.water;
+    void this.ground;
     this.shadowGenerator = new ShadowGenerator(1024, this.light);
 
     [this.wallMaterial, this.wallTouchedMaterial] = this.createWallMaterial();
