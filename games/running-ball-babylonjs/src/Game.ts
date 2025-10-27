@@ -13,8 +13,10 @@ import {
     PhysicsImpostor,
     CannonJSPlugin,
     FreeCamera,
-    Material,
-    Color3
+    type Material,
+    Color3,
+    type BoundingBox,
+    SceneLoader
 } from '@babylonjs/core';
 //@ts-ignore
 import * as CANNON from 'cannon';
@@ -24,13 +26,14 @@ import { notRepeatedRandomFreeSpacePositionGenerator } from './utils';
 
 export class Game {
     private static readonly SinglePlatformSize: Size3D = Object.freeze({ height: 0.6, depth: 6, width: 8 });
-    private static readonly SingleWallSize: Size3D = Object.freeze({ height: Game.SinglePlatformSize.width / 6, depth: Game.SinglePlatformSize.width / 6, width: Game.SinglePlatformSize.width / 3 });
+    private static readonly SingleWallSize: Size3D = Object.freeze({ height: Game.SinglePlatformSize.width / 3, depth: Game.SinglePlatformSize.width / 6, width: Game.SinglePlatformSize.width / 3 });
     private static readonly ZeroVector = new Vector3(0, 0, 0);
     private static readonly SpeedOfMovingStraight = 6;
     private static readonly SpeedOfMovingAside = 2;
     private static readonly MoveVectorStraight = new Vector3(0, 0, Game.SpeedOfMovingStraight);
     private static readonly MoveVectorLeft = new Vector3(-Game.SpeedOfMovingAside, 0, 0);
     private static readonly MoveVectorRight = new Vector3(Game.SpeedOfMovingAside, 0, 0);
+    private static readonly BallRadius = 0.75;
 
     private readonly platformMaterial: Material;
     private readonly wallMaterial: Material;
@@ -57,6 +60,7 @@ export class Game {
         this.platformMaterial = this.createPlatformMaterial();
 
         this.platforms = this.configurePlatform();
+        void this.platforms;
         this.ball = this.configureBall();
 
         this.shrinkCanvas();
@@ -66,18 +70,35 @@ export class Game {
 
         this.initControls();
 
-        this.scene.registerBeforeRender(() => {
-            for (let i = 0; i < this.walls.length; ++i) {
-                if (this.walls[i] && this.ball?.intersectsMesh(this.walls[i], false)) {
-                    this.walls[i].material = this.wallTouchedMaterial;
-                }
-            }
-        });
+        //this.ball.showBoundingBox = true;
+        //this.walls.forEach(w => w.showBoundingBox = true);
+
+        this.scene.registerBeforeRender(this.checkSphereBoxCollision.bind(this));
 
         this.engine.runRenderLoop(() => {
             this.updateCameraAndLight();
             this.scene.render();
         });
+
+        this.loadCoinModel();
+    }
+
+    private loadCoinModel() {
+        // I see, that deprecated, but Babylon is so strange, that the fastest way to load this
+        // is just to use deprecated SceneLoader sync import
+        SceneLoader.ImportMesh(
+            null,
+            'assets/models/',
+            'scene.gltf',
+            this.scene,
+            (m) => {
+                console.log(m)
+                const meshArray = m as unknown as Mesh[];
+                const coin = meshArray[0];
+                coin.scaling = new Vector3(0.07, 0.07, 0.07);
+                coin.position = new Vector3(2, 1, 0);
+            }
+        );
     }
 
     private createPlatformMaterial(): Material {
@@ -88,7 +109,8 @@ export class Game {
 
     private createWallMaterial(): [Material, Material] {
         const wallMaterial = new StandardMaterial('wall-material', this.scene);
-        wallMaterial.emissiveColor = new Color3(0.5, 0.5, 0.5);
+        // wallMaterial.emissiveColor = new Color3(0.5, 0.5, 0.5);
+        wallMaterial.emissiveTexture = new Texture('assets/textures/brick.jpg');
 
         const wallTouchedMaterial = new StandardMaterial('wall-material-touched', this.scene);
         wallTouchedMaterial.emissiveColor = new Color3(0.5, 0, 0);
@@ -157,6 +179,12 @@ export class Game {
             new CannonJSPlugin(true, 10, CANNON)
         );
 
+        scene.createDefaultEnvironment({
+            createSkybox: false,
+            cameraContrast: 2.5,
+            cameraExposure: 1
+        });
+
         return scene;
     }
 
@@ -167,7 +195,7 @@ export class Game {
     }
 
     private configureCamera(): Camera {
-        const camera = new FreeCamera('camera', new Vector3(-2, 5, -10), this.scene);
+        const camera = new FreeCamera('camera', new Vector3(-1, 5, -10), this.scene);
         camera.setTarget(Game.ZeroVector);
         ///camera.attachControl(this.canvas)
 
@@ -209,7 +237,7 @@ export class Game {
 
     private configureBall(): Mesh {
         const ball = MeshBuilder.CreateSphere('ball', {
-            diameter: 1.5
+            diameter: Game.BallRadius * 2
         }, this.scene);
 
         ball.position.y = 7.5;
@@ -281,5 +309,35 @@ export class Game {
         }
 
         return walls;
+    }
+
+    private checkSphereBoxCollision(): void {
+        const check = (spherePos: Vector3, box: BoundingBox): boolean => {
+            const min = box.minimumWorld;
+            const max = box.maximumWorld;
+
+            const closestX = Math.max(min.x, Math.min(spherePos.x, max.x));
+            const closestY = Math.max(min.y, Math.min(spherePos.y, max.y));
+            const closestZ = Math.max(min.z, Math.min(spherePos.z, max.z));
+
+            const distance = Vector3.Distance(
+                spherePos,
+                new Vector3(closestX, closestY, closestZ)
+            );
+
+            return distance < Game.BallRadius;
+        };
+
+
+        for (let i = 0; i < this.walls.length; ++i) {
+            if (this.walls[i] && this.ball) {
+                const ballPos = this.ball.position;
+                const wallBounds = this.walls[i].getBoundingInfo().boundingBox;
+
+                if (check(ballPos, wallBounds)) {
+                    this.walls[i].material = this.wallTouchedMaterial;
+                }
+            }
+        }
     }
 }
