@@ -5,4 +5,7 @@ ___
 ## Technologies:  
 - [TypeScript](https://www.typescriptlang.org/)  
 - [Babylon.js](https://www.babylonjs.com/)
-- [Vite](https://vite.dev/)
+- [Vite](https://vite.dev/)  
+___  
+
+![Demo](./demo/demo.jpg)
