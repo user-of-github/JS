@@ -1,5 +1,6 @@
 import {
     Engine,
+    Mesh,
     Scene,
     type Camera,
     Vector3,
@@ -7,7 +8,6 @@ import {
     PointLight,
     MeshBuilder,
     StandardMaterial,
-    type Mesh,
     Texture,
     ShadowGenerator,
     PhysicsImpostor,
@@ -47,7 +47,7 @@ export class Game {
     private readonly platforms: Mesh[];
     private readonly walls: Mesh[];
     private readonly ball: Mesh;
-    private coinModel: Mesh;
+    private coinModel: Mesh = {} as Mesh;
     private readonly shadowGenerator: ShadowGenerator;
 
 
@@ -76,6 +76,7 @@ export class Game {
         //this.walls.forEach(w => w.showBoundingBox = true);
 
         this.loadCoinModel();
+        void this.coinModel;
 
         this.scene.registerBeforeRender(this.checkSphereBoxCollision.bind(this));
 
