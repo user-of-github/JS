@@ -12,5 +12,5 @@ export const notRepeatedRandomFreeSpacePositionGenerator = (freeSpace: number): 
     lastEmptySpaceIndex = randomFreePlaceIndexInRow;
 
     return randomFreePlaceIndexInRow;
-  }
-}
+  };
+};

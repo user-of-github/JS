@@ -9,7 +9,7 @@
 body {
   overflow-y: hidden;
 
-  font-family: "Black Ops One", system-ui;
+  font-family: 'Black Ops One', system-ui;
   font-weight: 400;
   font-style: normal;
 }
@@ -77,7 +77,6 @@ body {
     transform: scale(0.95);
   }
 }
-
 
 .game-canvas {
   width: 100%;

@@ -1,32 +1,31 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Running Ball (Babylon.js)</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Running Ball (Babylon.js)</title>
-</head>
-
-<body>
-  <main class="app">
-    <canvas id="game-canvas" class="game-canvas"></canvas>
-    <div class="user-ui user-ui__top">
-      <div class="score">
-        <span class="game-score" id="game-score">0</span>
-        <img src="/assets/images/coin.png" class="coin-img" />
+  <body>
+    <main class="app">
+      <canvas id="game-canvas" class="game-canvas"></canvas>
+      <div class="user-ui user-ui__top">
+        <div class="score">
+          <span class="game-score" id="game-score">0</span>
+          <img src="/assets/images/coin.png" class="coin-img" />
+        </div>
       </div>
-    </div>
 
-    <div class="user-ui user-ui__bottom">
-      <button id="restart-btn" class="ui-btn">
-        <img src="/assets/images/restart.png" width="30px" />
-      </button>
-    </div>
+      <div class="user-ui user-ui__bottom">
+        <button id="restart-btn" class="ui-btn">
+          <img src="/assets/images/restart.png" width="30px" />
+        </button>
+      </div>
+    </main>
     <script type="module" src="/src/main.ts"></script>
-</body>
-
+  </body>
 </html>

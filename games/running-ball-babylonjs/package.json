@@ -10,10 +10,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "npx prettier . --write"
   },
   "devDependencies": {
     "globals": "^16.4.0",
+    "prettier": "3.6.2",
     "typescript": "~5.9.3",
     "vite": "^7.1.7"
   },
