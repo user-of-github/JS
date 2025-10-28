@@ -5,6 +5,8 @@ function main() {
   const args: GameHTMLElementsRefs = {
     canvas: document.getElementById('game-canvas') as HTMLCanvasElement,
     scoreText: document.getElementById('game-score') as HTMLCanvasElement,
+    userIIElements: document.getElementsByClassName('user-ui'),
+    restartButtons: document.getElementsByClassName('restart-btn'),
     gameOver: {
       screen: document.getElementById('game-over-screen') as HTMLDivElement,
       currentScore: document.getElementById('game-over-score-current') as HTMLDivElement,
@@ -16,4 +18,4 @@ function main() {
   game.init();
 }
 
-main();
+window.onload = main;

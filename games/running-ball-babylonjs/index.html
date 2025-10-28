@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/src/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>Running Ball (Babylon.js + TypeScript)</title>
     <link rel="shortcut icon" href="/assets/images/football.png" type="image/x-icon" />
   </head>
@@ -23,7 +23,7 @@
       </div>
 
       <div class="user-ui user-ui__bottom">
-        <button id="restart-btn" class="ui-btn">
+        <button id="restart-btn" class="restart-btn ui-btn">
           <img src="/assets/images/restart.png" width="30px" />
         </button>
       </div>
@@ -33,9 +33,11 @@
           <span class="game-over-info">GAME OVER</span>
           <span class="game-over-info" id="game-over-score-current">CURRENT SCORE</span>
           <span class="game-over-info" id="game-over-score-best">BEST SCORE</span>
-        </div>
 
-        <span class="tap-to-restart">Tap to restart</span>
+          <button id="restart-btn" class="restart-btn ui-btn">
+            <img src="/assets/images/restart.png" width="30px" />
+          </button>
+        </div>
       </div>
     </main>
     <script type="module" src="/src/main.ts"></script>

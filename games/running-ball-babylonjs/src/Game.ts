@@ -20,12 +20,13 @@ import {
   CubeTexture
 } from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
-import { WaterMaterial } from '@babylonjs/materials'
+import { WaterMaterial } from '@babylonjs/materials';
 //@ts-ignore
 import * as CANNON from 'cannon';
 import { GameStatus, type GameHTMLElementsRefs, type Size3D } from './types';
 import { notRepeatedRandomFreeSpacePositionGenerator } from './utils';
 import { GameStorage, StoredDataType } from './GameStorage';
+import { GameUiElementsManager } from './UiManager';
 
 export class Game {
   private static readonly SinglePlatformSize: Size3D = Object.freeze({
@@ -36,7 +37,7 @@ export class Game {
   private static readonly SingleWallSize: Size3D = Object.freeze({
     height: Game.SinglePlatformSize.width / 3,
     depth: Game.SinglePlatformSize.width / 8,
-    width: (Game.SinglePlatformSize.width / 3) - 0.075
+    width: Game.SinglePlatformSize.width / 3 - 0.075
   });
   private static readonly ZeroVector = new Vector3(0, 0, 0);
   private static readonly StartSpeedOfMovingStraight = 6;
@@ -57,18 +58,21 @@ export class Game {
   private readonly ground: Mesh;
   private readonly camera: Camera;
   private readonly light: PointLight;
-  private readonly platforms: Mesh[];
-  private readonly walls: Mesh[];
-  private readonly ball: Mesh;
-  private readonly coins: Mesh[] = [];
+  private platforms: Mesh[] = [];
+  private walls: Mesh[] = [];
+  private ball: Mesh = {} as Mesh;
+  private coins: Mesh[] = [];
   private readonly shadowGenerator: ShadowGenerator;
   private readonly storage = new GameStorage();
+  private readonly uiElementsManager: GameUiElementsManager;
   private coinScore: number = 0;
   private bestScore: number = 0;
   private gameStatus = GameStatus.Playing;
 
   public constructor(private readonly elementsRefs: GameHTMLElementsRefs) {
-    this.engine = new Engine(this.elementsRefs.canvas);
+    this.uiElementsManager = new GameUiElementsManager(elementsRefs);
+
+    this.engine = new Engine(elementsRefs.canvas);
     this.scene = this.configureScene();
     this.light = this.configureLight();
     this.camera = this.configureCamera();
@@ -80,22 +84,19 @@ export class Game {
 
     [this.wallMaterial, this.wallTouchedMaterial] = this.createWallMaterial();
     this.platformMaterial = this.createPlatformMaterial();
-
-    this.platforms = this.configurePlatform();
-    void this.platforms;
-    this.ball = this.configureBall();
-    this.walls = this.createAllWalls();
   }
 
   public init(): void {
-    this.shrinkCanvas();
-    window.addEventListener('resize', this.shrinkCanvas.bind(this));
+    this.onWindowResize();
+    window.addEventListener('resize', this.onWindowResize.bind(this));
 
     this.initControls();
 
+    this.createGameObjects();
+
     this.coinScore = this.storage.loadScore(StoredDataType.CurrentScore);
     this.bestScore = this.storage.loadScore(StoredDataType.BestScore);
-    this.updateScoreText();
+    this.uiElementsManager.updateScore(this.coinScore);
 
     this.gameStatus = GameStatus.Playing;
 
@@ -108,6 +109,12 @@ export class Game {
       this.updateCameraAndLight();
       this.scene.render();
     });
+  }
+
+  private createGameObjects(): void {
+    this.platforms = this.configurePlatform();
+    this.ball = this.configureBall();
+    this.walls = this.createAllWalls();
   }
 
   private createCoin(position: Vector3) {
@@ -144,16 +151,25 @@ export class Game {
   }
 
   private initControls() {
-    window.addEventListener('keydown', (event) => {
-      if (this.gameStatus !== GameStatus.Playing) return;
+    for (const element of this.elementsRefs.restartButtons) {
+      (element as HTMLButtonElement).onclick = this.restart.bind(this);
+    }
 
-      switch (true) {
-        case event.key === 'ArrowLeft' || event.key.toLowerCase() === 'a':
-          this.pushBall(Game.MoveVectorLeft);
-          break;
-        case event.key === 'ArrowRight' || event.key.toLocaleLowerCase() === 'd':
-          this.pushBall(Game.MoveVectorRight);
-          break;
+    window.addEventListener('keydown', (event) => {
+      if (this.gameStatus === GameStatus.GameOver && event.key === 'Enter') {
+        this.restart();
+        return;
+      }
+
+      if (this.ball.position.y < 2) {
+        switch (true) {
+          case event.key === 'ArrowLeft' || event.key.toLowerCase() === 'a':
+            this.pushBall(Game.MoveVectorLeft);
+            break;
+          case event.key === 'ArrowRight' || event.key.toLocaleLowerCase() === 'd':
+            this.pushBall(Game.MoveVectorRight);
+            break;
+        }
       }
     });
 
@@ -191,7 +207,6 @@ export class Game {
     light.intensity = 0.4;
     return light;
   }
-    
 
   private configureCamera(): Camera {
     const camera = new FreeCamera('camera', new Vector3(-2, 5, -10), this.scene);
@@ -267,7 +282,10 @@ export class Game {
   private configureSky() {
     const skyBox = MeshBuilder.CreateBox('skyBox', { size: 1000 }, this.scene);
     const skyBoxMaterial = new StandardMaterial('skyBox', this.scene);
-    skyBoxMaterial.reflectionTexture = new CubeTexture('/assets/environments/TropicalSunnyDay/TropicalSunnyDay', this.scene);
+    skyBoxMaterial.reflectionTexture = new CubeTexture(
+      '/assets/environments/TropicalSunnyDay/TropicalSunnyDay',
+      this.scene
+    );
     skyBoxMaterial.reflectionTexture.coordinatesMode = Texture.SKYBOX_MODE;
     skyBoxMaterial.backFaceCulling = false;
     skyBox.material = skyBoxMaterial;
@@ -275,14 +293,14 @@ export class Game {
   }
 
   private configureGround(): [Mesh, Mesh] {
-    const water = MeshBuilder.CreateGround('water', { width: 512, height: 512}, this.scene);
+    const water = MeshBuilder.CreateGround('water', { width: 512, height: 512 }, this.scene);
     water.position = new Vector3(0, -5, 0);
     const waterMaterial = new WaterMaterial('water', this.scene);
     waterMaterial.bumpTexture = new Texture('/assets/environments/waterbump.png', this.scene);
     waterMaterial.addToRenderList(this.sky);
     water.material = waterMaterial;
 
-    const ground = MeshBuilder.CreateGround('ground', { width: 512, height: 512}, this.scene);
+    const ground = MeshBuilder.CreateGround('ground', { width: 512, height: 512 }, this.scene);
     ground.position = new Vector3(0, -10, 0);
     const groundMaterial = new StandardMaterial('ground', this.scene);
     groundMaterial.emissiveTexture = new Texture('/assets/environments/ground.jpg', this.scene);
@@ -291,8 +309,7 @@ export class Game {
     waterMaterial.addToRenderList(this.sky);
     waterMaterial.addToRenderList(ground);
 
-
-     ground.physicsImpostor = new PhysicsImpostor(ground, PhysicsImpostor.BoxImpostor, { mass: 0 }, this.scene);
+    ground.physicsImpostor = new PhysicsImpostor(ground, PhysicsImpostor.BoxImpostor, { mass: 0 }, this.scene);
 
     return [water, ground];
   }
@@ -354,7 +371,7 @@ export class Game {
 
   private checkIfGameOver(): void {
     if (this.ball.getAbsolutePosition().y <= 0) {
-        this.gameOver();
+      this.gameOver();
     }
 
     const check = (spherePos: Vector3, box: BoundingBox): boolean => {
@@ -404,21 +421,16 @@ export class Game {
     this.light.position.z = this.ball.getAbsolutePosition().z + 10;
   }
 
-  private shrinkCanvas() {
-    this.elementsRefs.canvas.width = this.elementsRefs.canvas.clientWidth;
-    this.elementsRefs.canvas.height = this.elementsRefs.canvas.clientHeight;
+  private onWindowResize() {
+    this.uiElementsManager.shrinkCanvas();
     this.engine.resize();
-  }
-
-  private updateScoreText() {
-    this.elementsRefs.scoreText.innerText = String(this.coinScore);
   }
 
   private checkCoinEarned(): void {
     for (let i = 0; i < this.coins.length; ++i) {
       if (this.ball.intersectsMesh(this.coins[i], true)) {
         ++this.coinScore;
-        this.updateScoreText();
+        this.uiElementsManager.updateScore(this.coinScore);
         this.scene.removeMesh(this.coins[i]);
         this.coins[i].dispose();
         this.coins.splice(i, 1);
@@ -430,7 +442,7 @@ export class Game {
 
   private gameOver(): void {
     this.gameStatus = GameStatus.GameOver;
-    this.elementsRefs.gameOver.screen.style.display = 'flex';
+
     const bestScore = this.storage.loadScore(StoredDataType.BestScore);
 
     if (this.coinScore > bestScore) {
@@ -440,7 +452,39 @@ export class Game {
 
     this.storage.saveScore(StoredDataType.CurrentScore, 0);
 
-    this.elementsRefs.gameOver.currentScore.innerText = `CURRENT SCORE: ${this.coinScore}`;
-    this.elementsRefs.gameOver.bestScore.innerText = `BEST SCORE: ${this.bestScore}`;
+    this.uiElementsManager.hideUiElements();
+    this.uiElementsManager.showGameOverScreen(this.coinScore, this.bestScore);
+  }
+
+  private resetGameObjects() {
+    this.platforms.forEach((platform) => {
+      this.scene.removeMesh(platform);
+      platform.dispose();
+    });
+
+    this.coins.forEach((coin) => {
+      this.scene.removeMesh(coin);
+      coin.dispose();
+    });
+
+    this.walls.forEach((wall) => {
+      this.scene.removeMesh(wall);
+      wall.dispose();
+    });
+
+    this.ball.dispose();
+    this.scene.removeMesh(this.ball);
+
+    this.coinScore = 0;
+    this.uiElementsManager.updateScore(this.coinScore);
+    this.storage.saveScore(StoredDataType.CurrentScore, 0);
+  }
+
+  private restart() {
+    this.gameStatus = GameStatus.Playing;
+    this.resetGameObjects();
+    this.createGameObjects();
+    this.uiElementsManager.hideGameOverScreen();
+    this.uiElementsManager.showUiElements();
   }
 }

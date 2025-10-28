@@ -7,6 +7,8 @@ export interface Size3D {
 export interface GameHTMLElementsRefs {
   canvas: HTMLCanvasElement;
   scoreText: HTMLElement;
+  userIIElements: HTMLCollection;
+  restartButtons: HTMLCollection;
   gameOver: {
     screen: HTMLDivElement;
     currentScore: HTMLSpanElement;
