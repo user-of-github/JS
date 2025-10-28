@@ -9,7 +9,7 @@ import { isMobileDevice } from './utils';
 
 export class Game {
   private readonly movingVectorStraight = new Vector3(0, 0, GameConstants.StartSpeedOfMovingStraight);
-
+  private readonly isMobile = isMobileDevice();
   private readonly sceneService: GameSceneService;
   private readonly storageService: GameStorageService;
   private readonly uiElementsService: GameUiElementsService;
@@ -64,7 +64,7 @@ export class Game {
         return;
       }
 
-      if (this.sceneService.ball.position.y < 2) {
+      if (this.sceneService.ball.position.y > 2) return;
         switch (true) {
           case event.key === 'ArrowLeft' || event.key.toLowerCase() === 'a':
             this.pushBall(GameConstants.MoveVectorLeft);
@@ -73,11 +73,12 @@ export class Game {
             this.pushBall(GameConstants.MoveVectorRight);
             break;
         }
-      }
     });
 
     window.addEventListener('keyup', event => {
       if (this.gameStatus !== GameStatus.Playing) return;
+
+      if (this.sceneService.ball.position.y > 2) return;
 
       switch (true) {
         case event.key === 'ArrowLeft' || event.key.toLowerCase() === 'a':
@@ -87,34 +88,35 @@ export class Game {
           this.stopBallMovingAside();
           break;
       }
+
+      this.speedUpBall();
     });
   }
 
   private initControlsMobile() {
-    console.log('MOBILE');
-
-
     this.elementsRefs.canvas.addEventListener('touchstart', event => {
       if (this.gameStatus !== GameStatus.Playing) return;
       if (!(event.changedTouches[0].screenY > 0.3 * window.screen.height)) return;
+      if (this.sceneService.ball.position.y > 2) return;
 
       this.stopBallMovingAside();
     });
 
     this.elementsRefs.canvas.addEventListener('touchend', event => {
       if (this.gameStatus !== GameStatus.Playing) return;
+      if (this.sceneService.ball.position.y > 2) return;
       if (!(event.changedTouches[0].screenY > 0.3 * window.screen.height)) return;
 
       const x = event.changedTouches[0].clientX;
       const screenWidth = this.elementsRefs.canvas.clientWidth;
 
       if (x < screenWidth / 2) {
-        console.log('left')
         this.sceneService.ball.translate(GameConstants.TranslateVectorLeft, GameConstants.TranslateVectorDistance);
       } else {
-        console.log('right')
         this.sceneService.ball.translate(GameConstants.TranslateVectorRight, GameConstants.TranslateVectorDistance);
       }
+
+      this.speedUpBall();
     });
   }
 
@@ -158,9 +160,16 @@ export class Game {
   }
 
   private stopBallMovingAside(): void {
-    this.movingVectorStraight.z += this.movingVectorStraight.z * 0.01;
     this.sceneService.ball.physicsImpostor?.setLinearVelocity(this.movingVectorStraight);
     this.sceneService.ball.physicsImpostor?.setAngularVelocity(GameConstants.ZeroVector);
+  }
+
+  private speedUpBall(): void {
+    if (this.isMobile) {
+        this.movingVectorStraight.z += this.movingVectorStraight.z * 0.03;
+    } else {
+      this.movingVectorStraight.z += this.movingVectorStraight.z * 0.015;
+    }
   }
 
   private onWindowResize() {

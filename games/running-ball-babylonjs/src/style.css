@@ -43,6 +43,17 @@ body {
   right: 25px;
 }
 
+@media (max-width: 600px) {
+  .user-ui {
+    width: fit-content;
+  }
+
+  .user-ui__bottom {
+    left: 25px;
+    transform: translateX(0);
+  }
+}
+
 .coin-img {
   width: 5vh;
 }

@@ -17,4 +17,5 @@ __Attention__: Adapted for desktop and mobile devices. On desktop use arrows or 
 
 ---
 
-![Demo](./demo/demo.jpg)
+![Demo](./demo/demo.jpg)  
+![Demo](./demo/demo2.jpg)  

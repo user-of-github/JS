@@ -27,21 +27,22 @@ import { GameConstants } from '../constants';
 import { isMobileDevice, notRepeatedRandomFreeSpacePositionGenerator } from '../utils';
 
 export class GameSceneService {
-  public readonly platformMaterial: Material;
-  public readonly wallMaterial: Material;
+  private readonly platformMaterial: Material;
+  private readonly wallMaterial: Material;
   public readonly wallTouchedMaterial: Material;
-  public readonly ballMaterial: Material;
+  private readonly ballMaterial: Material;
 
   private readonly engine: Engine;
   private readonly scene: Scene;
   private readonly sky: Mesh;
   private readonly water: Mesh;
   private readonly ground: Mesh;
-  public readonly camera: Camera;
-  public readonly light: PointLight;
-  public readonly shadowGenerator: ShadowGenerator;
+  private readonly camera: Camera;
+  private readonly light: PointLight;
+  private readonly shadowGenerator: ShadowGenerator;
 
   private readonly isMobile = isMobileDevice();
+
 
   private platforms: Mesh[] = [];
   private _walls: Mesh[] = [];
@@ -49,7 +50,9 @@ export class GameSceneService {
   private _coins: Mesh[] = [];
 
   public constructor(canvasRef: HTMLCanvasElement) {
-    this.engine = new Engine(canvasRef);
+    this.engine = new Engine(canvasRef, true, { antialias: true});
+    this.engine.setHardwareScalingLevel(1 / window.devicePixelRatio);
+    
     this.scene = this.configureScene();
     this.light = this.configureLight();
     this.camera = this.configureCamera();
