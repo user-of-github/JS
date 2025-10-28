@@ -15,5 +15,8 @@ export const GameConstants = Object.freeze({
   StartSpeedOfMovingStraight: 6,
   MoveVectorLeft: new Vector3(-2, 0, 0),
   MoveVectorRight: new Vector3(2, 0, 0),
+  TranslateVectorLeft: new Vector3(-1, 0, 0),
+  TranslateVectorRight: new Vector3(1, 0, 0),
+  TranslateVectorDistance: 2.6666, // SinglePlatformSize.width / 3
   BallRadius: 0.75
 });

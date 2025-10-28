@@ -14,3 +14,7 @@ export const notRepeatedRandomFreeSpacePositionGenerator = (freeSpace: number): 
     return randomFreePlaceIndexInRow;
   };
 };
+
+export const isMobileDevice = (): boolean => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}

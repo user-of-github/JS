@@ -16,14 +16,15 @@ import {
   Texture,
   type Material,
   Color3,
-  SceneLoader
+  SceneLoader,
+  ArcRotateCamera
 } from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
 //@ts-ignore
 import * as CANNON from 'cannon';
 import { WaterMaterial } from '@babylonjs/materials';
 import { GameConstants } from '../constants';
-import { notRepeatedRandomFreeSpacePositionGenerator } from '../utils';
+import { isMobileDevice, notRepeatedRandomFreeSpacePositionGenerator } from '../utils';
 
 export class GameSceneService {
   public readonly platformMaterial: Material;
@@ -39,6 +40,8 @@ export class GameSceneService {
   public readonly camera: Camera;
   public readonly light: PointLight;
   public readonly shadowGenerator: ShadowGenerator;
+
+  private readonly isMobile = isMobileDevice();
 
   private platforms: Mesh[] = [];
   private _walls: Mesh[] = [];
@@ -134,19 +137,35 @@ export class GameSceneService {
   }
 
   private configureCamera(): Camera {
-    const camera = new FreeCamera('camera', new Vector3(-2, 5, -10), this.scene);
-    camera.setTarget(GameConstants.ZeroVector);
+    let camera: Camera;
+
+    if (this.isMobile) {
+      camera = new ArcRotateCamera("arcCamera", Math.PI / 4, Math.PI / 3, 9, new Vector3(0, 0, 6), this.scene);
+      camera.position = new Vector3(0, 7, -15)
+    } else {
+      camera = new FreeCamera('camera', new Vector3(-2, 5, -10), this.scene);
+      (camera as FreeCamera).setTarget(GameConstants.ZeroVector);
+    }
 
     return camera;
   }
 
   private updateCameraAndLight(): void {
-    this.camera.position.z = this._ball.getAbsolutePosition().z - 12;
-    this.camera.position.y = this._ball.getAbsolutePosition().y + 6;
+    const ballPosition = this._ball.getAbsolutePosition();
 
-    this.light.position.z = this._ball.getAbsolutePosition().z + 10;
-    this.light.position.y = this._ball.getAbsolutePosition().y + 10;
-    this.light.position.z = this._ball.getAbsolutePosition().z + 10;
+    if (this.isMobile) {
+      (this.camera as ArcRotateCamera).target.z = ballPosition.z + 5;
+      (this.camera as ArcRotateCamera).target.y = ballPosition.y;
+      this.camera.position.z = ballPosition.z - 20;
+      this.camera.position.y = ballPosition.y + 7;
+    } else {
+      this.camera.position.z = this._ball.getAbsolutePosition().z - 12;
+      this.camera.position.y = this._ball.getAbsolutePosition().y + 6;
+    }
+
+    this.light.position.z = ballPosition.z + 10;
+    this.light.position.y = ballPosition.y + 10;
+    this.light.position.z = ballPosition.z + 10;
   }
 
   private configureSky() {

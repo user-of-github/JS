@@ -5,6 +5,7 @@ import { GameStorageService, StoredDataType } from './game-services/storage.serv
 import { GameUiElementsService } from './game-services/ui-elements.service';
 import { GameConstants } from './constants';
 import { GameSceneService } from './game-services/scene.service';
+import { isMobileDevice } from './utils';
 
 export class Game {
   private readonly movingVectorStraight = new Vector3(0, 0, GameConstants.StartSpeedOfMovingStraight);
@@ -49,7 +50,15 @@ export class Game {
       (element as HTMLButtonElement).onclick = this.restart.bind(this);
     }
 
-    window.addEventListener('keydown', (event) => {
+    if (isMobileDevice()) {
+        this.initControlsMobile();
+    } else {
+        this.initControlsDesktop();
+    }
+  }
+
+  private initControlsDesktop() {
+    window.addEventListener('keydown', event => {
       if (this.gameStatus === GameStatus.GameOver && event.key === 'Enter') {
         this.restart();
         return;
@@ -67,7 +76,7 @@ export class Game {
       }
     });
 
-    window.addEventListener('keyup', (event) => {
+    window.addEventListener('keyup', event => {
       if (this.gameStatus !== GameStatus.Playing) return;
 
       switch (true) {
@@ -77,6 +86,34 @@ export class Game {
         case event.key === 'ArrowRight' || event.key.toLocaleLowerCase() === 'd':
           this.stopBallMovingAside();
           break;
+      }
+    });
+  }
+
+  private initControlsMobile() {
+    console.log('MOBILE');
+
+
+    this.elementsRefs.canvas.addEventListener('touchstart', event => {
+      if (this.gameStatus !== GameStatus.Playing) return;
+      if (!(event.changedTouches[0].screenY > 0.3 * window.screen.height)) return;
+
+      this.stopBallMovingAside();
+    });
+
+    this.elementsRefs.canvas.addEventListener('touchend', event => {
+      if (this.gameStatus !== GameStatus.Playing) return;
+      if (!(event.changedTouches[0].screenY > 0.3 * window.screen.height)) return;
+
+      const x = event.changedTouches[0].clientX;
+      const screenWidth = this.elementsRefs.canvas.clientWidth;
+
+      if (x < screenWidth / 2) {
+        console.log('left')
+        this.sceneService.ball.translate(GameConstants.TranslateVectorLeft, GameConstants.TranslateVectorDistance);
+      } else {
+        console.log('right')
+        this.sceneService.ball.translate(GameConstants.TranslateVectorRight, GameConstants.TranslateVectorDistance);
       }
     });
   }
