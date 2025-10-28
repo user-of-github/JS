@@ -1,0 +1,176 @@
+import { Vector3, type BoundingBox } from '@babylonjs/core';
+import '@babylonjs/loaders/glTF';
+
+import { GameStatus, type GameHTMLElementsRefs } from './types';
+import { GameStorageService, StoredDataType } from './game-services/storage.service';
+import { GameUiElementsService } from './game-services/ui-manager.service.';
+import { GameConstants } from './constants';
+import { GameSceneService } from './game-services/scene.service';
+
+export class Game {
+  private readonly movingVectorStraight = new Vector3(0, 0, GameConstants.StartSpeedOfMovingStraight);
+
+  private readonly sceneService: GameSceneService;
+  private readonly storageService: GameStorageService;
+  private readonly uiElementsService: GameUiElementsService;
+
+  private coinScore: number = 0;
+  private gameStatus = GameStatus.Playing;
+
+  public constructor(private readonly elementsRefs: GameHTMLElementsRefs) {
+    this.sceneService = new GameSceneService(this.elementsRefs.canvas);
+    this.uiElementsService = new GameUiElementsService(this.elementsRefs);
+    this.storageService = new GameStorageService();
+  }
+
+  public init(): void {
+    this.onWindowResize();
+    window.addEventListener('resize', this.onWindowResize.bind(this));
+
+    this.initControls();
+
+    this.sceneService.createGameObjects();
+
+    this.coinScore = this.storageService.loadScore(StoredDataType.CurrentScore);
+    this.uiElementsService.updateScore(this.coinScore);
+
+    this.gameStatus = GameStatus.Playing;
+
+    this.sceneService.setBeforeRenderCallback(this.onBeforeRenderCallback);
+    this.sceneService.runRenderLoop();
+  }
+
+  private readonly onBeforeRenderCallback = () => {
+    this.checkIfGameOver();
+    this.checkCoinEarned();
+  };
+
+  private initControls() {
+    for (const element of this.elementsRefs.restartButtons) {
+      (element as HTMLButtonElement).onclick = this.restart.bind(this);
+    }
+
+    window.addEventListener('keydown', (event) => {
+      if (this.gameStatus === GameStatus.GameOver && event.key === 'Enter') {
+        this.restart();
+        return;
+      }
+
+      if (this.sceneService.ball.position.y < 2) {
+        switch (true) {
+          case event.key === 'ArrowLeft' || event.key.toLowerCase() === 'a':
+            this.pushBall(GameConstants.MoveVectorLeft);
+            break;
+          case event.key === 'ArrowRight' || event.key.toLocaleLowerCase() === 'd':
+            this.pushBall(GameConstants.MoveVectorRight);
+            break;
+        }
+      }
+    });
+
+    window.addEventListener('keyup', (event) => {
+      if (this.gameStatus !== GameStatus.Playing) return;
+
+      switch (true) {
+        case event.key === 'ArrowLeft' || event.key.toLowerCase() === 'a':
+          this.stopBallMovingAside();
+          break;
+        case event.key === 'ArrowRight' || event.key.toLocaleLowerCase() === 'd':
+          this.stopBallMovingAside();
+          break;
+      }
+    });
+  }
+
+  private checkIfGameOver(): void {
+    const ball = this.sceneService.ball;
+    const walls = this.sceneService.walls;
+
+    if (ball.getAbsolutePosition().y <= 0) {
+      this.gameOver();
+    }
+
+    const check = (spherePos: Vector3, box: BoundingBox): boolean => {
+      const min = box.minimumWorld;
+      const max = box.maximumWorld;
+
+      const closestX = Math.max(min.x, Math.min(spherePos.x, max.x));
+      const closestY = Math.max(min.y, Math.min(spherePos.y, max.y));
+      const closestZ = Math.max(min.z, Math.min(spherePos.z, max.z));
+
+      const distance = Vector3.Distance(spherePos, new Vector3(closestX, closestY, closestZ));
+
+      return distance < GameConstants.BallRadius;
+    };
+
+    for (let i = 0; i < walls.length; ++i) {
+      if (walls[i] && ball) {
+        const ballPos = ball.position;
+        const wallBounds = walls[i].getBoundingInfo().boundingBox;
+
+        if (check(ballPos, wallBounds)) {
+          walls[i].material = this.sceneService.wallTouchedMaterial;
+          this.gameOver();
+          break;
+        }
+      }
+    }
+  }
+
+  private pushBall(impuls: Vector3): void {
+    this.sceneService.ball.physicsImpostor?.applyImpulse(impuls, this.sceneService.ball.getAbsolutePosition());
+  }
+
+  private stopBallMovingAside(): void {
+    this.movingVectorStraight.z += this.movingVectorStraight.z * 0.01;
+    this.sceneService.ball.physicsImpostor?.setLinearVelocity(this.movingVectorStraight);
+    this.sceneService.ball.physicsImpostor?.setAngularVelocity(GameConstants.ZeroVector);
+  }
+
+  private onWindowResize() {
+    this.uiElementsService.shrinkCanvas();
+    this.sceneService.resizeEngine();
+  }
+
+  private checkCoinEarned(): void {
+    const coins = this.sceneService.coins;
+
+    for (let i = 0; i < coins.length; ++i) {
+      if (this.sceneService.ball.intersectsMesh(coins[i], true)) {
+        ++this.coinScore;
+        this.uiElementsService.updateScore(this.coinScore);
+        this.sceneService.removeCoinByIndex(i);
+        this.storageService.saveScore(StoredDataType.CurrentScore, this.coinScore);
+        break;
+      }
+    }
+  }
+
+  private gameOver(): void {
+    this.gameStatus = GameStatus.GameOver;
+
+    const bestScore = this.storageService.loadScore(StoredDataType.BestScore);
+
+    if (this.coinScore > bestScore) {
+      this.storageService.saveScore(StoredDataType.BestScore, this.coinScore);
+    }
+
+    this.storageService.saveScore(StoredDataType.CurrentScore, 0);
+
+    this.uiElementsService.hideUiElements();
+    this.uiElementsService.showGameOverScreen(this.coinScore, this.storageService.loadScore(StoredDataType.BestScore));
+  }
+
+  private restart() {
+    this.gameStatus = GameStatus.Playing;
+
+    this.coinScore = 0;
+    this.uiElementsService.updateScore(this.coinScore);
+    this.storageService.saveScore(StoredDataType.CurrentScore, 0);
+
+    this.sceneService.resetGameObjects();
+    this.sceneService.createGameObjects();
+    this.uiElementsService.hideGameOverScreen();
+    this.uiElementsService.showUiElements();
+  }
+}

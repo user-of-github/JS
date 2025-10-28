@@ -1,6 +1,6 @@
-import type { GameHTMLElementsRefs } from './types';
+import type { GameHTMLElementsRefs } from '../types';
 
-export class GameUiElementsManager {
+export class GameUiElementsService {
   public constructor(private readonly elementsRefs: GameHTMLElementsRefs) {}
 
   public shrinkCanvas() {
