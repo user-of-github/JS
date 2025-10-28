@@ -1,5 +1,4 @@
 import { Vector3, type BoundingBox } from '@babylonjs/core';
-import '@babylonjs/loaders/glTF';
 
 import { GameStatus, type GameHTMLElementsRefs } from './types';
 import { GameStorageService, StoredDataType } from './game-services/storage.service';

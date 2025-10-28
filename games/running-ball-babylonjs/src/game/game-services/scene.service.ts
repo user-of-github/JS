@@ -18,10 +18,11 @@ import {
   Color3,
   SceneLoader
 } from '@babylonjs/core';
-import { GameConstants } from '../constants';
+import '@babylonjs/loaders/glTF';
 //@ts-ignore
 import * as CANNON from 'cannon';
 import { WaterMaterial } from '@babylonjs/materials';
+import { GameConstants } from '../constants';
 import { notRepeatedRandomFreeSpacePositionGenerator } from '../utils';
 
 export class GameSceneService {
@@ -135,7 +136,6 @@ export class GameSceneService {
   private configureCamera(): Camera {
     const camera = new FreeCamera('camera', new Vector3(-2, 5, -10), this.scene);
     camera.setTarget(GameConstants.ZeroVector);
-    ///camera.attachControl(this.canvas)
 
     return camera;
   }
@@ -143,7 +143,6 @@ export class GameSceneService {
   private updateCameraAndLight(): void {
     this.camera.position.z = this._ball.getAbsolutePosition().z - 12;
     this.camera.position.y = this._ball.getAbsolutePosition().y + 6;
-    //this.camera.setTarget(this.ball.getAbsolutePosition());
 
     this.light.position.z = this._ball.getAbsolutePosition().z + 10;
     this.light.position.y = this._ball.getAbsolutePosition().y + 10;
@@ -153,10 +152,7 @@ export class GameSceneService {
   private configureSky() {
     const skyBox = MeshBuilder.CreateBox('skyBox', { size: 1000 }, this.scene);
     const skyBoxMaterial = new StandardMaterial('skyBox', this.scene);
-    skyBoxMaterial.reflectionTexture = new CubeTexture(
-      '/assets/environments/TropicalSunnyDay/TropicalSunnyDay',
-      this.scene
-    );
+    skyBoxMaterial.reflectionTexture = new CubeTexture('/assets/environments/TropicalSunnyDay/TropicalSunnyDay', this.scene);
     skyBoxMaterial.reflectionTexture.coordinatesMode = Texture.SKYBOX_MODE;
     skyBoxMaterial.backFaceCulling = false;
     skyBox.material = skyBoxMaterial;

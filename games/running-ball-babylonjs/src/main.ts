@@ -1,4 +1,4 @@
-import { Game } from './game/index';
+import { Game } from './game/Game';
 import type { GameHTMLElementsRefs } from './game/types';
 
 const main = () => {
