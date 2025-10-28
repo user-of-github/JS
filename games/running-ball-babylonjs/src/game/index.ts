@@ -3,7 +3,7 @@ import '@babylonjs/loaders/glTF';
 
 import { GameStatus, type GameHTMLElementsRefs } from './types';
 import { GameStorageService, StoredDataType } from './game-services/storage.service';
-import { GameUiElementsService } from './game-services/ui-manager.service.';
+import { GameUiElementsService } from './game-services/ui-elements.service';
 import { GameConstants } from './constants';
 import { GameSceneService } from './game-services/scene.service';
 
