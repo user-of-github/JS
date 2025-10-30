@@ -208,6 +208,7 @@ export class Game {
 
   private restart() {
     this.gameStatus = GameStatus.Playing;
+    this.movingVectorStraight.z = GameConstants.StartSpeedOfMovingStraight;
 
     this.coinScore = 0;
     this.uiElementsService.updateScore(this.coinScore);
