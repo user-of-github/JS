@@ -1,0 +1,28 @@
+{
+  "name": "running-ball-babylonjs",
+  "private": true,
+  "version": "0.0.1",
+  "author": {
+    "url": "https://github.com/user-of-github",
+    "name": "@user-of-github"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "format": "npx prettier . --write"
+  },
+  "devDependencies": {
+    "globals": "^16.4.0",
+    "prettier": "3.6.2",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.7"
+  },
+  "dependencies": {
+    "@babylonjs/core": "^8.33.2",
+    "@babylonjs/loaders": "^8.33.2",
+    "@babylonjs/materials": "^8.33.2",
+    "cannon": "^0.6.2"
+  }
+}
