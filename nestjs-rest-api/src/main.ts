@@ -12,7 +12,6 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get<number>('APP_PORT') || 4201;
 
-
   const config = new DocumentBuilder()
     .setTitle('Educational NestJS REST API')
     .setDescription('REST API documentation')
