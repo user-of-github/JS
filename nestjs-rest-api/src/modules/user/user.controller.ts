@@ -4,6 +4,10 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserModel } from './user.model';
 import { Auth } from '../../common/decorators/auth.decorator';
+import { Roles } from '../../common/decorators/roles.decorator';
+import { AccessWithRoles } from '../../common/decorators/access-with-roles.decorator';
+import { BanUserDto } from './dto/ban-user.dto';
+import { AddRoleToUserDto } from './dto/add-user-role.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -23,5 +27,25 @@ export class UserController {
   @Get()
   public getAll() {
     return this.userService.getAll();
+  }
+
+
+  @ApiOperation({ summary: 'Adding a new role to user' })
+  @ApiResponse({status: 201 })
+  @Roles('ADMIN')
+  @AccessWithRoles()
+  @Post('/grant-role')
+  public addRoleToUser(@Body() dto: AddRoleToUserDto) {
+    return this.userService.addRoleToUser(dto);
+  }
+
+
+  @ApiOperation({ summary: 'Banning a user' })
+  @ApiResponse({status: 201 })
+  @Roles('ADMIN')
+  @AccessWithRoles()
+  @Post('/ban')
+  public banUser(@Body() dto: BanUserDto) {
+    return this.userService.banUser(dto);
   }
 }

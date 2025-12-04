@@ -28,4 +28,8 @@ export class CryptoService {
   private generateSalt() {
     return crypto.randomBytes(16).toString('hex');
   }
+
+  public generateUUID() {
+    return crypto.randomUUID();
+  }
 }

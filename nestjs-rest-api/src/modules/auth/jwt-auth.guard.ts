@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
-  private static readonly AuthHeaderType = 'Bearer';
+  public static readonly AuthHeaderType = 'Bearer';
 
   public constructor(private readonly jwtService: JwtService) {
   }
