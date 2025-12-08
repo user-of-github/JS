@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  db: 
+    container_name: postgres
+    restart: always
+    image: postgres:18-alpine
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - TZ=GMT
+      - PGTZ=GMT
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "${PG_ADMIN_OUTPUT_PORT}:${PG_ADMIN_INNER_PORT}"
+    networks:
+      - backend
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PG_ADMIN_DEFAULT_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PG_ADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: ${PG_ADMIN_INNER_PORT}
+
+  redis:
+    container_name: redis
+    image: redis:8.4-alpine
+    restart: always
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - ./redis-data:/data
+    networks:
+      - backend
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+
+ 
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  backend:
