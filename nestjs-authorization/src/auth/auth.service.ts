@@ -1,14 +1,24 @@
-import { BadRequestException, ConflictException, Injectable, InternalServerErrorException } from '@nestjs/common';
-import { RegisterDto } from './dto/register.dto';
+import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import type { RegisterDto } from './dto/register.dto';
 import { UserService } from '../user/user.service';
 import { AuthMethod, User } from '../prisma/types';
-import { type Request } from 'express';
+import type { Request, Response } from 'express';
+import type { LoginDto } from './dto/login.dto';
+import { CryptoService } from 'src/crypto/crypto.service';
+import { ConfigService } from '@nestjs/config';
 
 
 @Injectable()
 export class AuthService {
-  public constructor(private readonly userService: UserService) {
+  private readonly sessionNameKey: string;
 
+
+  public constructor(
+    private readonly userService: UserService,
+    private readonly cryptoService: CryptoService,
+    private readonly configService: ConfigService
+  ) {
+   this.sessionNameKey = this.configService.getOrThrow<string>('SESSION_NAME'); 
   }
 
 
@@ -31,9 +41,34 @@ export class AuthService {
     return this.saveSession(request, newUser);
   }
 
-  public async login() {}
+  public async login(request: Request, dto: LoginDto) {
+    const user = await this.userService.findByEmail(dto.email);
 
-  public async logout() {}
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    const isPasswordValid = await this.cryptoService.verifyPassword(dto.password, user.password);
+
+    if (!isPasswordValid) {
+      throw new NotFoundException('User not found')
+    }
+
+    return this.saveSession(request, user);
+  }
+
+  public async logout(request: Request, response: Response): Promise<void> {
+    return new Promise((resolve, reject) => {
+      request.session.destroy(error => {
+        if (error) {
+          reject(new InternalServerErrorException('Unable to destroy session'));
+        }
+
+        response.clearCookie(this.sessionNameKey);
+        resolve();
+      })
+    });
+  }
 
   public async saveSession(request: Request, user: User) {
     return new Promise((resolve, reject) => {
