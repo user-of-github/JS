@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db: 
     container_name: postgres
@@ -42,16 +40,37 @@ services:
     command: redis-server --requirepass ${REDIS_PASSWORD}
     volumes:
       - ./redis-data:/data
-    networks:
-      - backend
+    env_file:
+      - ./.env
     ports:
       - "${REDIS_PORT}:${REDIS_PORT}"
+    networks:
+      - backend
 
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: redisinsight
+    restart: unless-stopped
+    volumes:
+      - redisinsight_data:/data
+    ports:
+      - "${REDIS_INSIGHT_APP_PORT}:${REDIS_INSIGHT_APP_PORT}"
+    environment:
+      - RI_APP_PORT=${REDIS_INSIGHT_APP_PORT}
+      - RI_APP_HOST=${REDIS_INSIGHT_APP_HOST}
+      - RI_LOG_LEVEL=${REDIS_INSIGHT_LOG_LEVEL}
+      - RI_STDOUT_LOGGER=${REDIS_INSIGHT_STDOUT_LOGGER}
+      - RI_FILES_LOGGER=${REDIS_INSIGHT_FILES_LOGGER}
+      - RITRUSTEDORIGINS=${REDIS_INSIGHT_TRUSTED_ORIGINS}
+      - RI_PROXY_PATH=${REDIS_INSIGHT_PROXY_PATH}
+    networks:
+      - backend
  
 
 volumes:
   postgres_data:
   redis_data:
+  redisinsight_data:
 
 networks:
   backend:

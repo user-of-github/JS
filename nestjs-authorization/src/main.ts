@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import cookieParser from 'cookie-parser';
 import { ValidationPipe } from '@nestjs/common';
-import IORedis from 'ioredis';
+import { createClient } from 'redis';
 import session from 'express-session';
 import { parseBoolean } from './libs/common/utils/parse-boolean.util';
 import { RedisStore } from 'connect-redis';
@@ -13,16 +13,22 @@ const bootstrap = async () => {
   const app = await NestFactory.create(AppModule);
 
   const configService = app.get(ConfigService);
-  
+
   app.use(cookieParser(configService.getOrThrow<string>('COOKIES_SECRET')));
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  app.enableCors({ 
+  app.enableCors({
     origin: configService.getOrThrow<string>('ALLOWED_ORIGIN'),
     credentials: true,
     exposedHeaders: ['set-cookie']
   });
 
-  const redis = new IORedis(configService.getOrThrow<string>('REDIS_URI'));
+  const redisClient = createClient({
+    url: configService.getOrThrow<string>('REDIS_URI')
+  }).on('error', (err) => {
+    console.error('Redis Client Error', err)
+  });
+
+  await redisClient.connect();
 
   app.use(session({
     secret: configService.getOrThrow<string>('SESSION_SECRET'),
@@ -37,11 +43,11 @@ const bootstrap = async () => {
       sameSite: 'lax'
     },
     store: new RedisStore({
-      client: redis,
+      client: redisClient,
       prefix: configService.getOrThrow<string>('SESSION_FOLDER')
     })
   }))
-  
+
   await app.listen(configService.getOrThrow<number>('APP_PORT'));
 };
 

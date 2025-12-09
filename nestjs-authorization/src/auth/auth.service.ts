@@ -1,7 +1,8 @@
-import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
 import { UserService } from '../user/user.service';
 import { AuthMethod, User } from '../prisma/types';
+import { type Request } from 'express';
 
 
 @Injectable()
@@ -11,7 +12,7 @@ export class AuthService {
   }
 
 
-  public async register(dto: RegisterDto) {
+  public async register(request: Request, dto: RegisterDto) {
     const doesExist = await this.userService.findByEmail(dto.email);
     
     if (doesExist) {
@@ -27,14 +28,24 @@ export class AuthService {
       false
     );
 
-    return this.saveSession(newUser);
+    return this.saveSession(request, newUser);
   }
 
   public async login() {}
 
   public async logout() {}
 
-  public async saveSession(user: User) {
-    return user;
+  public async saveSession(request: Request, user: User) {
+    return new Promise((resolve, reject) => {
+      request.session.userId = user.id;
+      request.session.save(err => {
+        if (err) {
+          console.error(err)
+          reject(new InternalServerErrorException('Unable to save session'))
+        }
+
+        resolve(user);
+      })
+    });
   }
 }
