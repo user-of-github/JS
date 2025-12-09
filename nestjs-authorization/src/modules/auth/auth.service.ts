@@ -1,11 +1,11 @@
 import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import type { RegisterDto } from './dto/register.dto';
 import { UserService } from '../user/user.service';
 import { AuthMethod, User } from '../prisma/types';
 import type { Request, Response } from 'express';
 import type { LoginDto } from './dto/login.dto';
-import { CryptoService } from 'src/crypto/crypto.service';
-import { ConfigService } from '@nestjs/config';
+import { CryptoService } from '../crypto/crypto.service';
 
 
 @Injectable()
@@ -18,13 +18,13 @@ export class AuthService {
     private readonly cryptoService: CryptoService,
     private readonly configService: ConfigService
   ) {
-   this.sessionNameKey = this.configService.getOrThrow<string>('SESSION_NAME'); 
+   this.sessionNameKey = this.configService.getOrThrow<string>('SESSION_NAME');
   }
 
 
   public async register(request: Request, dto: RegisterDto) {
     const doesExist = await this.userService.findByEmail(dto.email, true);
-    
+
     if (doesExist) {
       throw new ConflictException('User with such email already exists');
     }

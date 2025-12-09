@@ -10,7 +10,9 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main"
+    "start:prod": "node dist/main",
+
+    "kill-port:4200": "netstat -ano | findstr :4200 | for /f \"tokens=5\" %i in ('more') do taskkill /f /pid %i"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^2.0.2",

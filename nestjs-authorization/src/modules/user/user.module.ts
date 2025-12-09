@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
-import { CryptoModule } from 'src/crypto/crypto.module';
+import { CryptoModule } from '../crypto/crypto.module';
 
 
 @Module({
