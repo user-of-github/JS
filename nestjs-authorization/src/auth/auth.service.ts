@@ -23,7 +23,7 @@ export class AuthService {
 
 
   public async register(request: Request, dto: RegisterDto) {
-    const doesExist = await this.userService.findByEmail(dto.email);
+    const doesExist = await this.userService.findByEmail(dto.email, true);
     
     if (doesExist) {
       throw new ConflictException('User with such email already exists');
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   public async login(request: Request, dto: LoginDto) {
-    const user = await this.userService.findByEmail(dto.email);
+    const user = await this.userService.findByEmail(dto.email, true);
 
     if (!user) {
       throw new NotFoundException('User not found');

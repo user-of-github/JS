@@ -11,7 +11,7 @@ export class UserService {
     private readonly cryptoService: CryptoService
   ) {}
 
-  public async findById(id: string) {
+  public async findById(id: string, notThrow = false) {
     const user = await this.prismaService.user.findUnique({
       where: { id },
       include: { 
@@ -19,16 +19,24 @@ export class UserService {
       }
     });
 
+    if (!user && !notThrow) {
+      throw new NotFoundException('User not found');
+    }
+
     return user;
   }
 
-  public async findByEmail(email: string) {
+  public async findByEmail(email: string, notThrow = false) {
     const user = await this.prismaService.user.findUnique({
       where: { email },
       include: { 
         accounts: true
       }
     });
+
+    if (!user && !notThrow) {
+      throw new NotFoundException('User not found');
+    }
 
     return user;
   }
